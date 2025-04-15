@@ -5,11 +5,12 @@ import { RefObject, useRef } from "react";
 
 export default function useScrollAnimation(
   containerRef: RefObject<HTMLDivElement | null>,
-  shadowContainerRef: RefObject<HTMLDivElement | null>
+  shadowContainerRef: RefObject<HTMLDivElement | null>,
+  menuRef: RefObject<HTMLButtonElement | null>
 ) {
   const hasAnimatedDownRef = useRef(false);
 
-  useGSAP(
+  const { contextSafe } = useGSAP(
     () => {
       gsap.registerPlugin(ScrollTrigger);
       gsap.defaults({ duration: 1, ease: "elastic.out(.4)" });
@@ -57,4 +58,19 @@ export default function useScrollAnimation(
     },
     { scope: containerRef, dependencies: [] }
   );
+
+  const showNav = contextSafe(() => {
+    gsap.fromTo("#shadow-container", { y: -200 }, { y: 0 });
+    gsap.to(".links", { y: 0 });
+    gsap.to("#try-for-free", { x: 56 });
+    gsap.to("#hamburger-menu", { scale: 0, opacity: 0 });
+
+    hasAnimatedDownRef.current = false;
+  });
+
+  return {
+    actions: {
+      showNav,
+    },
+  };
 }

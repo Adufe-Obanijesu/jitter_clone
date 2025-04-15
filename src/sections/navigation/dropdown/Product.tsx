@@ -38,10 +38,12 @@ export default function Product() {
       </div>
       <div className="pl-20 space-y-5">
         <div className="space-y-3.5">
-          <p className="font-semibold text-xl">What&apos;s new</p>
+          <p className="dropdown-links opacity-0 font-semibold text-xl">
+            What&apos;s new
+          </p>
           <nav>
             <ul className="font-semibold space-y-2.5">
-              <li>
+              <li className="dropdown-links opacity-0">
                 <Link
                   href="#"
                   className="hover:opacity-50 cursor-pointer transition_item"
@@ -49,7 +51,7 @@ export default function Product() {
                   New website
                 </Link>
               </li>
-              <li>
+              <li className="dropdown-links opacity-0">
                 <Link
                   href="#"
                   className="hover:opacity-50 cursor-pointer transition_item"
@@ -57,7 +59,7 @@ export default function Product() {
                   CSS Easing export
                 </Link>
               </li>
-              <li>
+              <li className="dropdown-links opacity-0">
                 <Link
                   href="#"
                   className="hover:opacity-50 cursor-pointer transition_item"
@@ -69,7 +71,7 @@ export default function Product() {
           </nav>
         </div>
         <Button
-          className="bg-light-grey text-primary font-lausanne font-semibold text-lg"
+          className="dropdown-button scale-0 bg-light-grey text-primary font-lausanne font-semibold text-lg"
           rightIcon={<FaArrowRight />}
         >
           See what&apos;s new

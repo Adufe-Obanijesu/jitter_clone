@@ -10,7 +10,7 @@ export default function Customer() {
     <div className="flex gap-2.5 w-[860px]">
       <div className="flex-1">
         <ScaleDown>
-          <div className="cursor-pointer transition_item flex-1 bg-primary p-[30px] h-[380px] rounded-[20px] flex flex-col justify-between">
+          <div className="product opacity-0 scale-90 cursor-pointer transition_item flex-1 bg-primary p-[30px] h-[380px] rounded-[20px] flex flex-col justify-between">
             <div className="h-[200px] flex justify-center items-center">
               <Image
                 src="/icons/perplexity.svg"
@@ -36,30 +36,32 @@ export default function Customer() {
       <div className="flex-1 space-y-2.5 shrink-0">
         <ScaleDown>
           <div
-            className={`hover:bg-primary transition_item cursor-pointer rounded-[20px] p-[30px] h-[185px] w-full flex items-center justify-center bg-light-grey`}
+            className={`product opacity-0 scale-90 hover:bg-primary transition_item cursor-pointer rounded-[20px] p-[30px] h-[185px] w-full flex items-center justify-center bg-light-grey`}
           >
             <RampIcon />
           </div>
         </ScaleDown>
         <ScaleDown>
           <div
-            className={`hover:bg-primary transition_item cursor-pointer rounded-[20px] p-[30px] h-[185px] w-full flex items-center justify-center bg-light-grey`}
+            className={`product opacity-0 scale-90 hover:bg-primary transition_item cursor-pointer rounded-[20px] p-[30px] h-[185px] w-full flex items-center justify-center bg-light-grey`}
           >
             <Image
               src="/icons/deliveroo.svg"
               width={157.56}
               height={42.42}
-              alt="ramp"
+              alt="deliveroo"
             />
           </div>
         </ScaleDown>
       </div>
       <div className="pl-20 space-y-5">
         <div className="space-y-3.5">
-          <p className="font-semibold text-xl">All customers</p>
+          <p className="dropdown-links opacity-0 font-semibold text-xl">
+            All customers
+          </p>
           <nav>
             <ul className="font-semibold space-y-2.5">
-              <li>
+              <li className="dropdown-links opacity-0">
                 <Link
                   href="#"
                   className="hover:opacity-50 cursor-pointer transition_item"
@@ -67,7 +69,7 @@ export default function Customer() {
                   Creative teams
                 </Link>
               </li>
-              <li>
+              <li className="dropdown-links opacity-0">
                 <Link
                   href="#"
                   className="hover:opacity-50 cursor-pointer transition_item"
@@ -75,7 +77,7 @@ export default function Customer() {
                   Agencies
                 </Link>
               </li>
-              <li>
+              <li className="dropdown-links opacity-0">
                 <Link
                   href="#"
                   className="hover:opacity-50 cursor-pointer transition_item"
@@ -87,7 +89,7 @@ export default function Customer() {
           </nav>
         </div>
         <Button
-          className="bg-light-grey text-primary font-lausanne font-semibold text-lg"
+          className="dropdown-button scale-0 bg-light-grey text-primary font-lausanne font-semibold text-lg"
           rightIcon={<FaArrowRight />}
         >
           See all customers

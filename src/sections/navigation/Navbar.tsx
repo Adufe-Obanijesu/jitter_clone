@@ -9,13 +9,28 @@ import { useRef, useState } from "react";
 import useScrollAnimation from "@/hooks/navbar/useScrollAnimation";
 import ListItem from "./ListItem";
 import Wrapper from "./dropdown/Wrapper";
+import { useWindowSize } from "@react-hook/window-size";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import useDropdownAnimation from "@/hooks/navbar/useDropdownAnimation";
 
 export default function Navbar() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const shadowContainerRef = useRef<HTMLDivElement | null>(null);
+  const menuRef = useRef<HTMLButtonElement | null>(null);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
-  useScrollAnimation(containerRef, shadowContainerRef);
+  const activeDropdown = hoveredItem
+    ? nav_links.find((item) => item.name === hoveredItem)?.dropdown_component
+    : null;
+
+  const { actions } = useScrollAnimation(
+    containerRef,
+    shadowContainerRef,
+    menuRef
+  );
+
+  useDropdownAnimation(hoveredItem, activeDropdown);
 
   const handleMouseEnter = (itemName: string) => {
     setHoveredItem(itemName);
@@ -24,10 +39,6 @@ export default function Navbar() {
   const handleMouseLeave = () => {
     setHoveredItem(null);
   };
-
-  const activeDropdown = hoveredItem
-    ? nav_links.find((item) => item.name === hoveredItem)?.dropdown_component
-    : null;
 
   return (
     <div
@@ -40,8 +51,8 @@ export default function Navbar() {
         } px-[30px] mx-auto relative`}
         onMouseLeave={handleMouseLeave}
       >
-        <nav className="flex justify-between items-center gap-8 max-w-[860px] mx-auto relative z-30">
-          <div className="links flex justify-between items-center gap-6">
+        <nav className="flex items-center gap-8 max-w-[860px] mx-auto relative z-30">
+          <div className="links flex justify-between items-center gap-6 flex-1">
             <Image src="/logo.svg" width={82} height={28} alt="Jitter logo" />
             <ul className="flex justify-between items-center">
               {nav_links.map((item) => (
@@ -54,16 +65,16 @@ export default function Navbar() {
                 />
               ))}
             </ul>
-          </div>
 
-          <div className="flex items-center gap-6">
             <Link
               href="/login"
-              className="links px-5 py-4 font-semibold text-primary shrink-0"
+              className="px-5 py-4 font-semibold text-primary shrink-0"
             >
               Log in
             </Link>
+          </div>
 
+          <div className="flex items-center gap-6">
             <div className="flex items-center gap-6 right-0">
               <Link
                 href="/join"
@@ -73,6 +84,8 @@ export default function Navbar() {
                 <Button>Try for free</Button>
               </Link>
               <Button
+                ref={menuRef}
+                onClick={actions.showNav}
                 id="hamburger-menu"
                 className="text-white shrink-0 rounded-full w-[56px] h-[56px] p-0 flex justify-center items-center scale opacity-0"
               >
@@ -82,15 +95,19 @@ export default function Navbar() {
           </div>
         </nav>
         <div
-          ref={shadowContainerRef}
           id="shadow-container"
-          className={`bg-white w-full ${
-            hoveredItem && activeDropdown
-              ? "w-screen h-[85vh] overflow-y-scroll transition_item"
-              : "w-[920px] h-[90px]"
-          } top-[-17px] pt-[73px] px-[30px] shadow-nav rounded-4xl absolute left-0 flex justify-center`}
+          className={`w-full top-[-17px] absolute left-0 flex justify-center`}
         >
-          {activeDropdown && <Wrapper>{activeDropdown}</Wrapper>}
+          {activeDropdown && (
+            <div className="absolute z-40 top-16">
+              <Wrapper>{activeDropdown}</Wrapper>
+            </div>
+          )}
+          <div
+            id="shadow-el"
+            ref={shadowContainerRef}
+            className={`bg-white w-[920px] h-[90px] shadow-nav rounded-4xl top-0 left-0`}
+          />
         </div>
       </div>
     </div>

@@ -29,7 +29,7 @@ export default function EachProduct({
 }: ProductProps) {
   return (
     <div
-      className={`rounded-[20px] p-[30px] h-[185px] w-full flex items-end bg-${bg} text-${text_color}`}
+      className={`product opacity-0 scale-90 rounded-[20px] p-[30px] h-[185px] w-full flex items-end bg-${bg} text-${text_color}`}
     >
       <div className="space-y-2" style={{ maxWidth: text_width || "160px" }}>
         <h3 className="text-xl font-extrabold">{text}</h3>
