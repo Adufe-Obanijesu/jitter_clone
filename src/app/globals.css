@@ -44,6 +44,10 @@
   .text-primary {
     @apply text-primary;
   }
+
+  .transition_item {
+    @apply transition-all duration-300 ease-in;
+  }
 }
 
 body {
