@@ -1,3 +1,4 @@
+import FadeOnScroll from "@/components/animations/FadeOnScroll";
 import Customers from "@/sections/customers";
 import FeatureVideo from "@/sections/feature_video";
 import Hero from "@/sections/hero";
@@ -11,7 +12,9 @@ export default function Home() {
         <Navbar />
         <Hero />
         <Customers />
-        <FeatureVideo />
+        <FadeOnScroll>
+          <FeatureVideo />
+        </FadeOnScroll>
         <WhatWeDo />
       </div>
 
