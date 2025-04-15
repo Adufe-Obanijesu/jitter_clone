@@ -1,11 +1,15 @@
 export default function FeatureVideo() {
   return (
-    <div className="bg-light-grey px-20 py-44 mt-44">
+    <div className="bg-light-grey flex justify-center py-20 mt-44">
       <video
-        src="https://assets.jitter.video/video-hero-hd-20.mp4"
+        src="/videos/what_we_do.mp4"
         loop
+        muted
+        playsInline
+        autoPlay
         aria-hidden="true"
-      ></video>
+        className="max-w-[576px]"
+      />
     </div>
   );
 }
