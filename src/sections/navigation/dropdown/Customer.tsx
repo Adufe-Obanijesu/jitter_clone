@@ -1,0 +1,80 @@
+import Button from "@/components/ui/Button";
+import Image from "next/image";
+import Link from "next/link";
+import { FaArrowRight } from "react-icons/fa6";
+
+export default function Customer() {
+  return (
+    <div className="flex gap-2.5 w-[860px]">
+      <div className="flex-1">
+        <div className="flex-1 bg-primary p-[30px] h-[380px] rounded-[20px] flex flex-col justify-between">
+          <div className="h-[200px] flex justify-center items-center">
+            <Image
+              src="/icons/perplexity.svg"
+              width={82.82}
+              height={95.76}
+              alt="perplexity"
+            />
+          </div>
+          <div className="space-y-2">
+            <h3 className="font-extrabold text-xl text-white max-w-[198px]">
+              How Perplexity brings their brand to life with Jitter
+            </h3>
+            <div className="flex items-center gap-1.5">
+              <Link href="#" className="font-semibold text-white">
+                Learn more
+              </Link>
+              <FaArrowRight className="text-blue" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="flex-1 space-y-2.5 shrink-0">
+        <div
+          className={`rounded-[20px] p-[30px] h-[185px] w-full flex items-center justify-center bg-light-grey`}
+        >
+          <Image
+            src="/icons/ramp.svg"
+            width={119.18}
+            height={31.77}
+            alt="ramp"
+          />
+        </div>
+        <div
+          className={`rounded-[20px] p-[30px] h-[185px] w-full flex items-center justify-center bg-light-grey`}
+        >
+          <Image
+            src="/icons/deliveroo.svg"
+            width={157.56}
+            height={42.42}
+            alt="ramp"
+          />
+        </div>
+      </div>
+      <div className="pl-20 space-y-5">
+        <div className="space-y-3.5">
+          <p className="font-semibold text-xl">All customers</p>
+          <nav>
+            <ul className="font-semibold space-y-2.5">
+              <li>
+                <Link href="#">Creative teams</Link>
+              </li>
+              <li>
+                <Link href="#">Agencies</Link>
+              </li>
+              <li>
+                <Link href="#">Studios</Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <Button
+          className="bg-light-grey text-primary font-lausanne font-semibold text-lg"
+          rightIcon={<FaArrowRight />}
+        >
+          See all customers
+        </Button>
+      </div>
+    </div>
+  );
+}
