@@ -1,7 +1,8 @@
+import Image from "next/image";
 import { ReactNode } from "react";
 
 interface FeatureProps {
-  icon: ReactNode;
+  icon: string;
   heading: string;
   body: string;
 }
@@ -10,7 +11,7 @@ export default function Feature({ icon, heading, body }: FeatureProps) {
   return (
     <div className="space-y-2.5">
       <div className="flex items-center gap-3">
-        {icon}
+        <Image src={icon} width={22} height={22} alt="Vector paths icon" />
         <h4 className="font-semibold text-xl">{heading}</h4>
       </div>
 

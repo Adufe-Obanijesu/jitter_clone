@@ -7,18 +7,20 @@ import Feature from "./Feature";
 
 export default function CreativePower() {
   return (
-    <div>
-      <div className="">
+    <div className="mt-20">
+      <div className="flex flex-col items-center gap-[30px]">
         <Tag>Creative power</Tag>
-        <h1 className="text-5xl font-bold">Supercharge your creativity</h1>
-        <p>
+        <h1 className="text-7xl font-bold text-center">
+          Supercharge your creativity
+        </h1>
+        <p className="text-center text-lg max-w-[500px]">
           <strong>
             Jitter combines powerful features with intuitive controls
-          </strong>
+          </strong>{" "}
           that let you craft standout animations and deliver work you're proud
           of.
         </p>
-        <Button>Explore all the features</Button>
+        <Button className="text-xl">Explore all the features</Button>
       </div>
 
       <div className="grid grid-cols-2 gap-x-5 gap-y-14 mt-[60px]">

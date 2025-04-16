@@ -19,6 +19,8 @@
   --color-primary: #191919;
   --color-secondary: #6e6e6e;
   --color-purple: #a981ff;
+  --color-card-purple: #cab3f8;
+  --color-card-light-purple: #f2ecfd;
   --color-blue: #00b2ff;
   --color-light-grey: #f2f1f3;
   --color-dark: #19171c;
@@ -41,8 +43,20 @@
     @apply text-white;
   }
 
+  .bg-white {
+    @apply bg-white;
+  }
+
   .text-primary {
     @apply text-primary;
+  }
+
+  .bg-card-purple {
+    @apply bg-card-purple;
+  }
+
+  .bg-card-light-purple {
+    @apply bg-card-light-purple;
   }
 
   .transition_item {
