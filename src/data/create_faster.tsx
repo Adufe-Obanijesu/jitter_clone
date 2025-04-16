@@ -51,8 +51,8 @@ export const create_faster = [
     media: (
       <Image
         src="/images/create faster/smarter_timeline.webp"
-        width={1000}
-        height={1000}
+        width={332}
+        height={415}
         alt="smarter timeline"
       />
     ),
@@ -71,8 +71,8 @@ export const create_faster = [
     media: (
       <Image
         src="/images/create faster/fast_performance.webp"
-        width={1000}
-        height={1000}
+        width={332}
+        height={415}
         alt="fast performance"
       />
     ),

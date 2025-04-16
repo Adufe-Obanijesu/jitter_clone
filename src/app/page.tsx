@@ -2,6 +2,7 @@ import FadeOnScroll from "@/components/animations/FadeOnScroll";
 import Testimonial from "@/components/Testimonial";
 import { testimonials } from "@/data/testimonials";
 import CreateFaster from "@/sections/create_faster";
+import CreativePower from "@/sections/creative_power";
 import Customers from "@/sections/customers";
 import FeatureVideo from "@/sections/feature_video";
 import Hero from "@/sections/hero";
@@ -26,6 +27,7 @@ export default function Home() {
           <Testimonial {...testimonials[1]} />
         </FadeOnScroll>
         <CreateFaster />
+        <CreativePower />
       </div>
 
       <br />

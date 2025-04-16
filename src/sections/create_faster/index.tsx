@@ -1,12 +1,11 @@
 import { create_faster } from "@/data/create_faster";
 import Card from "./Card";
+import Tag from "@/components/ui/Tag";
 
 export default function CreateFaster() {
   return (
-    <div>
-      <span className="bg-light-grey py-2 px-4 font-semibold rounded-full">
-        Create faster
-      </span>
+    <div className="max-w-[684px] mx-auto">
+      <Tag>Create faster</Tag>
       <div className="grid grid-cols-2 gap-5 mt-7">
         <h1 className="text-5xl font-bold">Built for teams who move fast</h1>
 

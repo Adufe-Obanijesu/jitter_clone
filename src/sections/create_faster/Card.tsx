@@ -10,16 +10,16 @@ interface CardProps {
 export default function Card({ media, heading, icon, body }: CardProps) {
   return (
     <div className="space-y-6">
-      <div className="bg-light-grey flex items-center justify-center">
+      <div className="bg-light-grey flex items-center justify-center w-[332px] h-[415px]">
         {media}
       </div>
 
       <div>
-        <div className="flex justify-center item-center gap-4">
+        <div className="flex item-center gap-2.5 mb-1.5">
           {icon}
-          <p className="font-semibold text-lg">{heading}</p>
+          <p className="font-semibold text-xl">{heading}</p>
         </div>
-        <p className="text-gray-400">{body}</p>
+        <p className="text-[#6e6e73] text-base">{body}</p>
       </div>
     </div>
   );
