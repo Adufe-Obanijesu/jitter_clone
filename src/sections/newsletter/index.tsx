@@ -6,16 +6,14 @@ export default function Newsletter() {
   return (
     <div className="bg-black flex items-center justify-center w-full h-screen">
       <div className="max-w-[860px] mx-auto px-4 flex items-center gap-12 lg:gap-16">
-        <div className="w-64 h-64 relative">
-          <video
-            src="/videos/newsletter/animation.mp4"
-            muted
-            playsInline
-            autoPlay
-            aria-hidden="true"
-            className="w-[344px]"
-          />
-        </div>
+        <video
+          src="/videos/newsletter/animation.mp4"
+          muted
+          playsInline
+          autoPlay
+          aria-hidden="true"
+          className="w-[344px]"
+        />
 
         <div className="flex-1">
           <div className="space-y-10 flex flex-col items-center">

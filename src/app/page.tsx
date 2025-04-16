@@ -14,24 +14,26 @@ import WhatWeDo from "@/sections/what_we_do";
 
 export default function Home() {
   return (
-    <main>
-      <div className="max-w-[860px] mx-auto">
-        <Navbar />
-        <Hero />
-        <Customers />
-        <FadeOnScroll>
-          <FeatureVideo />
-        </FadeOnScroll>
-        <WhatWeDo />
-        <FadeOnScroll>
-          <Testimonial {...testimonials[0]} />
-        </FadeOnScroll>
-        <FadeOnScroll>
-          <Testimonial {...testimonials[1]} />
-        </FadeOnScroll>
-        <CreateFaster />
-        <CreativePower />
-        <Info />
+    <main className="bg-black">
+      <div className="bg-white">
+        <div className="max-w-[860px] mx-auto">
+          <Navbar />
+          <Hero />
+          <Customers />
+          <FadeOnScroll>
+            <FeatureVideo />
+          </FadeOnScroll>
+          <WhatWeDo />
+          <FadeOnScroll>
+            <Testimonial {...testimonials[0]} />
+          </FadeOnScroll>
+          <FadeOnScroll>
+            <Testimonial {...testimonials[1]} />
+          </FadeOnScroll>
+          <CreateFaster />
+          <CreativePower />
+          <Info />
+        </div>
       </div>
       <Footer />
       <Newsletter />

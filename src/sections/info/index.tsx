@@ -7,7 +7,7 @@ import Card from "./Card";
 
 export default function Info() {
   return (
-    <div className="mt-[200px]">
+    <div className="mt-[200px] pb-[160px]">
       <div className="grid grid-cols-2 gap-4 px-[86px] pt-20 pb-[100px] bg-light-grey">
         <div className="space-y-5">
           <video
