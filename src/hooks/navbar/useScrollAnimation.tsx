@@ -17,8 +17,7 @@ export default function useScrollAnimation(
 
       const scrollTrigger = ScrollTrigger.create({
         start: "top top",
-        end: "bottom bottom",
-        markers: true,
+        end: "bottom bottom-=200",
         onUpdate: (self) => {
           const isAtTop = self.progress === 0;
 

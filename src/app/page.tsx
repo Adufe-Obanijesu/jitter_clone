@@ -9,6 +9,7 @@ import Footer from "@/sections/footer";
 import Hero from "@/sections/hero";
 import Info from "@/sections/info";
 import Navbar from "@/sections/navigation/Navbar";
+import Newsletter from "@/sections/newsletter";
 import WhatWeDo from "@/sections/what_we_do";
 
 export default function Home() {
@@ -33,45 +34,7 @@ export default function Home() {
         <Info />
       </div>
       <Footer />
-
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
+      <Newsletter />
     </main>
   );
 }

@@ -23,7 +23,9 @@ export default function useDropdownAnimation(
         .to("#shadow-el", {
           height: "90vh",
           scaleX: scale_x_value,
-          y: -16,
+          y: -40,
+          duration: 0.4,
+          borderRadius: "0 0 32px 32px",
           overwrite: "auto",
         })
         .to(".product", {
@@ -45,6 +47,7 @@ export default function useDropdownAnimation(
         height: "90px",
         scaleX: 1,
         ease: "power1.out",
+        borderRadius: "32px",
         overwrite: true,
         duration: 0.3,
       });
