@@ -5,6 +5,7 @@ import CreateFaster from "@/sections/create_faster";
 import CreativePower from "@/sections/creative_power";
 import Customers from "@/sections/customers";
 import FeatureVideo from "@/sections/feature_video";
+import Footer from "@/sections/footer";
 import Hero from "@/sections/hero";
 import Info from "@/sections/info";
 import Navbar from "@/sections/navigation/Navbar";
@@ -31,6 +32,7 @@ export default function Home() {
         <CreativePower />
         <Info />
       </div>
+      <Footer />
 
       <br />
       <br />
