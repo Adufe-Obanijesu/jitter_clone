@@ -4,25 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-
-const logoSet = [
-  [
-    "/icons/google.svg",
-    "/icons/ramp.svg",
-    "/icons/perplexity brand.svg",
-    "/icons/dept.svg",
-    "/icons/deliveroo brand.svg",
-    "/icons/tiktok.svg",
-  ],
-  [
-    "/icons/huge.svg",
-    "/icons/spotify.svg",
-    "/icons/akqa.svg",
-    "/icons/linktree.svg",
-    "/icons/27b.svg",
-    "/icons/ogilvy.svg",
-  ],
-];
+import { logoSet } from "@/data/logo_set";
 
 export default function Customers() {
   const [index, setIndex] = useState(0);
