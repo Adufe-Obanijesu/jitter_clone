@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <div className="pt-[160px] pb-[98px] bg-light-grey rounded-b-[80px]">
+    <div className="relative z-10 pt-[160px] pb-[98px] bg-light-grey rounded-b-[80px]">
       <div className="px-8 max-w-[860px] mx-auto space-y-[100px]">
         <div className="w-full flex flex-col items-center gap-[30px]">
           <h1 className="text-7xl font-bold text-center">Try Jitter today</h1>

@@ -4,7 +4,7 @@ import Button from "@/components/ui/Button";
 
 export default function Newsletter() {
   return (
-    <div className="bg-black flex items-center justify-center w-full h-screen">
+    <div className="sticky bottom-0 z-0 bg-black flex items-center justify-center w-full h-screen">
       <div className="max-w-[860px] mx-auto px-4 flex items-center gap-12 lg:gap-16">
         <video
           src="/videos/newsletter/animation.mp4"

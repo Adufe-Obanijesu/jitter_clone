@@ -19,7 +19,7 @@ import WorkTogether from "@/sections/work_together";
 export default function Home() {
   return (
     <main className="bg-black">
-      <div className="bg-white">
+      <div className="bg-white relative z-10">
         <div className="max-w-[860px] mx-auto">
           <Navbar />
           <Hero />
