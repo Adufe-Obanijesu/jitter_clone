@@ -10,7 +10,7 @@ export default function Tag({ children, className = "" }: TagProps) {
   return (
     <span
       className={twMerge(
-        "bg-light-grey py-2 px-4 font-semibold rounded-full text-xl w-fit",
+        "bg-light-grey py-1 px-4 font-semibold rounded-full text-xl w-fit",
         className
       )}
     >

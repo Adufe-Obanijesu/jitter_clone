@@ -11,7 +11,9 @@ import Info from "@/sections/info";
 import Navbar from "@/sections/navigation/Navbar";
 import Newsletter from "@/sections/newsletter";
 import Templates from "@/sections/templates";
+import UseCases from "@/sections/use_cases";
 import WhatWeDo from "@/sections/what_we_do";
+import WhatWeOffer from "@/sections/what_we_offer";
 import WorkTogether from "@/sections/work_together";
 
 export default function Home() {
@@ -26,6 +28,7 @@ export default function Home() {
             <FeatureVideo />
           </FadeOnScroll>
           <WhatWeDo />
+          <WhatWeOffer />
           <FadeOnScroll>
             <Testimonial {...testimonials[0]} />
           </FadeOnScroll>
@@ -35,6 +38,7 @@ export default function Home() {
           <CreateFaster />
           <WorkTogether />
           <CreativePower />
+          <UseCases />
           <Templates />
           <Info />
         </div>

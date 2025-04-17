@@ -6,7 +6,7 @@ import { FaPlay } from "react-icons/fa6";
 
 export default function Templates() {
   return (
-    <div>
+    <div className="mt-[200px]">
       <div className="flex flex-col items-center gap-[30px]">
         <Tag className="bg-[#ae8bf4]">Templates</Tag>
         <h1 className="text-7xl font-bold text-center">
