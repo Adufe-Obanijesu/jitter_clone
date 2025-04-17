@@ -1,3 +1,5 @@
+"use client";
+
 import Button from "@/components/ui/Button";
 import Tag from "@/components/ui/Tag";
 import { creative_power } from "@/data/creative_power/creative_power";

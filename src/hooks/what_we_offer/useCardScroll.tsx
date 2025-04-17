@@ -23,7 +23,6 @@ export default function useCardScroll() {
             scrub: 0.1,
             pinType: "fixed",
             anticipatePin: 1,
-            markers: true,
           });
         });
       }, containerRef);

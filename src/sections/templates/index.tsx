@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Button from "@/components/ui/Button";
@@ -9,12 +9,17 @@ import { templates } from "@/data/templates";
 import Card from "./Card";
 import { FaPlay, FaPause } from "react-icons/fa6";
 import useSlider from "@/hooks/templates/useSlider";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import usePinButton from "@/hooks/templates/usePinButton";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Templates() {
   const { state, refs, actions } = useSlider();
+  const { refs: pinRefs } = usePinButton();
 
   return (
-    <div className="mt-[200px]">
+    <div ref={pinRefs.containerRef} className="mt-[200px]">
       <div className="flex flex-col items-center gap-[30px]">
         <Tag className="bg-[#ae8bf4]">Templates</Tag>
         <h1 className="text-7xl font-bold text-center">
@@ -25,9 +30,11 @@ export default function Templates() {
           design studios, and community members. Get inspired, remix, and learn
           from the best.
         </p>
-        <Button className="text-2xl px-[70px] py-10">
-          Browse 300+ free templates
-        </Button>
+        <div ref={pinRefs.buttonWrapperRef} className="z-30 relative">
+          <Button className="text-2xl px-[70px] py-10">
+            Browse 300+ free templates
+          </Button>
+        </div>
       </div>
 
       <div className="overflow-hidden mt-20">
