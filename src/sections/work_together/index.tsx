@@ -42,7 +42,10 @@ export default function WorkTogether() {
         </div>
       </div>
 
-      <div className="flex items-center justify-end gap-1 mt-[50px]">
+      <div
+        className="flex items-center justify-end gap-1 mt-[50px]"
+        style={{ marginRight: "calc((100vw - 860px) / 2" }}
+      >
         <button
           className={`w-12 h-12 rounded-full flex items-center justify-center ${
             state.canScrollLeft

@@ -9,6 +9,7 @@ export default function Newsletter() {
         <video
           src="/videos/newsletter/animation.mp4"
           muted
+          loop
           playsInline
           autoPlay
           aria-hidden="true"
