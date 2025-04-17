@@ -10,7 +10,9 @@ import Hero from "@/sections/hero";
 import Info from "@/sections/info";
 import Navbar from "@/sections/navigation/Navbar";
 import Newsletter from "@/sections/newsletter";
+import Templates from "@/sections/templates";
 import WhatWeDo from "@/sections/what_we_do";
+import WorkTogether from "@/sections/work_together";
 
 export default function Home() {
   return (
@@ -31,7 +33,9 @@ export default function Home() {
             <Testimonial {...testimonials[1]} />
           </FadeOnScroll>
           <CreateFaster />
+          <WorkTogether />
           <CreativePower />
+          <Templates />
           <Info />
         </div>
       </div>
