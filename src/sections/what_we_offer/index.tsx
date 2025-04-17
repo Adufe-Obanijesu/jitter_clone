@@ -1,8 +1,13 @@
+"use client";
+
 import Tag from "@/components/ui/Tag";
 import { what_we_offer } from "@/data/what_we_offer";
 import Card from "./Card";
+import useCardScroll from "@/hooks/what_we_offer/useCardScroll";
 
 export default function WhatWeOffer() {
+  const { containerRef } = useCardScroll();
+
   return (
     <div className="py-[60px] mt-[200px]">
       <div className="flex flex-col items-center gap-[30px]">
@@ -17,10 +22,15 @@ export default function WhatWeOffer() {
         </p>
       </div>
 
-      <div className="flex flex-col items-center mt-[90px]">
-        {what_we_offer.map((item) => (
-          <Card key={item.title} {...item} />
-        ))}
+      <div
+        ref={containerRef}
+        className="flex flex-col items-center mt-[90px] space-y-[100px]"
+      >
+        <div className=" w-full flex flex-col items-center">
+          {what_we_offer.map((item) => (
+            <Card key={item.title} {...item} />
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -37,10 +37,7 @@ export const what_we_offer = [
     descriptionClassName: "text-white",
     media: (
       <div className="flex justify-center">
-        <h1
-          className="text-[160px]"
-          style={{ color: "linear-gradient(180deg, #140726, #711de2)" }}
-        >
+        <h1 className="text-[160px] bg-gradient-to-b from-[#140726] to-[#711de2] bg-clip-text text-transparent">
           4K
         </h1>
       </div>
