@@ -36,10 +36,14 @@ export default function Home() {
             <Testimonial {...testimonials[1]} />
           </FadeOnScroll>
           <CreateFaster />
-          <WorkTogether />
+        </div>
+        <WorkTogether />
+        <div className="max-w-[860px] mx-auto">
           <CreativePower />
           <UseCases />
-          <Templates />
+        </div>
+        <Templates />
+        <div className="max-w-[860px] mx-auto">
           <Info />
         </div>
       </div>

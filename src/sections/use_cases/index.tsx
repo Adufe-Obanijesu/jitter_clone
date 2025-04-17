@@ -42,7 +42,7 @@ export default function UseCases() {
 
         <div className="w-full flex-1 flex items-center justify-center bg-white">
           {tabs.map(
-            (tab) => activeTab === tab.id && <div key={tab.id}>tab.media</div>
+            (tab) => activeTab === tab.id && <div key={tab.id}>{tab.media}</div>
           )}
         </div>
       </div>

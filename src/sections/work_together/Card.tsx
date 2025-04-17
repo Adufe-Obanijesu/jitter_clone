@@ -7,6 +7,7 @@ interface CardProps {
   media: ReactNode;
   tagColor?: string;
   textColor?: string;
+  index: number;
 }
 
 export default function Card({
@@ -16,11 +17,15 @@ export default function Card({
   media,
   tagColor,
   textColor,
+  index,
 }: CardProps) {
   return (
     <div
       className="rounded-[40px] p-[50px] w-[460px] shrink-0"
-      style={{ background: backgroundColor }}
+      style={{
+        background: backgroundColor,
+        marginLeft: index === 0 ? "calc((100vw - 860px) / 2" : "0",
+      }}
     >
       <div className="mb-6">
         <div className="p-4 rounded-2xl w-full max-w-md mx-auto">

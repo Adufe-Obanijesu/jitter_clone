@@ -1,10 +1,18 @@
+"use client";
+
+import { useRef, useState } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 import Button from "@/components/ui/Button";
 import Tag from "@/components/ui/Tag";
 import { templates } from "@/data/templates";
 import Card from "./Card";
-import { FaPlay } from "react-icons/fa6";
+import { FaPlay, FaPause } from "react-icons/fa6";
+import useSlider from "@/hooks/templates/useSlider";
 
 export default function Templates() {
+  const { state, refs, actions } = useSlider();
+
   return (
     <div className="mt-[200px]">
       <div className="flex flex-col items-center gap-[30px]">
@@ -22,15 +30,36 @@ export default function Templates() {
         </Button>
       </div>
 
-      <div className="flex gap-5 mt-20">
-        {templates.map((item) => (
-          <Card key={item.title} {...item} />
-        ))}
+      <div className="overflow-hidden mt-20">
+        <div
+          ref={refs.carouselRef}
+          className="flex gap-5 overflow-x-auto cursor-grab active:cursor-grabbing"
+          style={{
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+            WebkitOverflowScrolling: "touch",
+          }}
+        >
+          {templates.map((item, index) => (
+            <Card key={item.title} index={index} {...item} />
+          ))}
+        </div>
       </div>
 
-      <div className="mt-[50px] flex justify-end">
-        <button className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center">
-          <FaPlay className="text-black" />
+      <div
+        className="mt-[50px] flex justify-end"
+        style={{ marginRight: "calc((100vw - 860px) / 2" }}
+      >
+        <button
+          className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center"
+          onClick={actions.toggleAutoScroll}
+          aria-label={state.isPlaying ? "Pause carousel" : "Play carousel"}
+        >
+          {state.isPlaying ? (
+            <FaPause className="text-black" />
+          ) : (
+            <FaPlay className="text-black" />
+          )}
         </button>
       </div>
     </div>
