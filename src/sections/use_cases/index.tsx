@@ -43,53 +43,55 @@ export default function UseCases() {
   }, [activeTab, tabCount]);
 
   return (
-    <div className="bg-light-grey rounded-[80px] p-[60px] -mx-[60px] mt-[180px]">
-      <div className="">
-        <div className="flex flex-col gap-[30px]">
-          <Tag className="bg-[#f468ff]">Use cases</Tag>
-          <h1 className="text-5xl font-bold mb-5 max-w-[649px]">
-            Animate for social media, ads, marketing, brand, product, and more
-          </h1>
-          <div className="flex justify-between gap-4">
-            <p className="text-lg max-w-[420px]">
-              The best brands use motion across all platforms to capture
-              attention, tell powerful stories, and drive more engagement.
-            </p>
-            <Button className="text-lg">Read customer stories</Button>
+    <div className="mobile_padding">
+      <div className="bg-light-grey lg:rounded-[80px] rounded-[40px] lg:p-[60px] p-[30px] lg:-mx-[60px] mt-[180px]">
+        <div className="">
+          <div className="flex flex-col gap-[30px]">
+            <Tag className="bg-[#f468ff]">Use cases</Tag>
+            <h1 className="text-[36px] lg:text-5xl font-bold mb-5 max-w-[649px]">
+              Animate for social media, ads, marketing, brand, product, and more
+            </h1>
+            <div className="flex flex-col lg:flex-row justify-between gap-4">
+              <p className="text-lg max-w-[420px]">
+                The best brands use motion across all platforms to capture
+                attention, tell powerful stories, and drive more engagement.
+              </p>
+              <Button className="text-lg">Read customer stories</Button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="mt-[60px] flex flex-col gap-2.5 md:flex-row">
-        <div className="w-full md:w-2/5 space-y-2.5">
-          {tabs.map((tab) => (
-            <Tab
-              key={tab.id}
-              {...tab}
-              isActive={tab.id === activeTab}
-              setActiveTab={setActiveTab}
-              progress={tab.id === activeTab ? progress : 0}
-            />
-          ))}
-        </div>
-        <div className="w-full flex-1 flex items-center justify-center bg-white">
-          {tabs.map(
-            (tab) =>
-              activeTab === tab.id && (
-                <div key={tab.id} className="w-full h-full">
-                  {tab.id === activeTab && (
-                    <video
-                      ref={videoRef}
-                      src={tab.media.props.src}
-                      muted
-                      playsInline
-                      className="w-full h-full"
-                      key={tab.id}
-                    />
-                  )}
-                </div>
-              )
-          )}
+        <div className="mt-[60px] flex lg:flex-col flex-col-reverse gap-2.5">
+          <div className="w-full lg:w-2/5 space-y-2.5">
+            {tabs.map((tab) => (
+              <Tab
+                key={tab.id}
+                {...tab}
+                isActive={tab.id === activeTab}
+                setActiveTab={setActiveTab}
+                progress={tab.id === activeTab ? progress : 0}
+              />
+            ))}
+          </div>
+          <div className="w-full flex-1 flex items-center justify-center bg-white">
+            {tabs.map(
+              (tab) =>
+                activeTab === tab.id && (
+                  <div key={tab.id} className="w-full h-full">
+                    {tab.id === activeTab && (
+                      <video
+                        ref={videoRef}
+                        src={tab.media.props.src}
+                        muted
+                        playsInline
+                        className="w-full h-full"
+                        key={tab.id}
+                      />
+                    )}
+                  </div>
+                )
+            )}
+          </div>
         </div>
       </div>
     </div>

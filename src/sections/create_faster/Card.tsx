@@ -10,7 +10,7 @@ interface CardProps {
 export default function Card({ media, heading, icon, body }: CardProps) {
   return (
     <div className="space-y-6">
-      <div className="bg-light-grey flex items-center justify-center w-full lg:w-[332px] h-[415px]">
+      <div className="bg-light-grey flex items-center justify-center w-full lg:w-[332px] lg:h-[415px]">
         {media}
       </div>
 

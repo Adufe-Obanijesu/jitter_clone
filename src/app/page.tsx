@@ -19,7 +19,7 @@ import WorkTogether from "@/sections/work_together";
 
 export default function Home() {
   return (
-    <main>
+    <main className="overflow-hidden">
       <div className="bg-white relative z-10">
         <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
           <Navbar />
@@ -41,11 +41,11 @@ export default function Home() {
             <Testimonial {...testimonials[1]} />
           </FadeOnScroll>
         </div>
-        {/* <WorkTogether /> */}
+        <WorkTogether />
         <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
           <CreativePower />
 
-          {/* <UseCases /> */}
+          <UseCases />
         </div>
         <Templates />
         <div className="lg:max-w-[860px] max-w-[400px] mx-auto">

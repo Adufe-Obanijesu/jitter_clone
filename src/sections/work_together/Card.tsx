@@ -1,4 +1,7 @@
-import React, { ReactNode } from "react";
+"use client";
+
+import { useWindowSize } from "@react-hook/window-size";
+import { ReactNode, useEffect, useState } from "react";
 
 interface CardProps {
   backgroundColor?: string;
@@ -19,12 +22,24 @@ export default function Card({
   textColor,
   index,
 }: CardProps) {
+  const [width] = useWindowSize();
+  const isMobile = width < 1024;
+
+  const [hasRendered, setHasRendered] = useState(false);
+
+  useEffect(() => {
+    setHasRendered(true);
+  }, []);
+
+  if (!hasRendered) return null;
+
   return (
     <div
-      className="rounded-[40px] p-[50px] w-[460px] shrink-0"
+      className="rounded-[40px] lg:p-[50px] py-[40px] px-[30px] lg:w-[460px] w-[335px] shrink-0"
       style={{
         background: backgroundColor,
-        marginLeft: index === 0 ? "calc((100vw - 860px) / 2" : "0",
+        marginLeft:
+          index === 0 && !isMobile ? "calc((100vw - 860px) / 2" : "20px",
       }}
     >
       <div className="mb-6">

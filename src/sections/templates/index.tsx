@@ -20,10 +20,10 @@ export default function Templates() {
     <div ref={pinRefs.containerRef} className="mt-[200px] mobile_padding">
       <div className="flex flex-col items-center gap-[30px]">
         <Tag className="bg-[#ae8bf4]">Templates</Tag>
-        <h1 className="text-[40px] lg:text-7xl font-bold text-center">
+        <h1 className="text-[40px] lg:text-7xl font-bold text-center w-[400px] lg:w-auto">
           Supercharge your creativity
         </h1>
-        <p className="text-center text-lg max-w-[500px]">
+        <p className="text-center text-lg lg:max-w-[500px] max-w-[400px]">
           <strong>Explore 300+ free templates</strong> created by Jitter, top
           design studios, and community members. Get inspired, remix, and learn
           from the best.

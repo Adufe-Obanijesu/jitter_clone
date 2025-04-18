@@ -20,7 +20,9 @@ export default function Tab({
   return (
     <div
       key={id}
-      className={`cursor-pointer p-[50px] bg-white transition-color relative transition_item`}
+      className={`cursor-pointer p-[50px] bg-white transition-color relative transition_item ${
+        !isActive ? "hidden lg:block" : "block"
+      }`}
       onClick={() => setActiveTab(id)}
     >
       <h3
