@@ -28,7 +28,10 @@ export default function Templates() {
           design studios, and community members. Get inspired, remix, and learn
           from the best.
         </p>
-        <div ref={pinRefs.buttonWrapperRef} className="z-30 relative">
+        <div
+          ref={pinRefs.buttonWrapperRef}
+          className="z-30 relative hidden lg:block"
+        >
           <Button className="text-2xl px-[70px] py-10">
             Browse 300+ free templates
           </Button>
@@ -38,7 +41,7 @@ export default function Templates() {
       <div className="overflow-hidden mt-20">
         <div
           ref={refs.carouselRef}
-          className="flex gap-5 overflow-x-auto cursor-grab active:cursor-grabbing"
+          className="flex gap-5 overflow-x-auto cursor-grab active:cursor-grabbing px-5 lg:px-0"
           style={{
             scrollbarWidth: "none",
             msOverflowStyle: "none",
@@ -51,8 +54,14 @@ export default function Templates() {
         </div>
       </div>
 
+      <div className="mt-14 flex justify-center lg:hidden">
+        <Button className="lg:text-2xl lg:px-[70px] lg:py-10">
+          Browse 300+ free templates
+        </Button>
+      </div>
+
       <div
-        className="mt-[50px] flex justify-end"
+        className="mt-[50px] justify-end hidden lg:flex"
         style={{ marginRight: "calc((100vw - 860px) / 2" }}
       >
         <button

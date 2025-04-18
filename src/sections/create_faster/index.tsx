@@ -6,7 +6,7 @@ export default function CreateFaster() {
   return (
     <div className="max-w-[684px] mx-auto mobile_padding">
       <Tag>Create faster</Tag>
-      <div className="grid md:grid-cols-2 gap-5 mt-7">
+      <div className="grid lg:grid-cols-2 gap-5 mt-7">
         <h1 className="text-[40px] lg:text-5xl font-bold">
           Built for teams who move fast
         </h1>
@@ -20,7 +20,7 @@ export default function CreateFaster() {
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-x-5 gap-y-14 mt-[60px]">
+      <div className="grid lg:grid-cols-2 gap-x-5 gap-y-14 mt-[60px]">
         {create_faster.map((item) => (
           <Card key={item.heading} {...item} />
         ))}

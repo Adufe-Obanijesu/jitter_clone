@@ -25,13 +25,13 @@ export default function CreativePower() {
         <Button className="text-xl">Explore all the features</Button>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-x-5 lg:gap-y-14 gap-y-[30px] mt-[60px]">
+      <div className="grid lg:grid-cols-2 gap-x-5 lg:gap-y-14 gap-y-[30px] mt-[60px]">
         {creative_power.map((item) => (
           <Card key={item.heading} {...item} />
         ))}
       </div>
 
-      <div className="mt-20 grid md:grid-cols-3 gap-x-[60px] lg:gap-y-[90px] gap-y-[55px]">
+      <div className="mt-20 grid lg:grid-cols-3 gap-x-[60px] lg:gap-y-[90px] gap-y-[55px]">
         {features.map((item) => (
           <Feature key={item.heading} {...item} />
         ))}

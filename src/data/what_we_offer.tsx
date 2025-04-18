@@ -26,7 +26,19 @@ export const what_we_offer = [
     className: "bg-[#00b2ff]",
     titleClassName: "bg-white text-dark",
     descriptionClassName: "text-white",
-    media: <div className="flex justify-center">something</div>,
+    media: (
+      <div className="flex flex-col items-center justify-center gap-4">
+        <div className="bg-[#A9DBFF] text-white text-2xl px-10 py-6 rounded-full">
+          Freeze
+        </div>
+        <div className="bg-[#A9DBFF] text-white text-2xl px-10 py-6 rounded-full scale-110">
+          Slide down
+        </div>
+        <div className="bg-[#A9DBFF] text-white text-2xl px-10 py-6 rounded-full">
+          Bounce
+        </div>
+      </div>
+    ),
   },
   {
     title: "Export in one click",

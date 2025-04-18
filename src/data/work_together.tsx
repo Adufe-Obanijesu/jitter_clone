@@ -12,7 +12,7 @@ export const slider_data = [
         playsInline
         autoPlay
         aria-hidden="true"
-        className="w-[360px] h-[300px]"
+        className="w-[360px] max-h-[300px]"
       />
     ),
     backgroundColor: "#a981ff",
@@ -26,6 +26,7 @@ export const slider_data = [
         width={360}
         height={300}
         alt="assets"
+        className="w-[360px] max-h-[300px]"
       />
     ),
     backgroundColor: "#f2f1f3",
@@ -42,7 +43,7 @@ export const slider_data = [
         playsInline
         autoPlay
         aria-hidden="true"
-        className="w-[360px] h-[300px]"
+        className="w-[360px] max-h-[300px]"
       />
     ),
     backgroundColor: "#e6f4ff",

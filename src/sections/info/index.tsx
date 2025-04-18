@@ -39,13 +39,13 @@ export default function Info() {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-5 pt-5">
+      <div className="grid lg:grid-cols-2 gap-5 pt-5">
         {cards.map((card) => (
           <Card key={card.heading} {...card} />
         ))}
       </div>
 
-      <div className="grid md:grid-cols-3 gap-x-4 gap-y-[30px] pt-20 px-[50px] lg:px-0">
+      <div className="grid lg:grid-cols-3 gap-x-4 gap-y-[30px] pt-20 px-[50px] lg:px-0">
         {partners.map((item) => (
           <Partner key={item.heading} {...item} />
         ))}

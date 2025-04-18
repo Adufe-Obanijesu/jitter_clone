@@ -3,10 +3,18 @@
 import Image from "next/image";
 import { logoSet } from "@/data/logo_set";
 import useBrandDisplay from "@/hooks/customers/useBrandDisplay";
+import { useEffect, useState } from "react";
 
 export default function Customers() {
   const { state, refs } = useBrandDisplay();
   const allLogos = state.isMobile ? logoSet.flat() : logoSet[state.index];
+  const [hasMounted, setHasMounted] = useState(false);
+
+  useEffect(() => {
+    setHasMounted(true);
+  }, []);
+
+  if (!hasMounted) return null;
 
   return (
     <div className="space-y-10 mt-20">

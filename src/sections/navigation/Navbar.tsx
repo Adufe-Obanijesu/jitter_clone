@@ -40,7 +40,7 @@ export default function Navbar() {
   return (
     <div
       ref={containerRef}
-      className="w-full fixed lg:top-[39px] top-7 h-[52px] lg:h-[90px] left-0 flex items-center justify-center flex-col z-20 px-5 md:px-0"
+      className="w-full fixed lg:top-[39px] top-7 h-[52px] lg:h-[90px] left-0 flex items-center justify-center flex-col z-40 px-5 md:px-0"
     >
       <div
         className={`w-full ${

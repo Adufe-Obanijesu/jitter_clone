@@ -12,7 +12,7 @@ export const templates = [
         playsInline
         autoPlay
         aria-hidden="true"
-        className="w-[304px] h-[228px]"
+        className="w-[304px] lg:h-[228px] h-[176.25px]"
       />
     ),
   },
@@ -29,7 +29,7 @@ export const templates = [
         playsInline
         autoPlay
         aria-hidden="true"
-        className="w-[177px] h-[304px]"
+        className="w-[177px] lg:h-[304px] h-[208px]"
       />
     ),
   },
@@ -46,7 +46,7 @@ export const templates = [
         playsInline
         autoPlay
         aria-hidden="true"
-        className="w-[304px] h-[228px]"
+        className="w-[304px] lg:h-[228px] h-[176.25px]"
       />
     ),
   },
@@ -63,7 +63,7 @@ export const templates = [
         playsInline
         autoPlay
         aria-hidden="true"
-        className="w-[304px] h-[228px]"
+        className="w-[304px] lg:h-[228px] h-[176.25px]"
       />
     ),
   },
@@ -80,7 +80,7 @@ export const templates = [
         playsInline
         autoPlay
         aria-hidden="true"
-        className="w-[304px] h-[228px]"
+        className="w-[304px] lg:h-[228px] h-[176.25px]"
       />
     ),
   },
@@ -97,7 +97,7 @@ export const templates = [
         playsInline
         autoPlay
         aria-hidden="true"
-        className="w-[304px] h-[228px]"
+        className="w-[304px] lg:h-[228px] h-[176.25px]"
       />
     ),
   },
@@ -114,7 +114,7 @@ export const templates = [
         playsInline
         autoPlay
         aria-hidden="true"
-        className="w-[304px] h-[228px]"
+        className="w-[304px] lg:h-[228px] h-[176.25px]"
       />
     ),
   },
@@ -131,7 +131,7 @@ export const templates = [
         playsInline
         autoPlay
         aria-hidden="true"
-        className="w-[247px] h-[309px]"
+        className="w-[247px] lg:h-[309px] h-[176.25px]"
       />
     ),
   },
@@ -148,7 +148,7 @@ export const templates = [
         playsInline
         autoPlay
         aria-hidden="true"
-        className="w-[304px] h-[228px]"
+        className="w-[304px] lg:h-[228px] h-[176.25px]"
       />
     ),
   },
@@ -165,7 +165,7 @@ export const templates = [
         playsInline
         autoPlay
         aria-hidden="true"
-        className="w-[304px] h-[228px]"
+        className="w-[304px] lg:h-[228px] h-[176.25px]"
       />
     ),
   },
@@ -182,7 +182,7 @@ export const templates = [
         playsInline
         autoPlay
         aria-hidden="true"
-        className="w-[304px] h-[228px]"
+        className="w-[304px] lg:h-[228px] h-[176.25px]"
       />
     ),
   },
@@ -199,7 +199,7 @@ export const templates = [
         playsInline
         autoPlay
         aria-hidden="true"
-        className="w-[304px] h-[228px]"
+        className="w-[304px] lg:h-[228px] h-[176.25px]"
       />
     ),
   },
@@ -216,7 +216,7 @@ export const templates = [
         playsInline
         autoPlay
         aria-hidden="true"
-        className="w-[304px] h-[228px]"
+        className="w-[304px] lg:h-[228px] h-[176.25px]"
       />
     ),
   },
@@ -233,7 +233,7 @@ export const templates = [
         playsInline
         autoPlay
         aria-hidden="true"
-        className="w-[304px] h-[228px]"
+        className="w-[304px] lg:h-[228px] h-[176.25px]"
       />
     ),
   },

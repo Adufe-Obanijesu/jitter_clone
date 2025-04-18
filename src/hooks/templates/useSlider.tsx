@@ -2,12 +2,23 @@
 
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 export default function useSlider() {
   const carouselRef = useRef<HTMLDivElement | null>(null);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const autoplayRef = useRef<gsap.core.Tween | null>(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      startAutoScroll();
+    }, 100);
+
+    return () => {
+      clearTimeout(timer);
+      pauseAutoScroll();
+    };
+  }, []);
 
   useGSAP(
     () => {
@@ -116,7 +127,7 @@ export default function useSlider() {
 
     autoplayRef.current = gsap.to(carousel, {
       scrollLeft: scrollWidth,
-      duration: 15,
+      duration: 60,
       ease: "none",
       repeat: -1,
       yoyo: true,
@@ -154,6 +165,8 @@ export default function useSlider() {
     },
     actions: {
       toggleAutoScroll,
+      startAutoScroll,
+      pauseAutoScroll,
     },
   };
 }

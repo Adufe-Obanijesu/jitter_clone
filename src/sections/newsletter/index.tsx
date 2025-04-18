@@ -5,7 +5,7 @@ import Button from "@/components/ui/Button";
 export default function Newsletter() {
   return (
     <div className="sticky bottom-0 z-0 bg-black flex items-center justify-center w-full h-screen">
-      <div className="max-w-[860px] mx-auto px-4 flex flex-wrap items-center gap-12 lg:gap-16">
+      <div className="px-4 flex flex-wrap flex-col lg:flex-row items-center gap-12 lg:gap-16 lg:max-w-[860px] max-w-[400px] mx-auto">
         <video
           src="/videos/newsletter/animation.mp4"
           muted
@@ -22,23 +22,25 @@ export default function Newsletter() {
               Get product updates and inspiration in your inbox every month
             </h2>
 
-            <form
-              onSubmit={(e) => e.preventDefault()}
-              className="lg:flex bg-[#2d2933] lg:rounded-r-full w-full"
-            >
-              <input
-                type="email"
-                placeholder="Your email"
-                required
-                className=" pl-6 py-3 w-full lg:w-auto text-white rounded-md flex-grow focus:outline-none font-bold"
-              />
-              <Button className="hidden lg:block bg-[#f5ff63] text-dark text-lg hover:scale-105 px-[50px]">
+            <div className="space-y-4 w-full">
+              <form
+                onSubmit={(e) => e.preventDefault()}
+                className="lg:flex bg-[#2d2933] lg:rounded-r-full w-full"
+              >
+                <input
+                  type="email"
+                  placeholder="Your email"
+                  required
+                  className=" pl-6 py-3 w-full lg:w-auto text-white rounded-md flex-grow focus:outline-none font-bold"
+                />
+                <Button className="hidden lg:block bg-[#f5ff63] text-dark text-lg hover:scale-105 px-[50px]">
+                  Subscribe
+                </Button>
+              </form>
+              <Button className="lg:hidden w-full bg-[#f5ff63] text-center text-dark text-lg hover:scale-105 px-[50px]">
                 Subscribe
               </Button>
-            </form>
-            <Button className="lg:hidden w-full bg-[#f5ff63] text-center text-dark text-lg hover:scale-105 px-[50px]">
-              Subscribe
-            </Button>
+            </div>
           </div>
         </div>
       </div>

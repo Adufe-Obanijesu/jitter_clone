@@ -18,7 +18,7 @@ export default function Footer() {
           <Button className="text-xl">Get started for free</Button>
         </div>
 
-        <div className="max-w-[400px] lg:max-w-[860px] grid lg:grid-cols-2 grid-cols-2 md:grid-cols-5 gap-8 lg:py-12 py-7 text-sm">
+        <div className="max-w-[400px] lg:max-w-[860px] grid lg:grid-cols-5 grid-cols-2 gap-8 lg:py-12 py-7 text-sm">
           {footerLinks.map((section) => (
             <div key={section.title}>
               <h3 className="font-semibold text-lg text-dark mb-6">
