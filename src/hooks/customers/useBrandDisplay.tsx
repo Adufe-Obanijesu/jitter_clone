@@ -2,13 +2,31 @@ import { logoSet } from "@/data/logo_set";
 import { useGSAP } from "@gsap/react";
 import { useWindowSize } from "@react-hook/window-size";
 import gsap from "gsap";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function useBrandDisplay() {
   const [index, setIndex] = useState(0);
   const [width] = useWindowSize();
   const isMobile = width < 1024;
   const scrollContainerRef = useRef(null);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+
+  useEffect(() => {
+    if (isMobile) {
+      const imgs = document.querySelectorAll(".scroll-logo");
+      let loaded = 0;
+      imgs.forEach((img) => {
+        if ((img as HTMLImageElement).complete) loaded++;
+        else
+          img.addEventListener("load", () => {
+            loaded++;
+            if (loaded === imgs.length) setImagesLoaded(true);
+          });
+      });
+
+      if (loaded === imgs.length) setImagesLoaded(true);
+    }
+  }, [isMobile]);
 
   useGSAP(() => {
     if (isMobile) return;
@@ -40,14 +58,14 @@ export default function useBrandDisplay() {
           stagger: 0.05,
           duration: 0.3,
           ease: "power2.out",
-        },
+        }
       );
     },
-    { dependencies: [index, isMobile] },
+    { dependencies: [index, isMobile] }
   );
 
   useGSAP(() => {
-    if (!isMobile || !scrollContainerRef.current) return;
+    if (!isMobile || !scrollContainerRef.current || !imagesLoaded) return;
 
     const logos = gsap.utils.toArray<HTMLElement>(".scroll-logo");
     if (!logos.length) return;
@@ -71,7 +89,7 @@ export default function useBrandDisplay() {
     });
 
     return () => gsap.killTweensOf(logos);
-  }, [isMobile]);
+  }, [isMobile, imagesLoaded]);
 
   return {
     refs: {
