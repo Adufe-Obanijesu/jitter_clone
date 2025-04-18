@@ -22,7 +22,7 @@ export default function Card({
     <div
       className={twMerge(
         "card rounded-[40px] lg:p-[50px] p-9 lg:pt-[60px] pt-[45px] lg:w-[460px] h-[505px] relative",
-        className
+        className,
       )}
     >
       <div className="h-full flex flex-col gap-4">
@@ -30,7 +30,7 @@ export default function Card({
           <div
             className={twMerge(
               "inline-block bg-black px-4 py-2 mb-4 text-xl font-bold text-white w-fit",
-              titleClassName
+              titleClassName,
             )}
           >
             <h3>{title}</h3>

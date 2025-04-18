@@ -21,7 +21,7 @@ export default function useSlider() {
       function checkScrollability() {
         setCanScrollLeft(carousel.scrollLeft > 0);
         setCanScrollRight(
-          carousel.scrollLeft < carousel.scrollWidth - carousel.clientWidth - 5
+          carousel.scrollLeft < carousel.scrollWidth - carousel.clientWidth - 5,
         );
       }
 
@@ -92,7 +92,7 @@ export default function useSlider() {
         }
       };
     },
-    { scope: carouselRef }
+    { scope: carouselRef },
   );
 
   const scrollLeft = () => {

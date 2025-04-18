@@ -5,7 +5,7 @@ import { ReactNode } from "react";
 
 export default function useDropdownAnimation(
   hoveredItem: string | null,
-  activeDropdown: ReactNode
+  activeDropdown: ReactNode,
 ) {
   const [width] = useWindowSize();
   const scale_x_value = width / 920;
@@ -41,7 +41,7 @@ export default function useDropdownAnimation(
         .to(
           ".dropdown-button",
           { scale: 1, ease: "back.out", duration: 0.8 },
-          "start"
+          "start",
         );
     } else {
       mm.add("(min-width: 1024px)", () => {

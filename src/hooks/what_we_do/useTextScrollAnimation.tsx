@@ -38,7 +38,7 @@ export function useScrollTextAnimation() {
         },
       });
     },
-    { scope: textRef }
+    { scope: textRef },
   );
 
   return textRef;

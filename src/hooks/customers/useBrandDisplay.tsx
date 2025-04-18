@@ -40,10 +40,10 @@ export default function useBrandDisplay() {
           stagger: 0.05,
           duration: 0.3,
           ease: "power2.out",
-        }
+        },
       );
     },
-    { dependencies: [index, isMobile] }
+    { dependencies: [index, isMobile] },
   );
 
   useGSAP(() => {

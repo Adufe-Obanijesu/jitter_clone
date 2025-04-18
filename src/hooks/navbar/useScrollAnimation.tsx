@@ -5,7 +5,7 @@ import { RefObject, useRef, useState } from "react";
 
 export default function useScrollAnimation(
   containerRef: RefObject<HTMLDivElement | null>,
-  shadowContainerRef: RefObject<HTMLDivElement | null>
+  shadowContainerRef: RefObject<HTMLDivElement | null>,
 ) {
   const hasAnimatedDownRef = useRef(false);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
@@ -75,7 +75,7 @@ export default function useScrollAnimation(
         scrollTrigger.kill();
       };
     },
-    { scope: containerRef, dependencies: [] }
+    { scope: containerRef, dependencies: [] },
   );
 
   const showNav = contextSafe(() => {

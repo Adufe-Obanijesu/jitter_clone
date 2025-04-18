@@ -14,14 +14,14 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...rest}
         className={twMerge(
           "py-4 px-8 font-semibold bg-primary text-white rounded-full flex items-center gap-2",
-          className
+          className,
         )}
       >
         <span className="shrink-0">{children}</span>
         {rightIcon && <span>{rightIcon}</span>}
       </button>
     );
-  }
+  },
 );
 
 Button.displayName = "Button";
