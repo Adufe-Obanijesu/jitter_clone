@@ -7,6 +7,7 @@ import Customers from "@/sections/customers";
 import FeatureVideo from "@/sections/feature_video";
 import Footer from "@/sections/footer";
 import Hero from "@/sections/hero";
+import HorizontalScroll from "@/sections/horizontal_scroll";
 import Info from "@/sections/info";
 import Navbar from "@/sections/navigation/Navbar";
 import Newsletter from "@/sections/newsletter";
@@ -28,6 +29,9 @@ export default function Home() {
             <FeatureVideo />
           </FadeOnScroll>
           <WhatWeDo />
+        </div>
+        <HorizontalScroll />
+        <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
           <WhatWeOffer />
           <FadeOnScroll>
             <Testimonial {...testimonials[0]} />
@@ -37,11 +41,11 @@ export default function Home() {
             <Testimonial {...testimonials[1]} />
           </FadeOnScroll>
         </div>
-        <WorkTogether />
+        {/* <WorkTogether /> */}
         <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
           <CreativePower />
 
-          <UseCases />
+          {/* <UseCases /> */}
         </div>
         <Templates />
         <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
