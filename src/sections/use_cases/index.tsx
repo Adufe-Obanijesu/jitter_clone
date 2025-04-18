@@ -1,46 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import Button from "@/components/ui/Button";
 import Tag from "@/components/ui/Tag";
 import { tabs } from "@/data/use_cases/tabs";
 import Tab from "./Tab";
+import useVideoSlider from "@/hooks/use_cases/useVideoSlider";
 
 export default function UseCases() {
-  const [activeTab, setActiveTab] = useState(1);
-  const [progress, setProgress] = useState(0);
-  const videoRef = useRef<HTMLVideoElement | null>(null);
-  const tabCount = tabs.length;
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const handleTimeUpdate = () => {
-      if (video.duration) {
-        setProgress(video.currentTime / video.duration);
-      }
-    };
-
-    const handleVideoEnded = () => {
-      setActiveTab((prev) => (prev % tabCount) + 1);
-      setProgress(0);
-    };
-
-    video.addEventListener("timeupdate", handleTimeUpdate);
-    video.addEventListener("ended", handleVideoEnded);
-
-    setProgress(0);
-
-    if (video.paused) {
-      video.play().catch((error) => console.error("Video play error:", error));
-    }
-
-    return () => {
-      video.removeEventListener("timeupdate", handleTimeUpdate);
-      video.removeEventListener("ended", handleVideoEnded);
-    };
-  }, [activeTab, tabCount]);
+  const { refs, state, actions } = useVideoSlider();
 
   return (
     <div className="mobile_padding">
@@ -61,26 +28,26 @@ export default function UseCases() {
           </div>
         </div>
 
-        <div className="mt-[60px] flex lg:flex-col flex-col-reverse gap-2.5">
+        <div className="mt-[60px] flex lg:flex-row flex-col-reverse gap-2.5">
           <div className="w-full lg:w-2/5 space-y-2.5">
             {tabs.map((tab) => (
               <Tab
                 key={tab.id}
                 {...tab}
-                isActive={tab.id === activeTab}
-                setActiveTab={setActiveTab}
-                progress={tab.id === activeTab ? progress : 0}
+                isActive={tab.id === state.activeTab}
+                setActiveTab={actions.setActiveTab}
+                progress={tab.id === state.activeTab ? state.progress : 0}
               />
             ))}
           </div>
           <div className="w-full flex-1 flex items-center justify-center bg-white">
             {tabs.map(
               (tab) =>
-                activeTab === tab.id && (
+                state.activeTab === tab.id && (
                   <div key={tab.id} className="w-full h-full">
-                    {tab.id === activeTab && (
+                    {tab.id === state.activeTab && (
                       <video
-                        ref={videoRef}
+                        ref={refs.videoRef}
                         src={tab.media.props.src}
                         muted
                         playsInline
