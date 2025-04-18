@@ -10,18 +10,16 @@ import Hero from "@/sections/hero";
 import Info from "@/sections/info";
 import Navbar from "@/sections/navigation/Navbar";
 import Newsletter from "@/sections/newsletter";
-import Templates from "@/sections/templates";
-import UseCases from "@/sections/use_cases";
 import WhatWeDo from "@/sections/what_we_do";
 import WhatWeOffer from "@/sections/what_we_offer";
-import WorkTogether from "@/sections/work_together";
 
 export default function Home() {
   return (
-    <main className="bg-black">
+    <main>
       <div className="bg-white relative z-10">
-        <div className="max-w-[860px] mx-auto">
+        <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
           <Navbar />
+
           <Hero />
           <Customers />
           <FadeOnScroll>
@@ -32,17 +30,19 @@ export default function Home() {
           <FadeOnScroll>
             <Testimonial {...testimonials[0]} />
           </FadeOnScroll>
+          <CreateFaster />
           <FadeOnScroll>
             <Testimonial {...testimonials[1]} />
           </FadeOnScroll>
-          <CreateFaster />
         </div>
-        <WorkTogether />
+        {/* <WorkTogether /> */}
         <div className="max-w-[860px] mx-auto">
           <CreativePower />
+          {/* 
           <UseCases />
+          */}
         </div>
-        <Templates />
+        {/* <Templates /> */}
         <div className="max-w-[860px] mx-auto">
           <Info />
         </div>

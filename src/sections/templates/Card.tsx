@@ -21,7 +21,7 @@ export default function Card({
 }: CardProps) {
   return (
     <div
-      className="rounded-[40px] py-[60px] px-10 w-[460px] h-[546px] shrink-0 bg-light-grey relative flex flex-col gap-4 justify-between"
+      className="rounded-[40px] py-[60px] px-10 lg:max-w-[460px] max-w-[295px] w-full lg:h-[546px] h-[303px] shrink-0 bg-light-grey relative flex flex-col gap-4 justify-between"
       style={{
         marginLeft: index === 0 ? "calc((100vw - 860px) / 2" : "0",
         marginRight:

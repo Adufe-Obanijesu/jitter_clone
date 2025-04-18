@@ -9,29 +9,29 @@ import Feature from "./Feature";
 
 export default function CreativePower() {
   return (
-    <div className="mt-20">
+    <div className="mt-20 mobile_padding">
       <div className="flex flex-col items-center gap-[30px]">
         <Tag>Creative power</Tag>
-        <h1 className="text-7xl font-bold text-center">
+        <h1 className="text-[40px] lg:text-7xl font-bold text-center">
           Supercharge your creativity
         </h1>
         <p className="text-center text-lg max-w-[500px]">
           <strong>
             Jitter combines powerful features with intuitive controls
           </strong>{" "}
-          that let you craft standout animations and deliver work you're proud
-          of.
+          that let you craft standout animations and deliver work you&apos;re
+          proud of.
         </p>
         <Button className="text-xl">Explore all the features</Button>
       </div>
 
-      <div className="grid grid-cols-2 gap-x-5 gap-y-14 mt-[60px]">
+      <div className="grid md:grid-cols-2 gap-x-5 lg:gap-y-14 gap-y-[30px] mt-[60px]">
         {creative_power.map((item) => (
           <Card key={item.heading} {...item} />
         ))}
       </div>
 
-      <div className="mt-20 grid grid-cols-3 gap-x-[60px] gap-y-[90px]">
+      <div className="mt-20 grid md:grid-cols-3 gap-x-[60px] lg:gap-y-[90px] gap-y-[55px]">
         {features.map((item) => (
           <Feature key={item.heading} {...item} />
         ))}

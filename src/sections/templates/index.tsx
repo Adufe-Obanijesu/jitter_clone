@@ -1,7 +1,5 @@
 "use client";
 
-import { useRef } from "react";
-import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Button from "@/components/ui/Button";
 import Tag from "@/components/ui/Tag";
@@ -19,10 +17,10 @@ export default function Templates() {
   const { refs: pinRefs } = usePinButton();
 
   return (
-    <div ref={pinRefs.containerRef} className="mt-[200px]">
+    <div ref={pinRefs.containerRef} className="mt-[200px] mobile_padding">
       <div className="flex flex-col items-center gap-[30px]">
         <Tag className="bg-[#ae8bf4]">Templates</Tag>
-        <h1 className="text-7xl font-bold text-center">
+        <h1 className="text-[40px] lg:text-7xl font-bold text-center">
           Supercharge your creativity
         </h1>
         <p className="text-center text-lg max-w-[500px]">

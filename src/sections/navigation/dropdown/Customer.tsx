@@ -1,5 +1,6 @@
 import ScaleDown from "@/components/animations/ScaleDown";
-import RampIcon from "@/components/icons/ramp";
+import DeliverooIcon from "@/components/icons/navigation/deliveroo";
+import RampIcon from "@/components/icons/navigation/ramp";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
@@ -36,21 +37,16 @@ export default function Customer() {
       <div className="flex-1 space-y-2.5 shrink-0">
         <ScaleDown>
           <div
-            className={`product opacity-0 scale-90 hover:bg-primary transition_item cursor-pointer rounded-[20px] p-[30px] h-[185px] w-full flex items-center justify-center bg-light-grey`}
+            className={`group product opacity-0 scale-90 hover:bg-primary transition_item cursor-pointer rounded-[20px] p-[30px] h-[185px] w-full flex items-center justify-center bg-light-grey`}
           >
             <RampIcon />
           </div>
         </ScaleDown>
         <ScaleDown>
           <div
-            className={`product opacity-0 scale-90 hover:bg-primary transition_item cursor-pointer rounded-[20px] p-[30px] h-[185px] w-full flex items-center justify-center bg-light-grey`}
+            className={`group product opacity-0 scale-90 hover:bg-primary transition_item cursor-pointer rounded-[20px] p-[30px] h-[185px] w-full flex items-center justify-center bg-light-grey`}
           >
-            <Image
-              src="/icons/deliveroo.svg"
-              width={157.56}
-              height={42.42}
-              alt="deliveroo"
-            />
+            <DeliverooIcon />
           </div>
         </ScaleDown>
       </div>

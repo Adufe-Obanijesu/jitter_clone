@@ -1,8 +1,5 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
 import Tag from "@/components/ui/Tag";
 import { slider_data } from "@/data/work_together";
 import Card from "./Card";
@@ -14,11 +11,14 @@ export default function WorkTogether() {
   const { refs, state, actions } = useSlider();
 
   return (
-    <div className="mt-[200px]" ref={refs.containerRef}>
+    <div
+      className="mt-[92px] lg:mt-[200px] mobile_padding"
+      ref={refs.containerRef}
+    >
       <div className="max-w-[860px] mx-auto">
         <Tag>Work together</Tag>
-        <div className="grid grid-cols-2 gap-5 mt-7">
-          <h1 className="text-5xl font-bold w-[630px]">
+        <div className="grid md:grid-cols-2 gap-5 mt-7">
+          <h1 className="text-[40px] lg:text-5xl font-bold w-full max-w-[630px]">
             Everything your team needs to collaborate and deliver their best
             work
           </h1>

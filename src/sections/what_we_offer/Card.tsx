@@ -21,7 +21,7 @@ export default function Card({
   return (
     <div
       className={twMerge(
-        "card rounded-[40px] p-[50px] pt-[60px] w-[460px] h-[505px] relative",
+        "card rounded-[40px] lg:p-[50px] p-9 lg:pt-[60px] pt-[45px] lg:w-[460px] h-[505px] relative",
         className
       )}
     >

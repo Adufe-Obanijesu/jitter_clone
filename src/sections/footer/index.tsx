@@ -6,17 +6,19 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <div className="relative z-10 pt-[160px] pb-[98px] bg-light-grey rounded-b-[80px]">
-      <div className="px-8 max-w-[860px] mx-auto space-y-[100px]">
+    <div className="relative z-10 pt-[120px] lg:pt-[160px] pb-[98px] bg-light-grey lg:rounded-b-[80px] rounded-b-[40px] mobile_padding">
+      <div className="lg:px-8 max-w-[400px] lg:max-w-[860px] mx-auto space-y-[100px]">
         <div className="w-full flex flex-col items-center gap-[30px]">
-          <h1 className="text-7xl font-bold text-center">Try Jitter today</h1>
+          <h1 className="text-[60px] lg:text-7xl font-bold text-center">
+            Try Jitter today
+          </h1>
           <p className="text-center text-lg max-w-[310px]">
             No download, no install, no waiting. Start creating instantly.
           </p>
           <Button className="text-xl">Get started for free</Button>
         </div>
 
-        <div className="w-[860px] grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 py-12 text-sm">
+        <div className="max-w-[400px] lg:max-w-[860px] grid lg:grid-cols-2 grid-cols-2 md:grid-cols-5 gap-8 lg:py-12 py-7 text-sm">
           {footerLinks.map((section) => (
             <div key={section.title}>
               <h3 className="font-semibold text-lg text-dark mb-6">
@@ -27,7 +29,7 @@ export default function Footer() {
                   <li key={item.id}>
                     <Link
                       href={item.link}
-                      className="hover:opacity-50 transition_item duration-200 text-base"
+                      className="hover:opacity-50 transition_item duration-200 text-base text-nowrap"
                     >
                       {item.text}
                     </Link>

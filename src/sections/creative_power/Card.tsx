@@ -9,7 +9,7 @@ interface CardProps {
 
 export default function Card({ media, heading, preheading, body }: CardProps) {
   return (
-    <div className="space-y-6 bg-light-grey p-[50px]">
+    <div className="space-y-6 bg-light-grey lg:p-[50px] px-[30px] py-[40px]">
       <div className="flex items-center justify-center">{media}</div>
 
       <div className="space-y-3">

@@ -18,6 +18,8 @@ export default function useDropdownAnimation(
       },
     });
 
+    const mm = gsap.matchMedia();
+
     if (hoveredItem && activeDropdown) {
       tl.addLabel("start")
         .to("#shadow-el", {
@@ -42,14 +44,28 @@ export default function useDropdownAnimation(
           "start"
         );
     } else {
-      tl.to("#shadow-el", {
-        y: 0,
-        height: "90px",
-        scaleX: 1,
-        ease: "power1.out",
-        borderRadius: "32px",
-        overwrite: true,
-        duration: 0.3,
+      mm.add("(min-width: 1024px)", () => {
+        tl.to("#shadow-el", {
+          y: 0,
+          height: "90px",
+          scaleX: 1,
+          ease: "power1.out",
+          borderRadius: "32px",
+          overwrite: true,
+          duration: 0.3,
+        });
+      });
+
+      mm.add("(max-width: 1023px)", () => {
+        tl.to("#shadow-el", {
+          y: 0,
+          height: "80px",
+          scaleX: 1,
+          ease: "power1.out",
+          borderRadius: "12px",
+          overwrite: true,
+          duration: 0.3,
+        });
       });
     }
 

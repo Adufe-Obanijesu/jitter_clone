@@ -1,65 +1,52 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
 import { logoSet } from "@/data/logo_set";
+import useBrandDisplay from "@/hooks/customers/useBrandDisplay";
 
 export default function Customers() {
-  const [index, setIndex] = useState(0);
-
-  useGSAP(() => {
-    const interval = setInterval(() => {
-      const tl = gsap.timeline({
-        defaults: { duration: 0.3, ease: "power2.out" },
-        onComplete: () => {
-          setIndex((i) => (i + 1) % logoSet.length);
-        },
-      });
-
-      tl.to(".logo", { opacity: 0, scale: 0, stagger: 0.05 });
-    }, 3500);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  useGSAP(
-    () => {
-      gsap.fromTo(
-        ".logo",
-        { opacity: 0, scale: 0 },
-        {
-          opacity: 1,
-          scale: 1,
-          stagger: 0.05,
-          duration: 0.3,
-          ease: "power2.out",
-        }
-      );
-    },
-    { dependencies: [index] }
-  );
+  const { state, refs } = useBrandDisplay();
+  const allLogos = state.isMobile ? logoSet.flat() : logoSet[state.index];
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-10 mt-20">
       <p className="text-[15px] text-dark text-center">
         <strong>Over 20,000 creative teams use Jitter</strong> to create
         stunning animations online.
       </p>
 
-      <div className="flex items-center justify-around">
-        {logoSet[index].map((src, i) => (
-          <Image
-            key={i}
-            src={src}
-            width={125}
-            height={35}
-            alt="logo"
-            className="logo max-h-[35px]"
-          />
-        ))}
-      </div>
+      {state.isMobile ? (
+        <div
+          className="overflow-hidden md:-mx-10 md:w-[480px] lg:mx-auto lg:w-full w-full"
+          ref={refs.scrollContainerRef}
+        >
+          <div className="flex items-center gap-8">
+            {[...allLogos, ...allLogos].map((src, i) => (
+              <Image
+                key={i}
+                src={src}
+                width={90}
+                height={25}
+                alt="logo"
+                className="scroll-logo max-h-[25px] flex-shrink-0"
+              />
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div className="flex items-center gap-8">
+          {allLogos.map((src, i) => (
+            <Image
+              key={i}
+              src={src}
+              width={125}
+              height={35}
+              alt="logo"
+              className="logo max-h-[35px]"
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

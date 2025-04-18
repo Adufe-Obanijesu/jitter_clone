@@ -5,7 +5,7 @@ import Button from "@/components/ui/Button";
 export default function Newsletter() {
   return (
     <div className="sticky bottom-0 z-0 bg-black flex items-center justify-center w-full h-screen">
-      <div className="max-w-[860px] mx-auto px-4 flex items-center gap-12 lg:gap-16">
+      <div className="max-w-[860px] mx-auto px-4 flex flex-wrap items-center gap-12 lg:gap-16">
         <video
           src="/videos/newsletter/animation.mp4"
           muted
@@ -13,29 +13,32 @@ export default function Newsletter() {
           playsInline
           autoPlay
           aria-hidden="true"
-          className="w-[344px]"
+          className="lg:w-[344px] w-[300px]"
         />
 
         <div className="flex-1">
           <div className="space-y-10 flex flex-col items-center">
-            <h2 className="text-white text-[40px] font-bold">
+            <h2 className="text-white text-[30px] lg:text-[40px] font-bold">
               Get product updates and inspiration in your inbox every month
             </h2>
 
             <form
               onSubmit={(e) => e.preventDefault()}
-              className="flex bg-[#2d2933] rounded-r-full"
+              className="lg:flex bg-[#2d2933] lg:rounded-r-full w-full"
             >
               <input
                 type="email"
                 placeholder="Your email"
                 required
-                className=" pl-6 py-3 text-white rounded-md flex-grow focus:outline-none font-bold"
+                className=" pl-6 py-3 w-full lg:w-auto text-white rounded-md flex-grow focus:outline-none font-bold"
               />
-              <Button className="bg-[#f5ff63] text-dark text-lg hover:scale-105 px-[50px]">
+              <Button className="hidden lg:block bg-[#f5ff63] text-dark text-lg hover:scale-105 px-[50px]">
                 Subscribe
               </Button>
             </form>
+            <Button className="lg:hidden w-full bg-[#f5ff63] text-center text-dark text-lg hover:scale-105 px-[50px]">
+              Subscribe
+            </Button>
           </div>
         </div>
       </div>

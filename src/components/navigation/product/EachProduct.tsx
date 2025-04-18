@@ -9,17 +9,6 @@ interface ProductProps {
   text_width?: string;
 }
 
-const color = {
-  bg: {
-    lightGrey: "bg-light-grey",
-    purple: "bg-purple",
-    blue: "bg-blue-gradient",
-  },
-  text: {
-    primary: "text-primary",
-  },
-};
-
 export default function EachProduct({
   text,
   link,
