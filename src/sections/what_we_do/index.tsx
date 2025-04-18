@@ -8,7 +8,7 @@ export default function WhatWeDo() {
   return (
     <h1
       ref={textRef}
-      className="text-black font-extrabold leading-[103%] text-4xl lg:text-[38.8px] tracking-[-1.5px] max-w-[611px] mt-44 mobile_padding"
+      className="text-black font-extrabold leading-[103%] text-4xl lg:text-[38.8px] tracking-[-1.5px] max-w-[611px] mt-44 mobile_padding mx-auto"
     >
       Jitter makes motion accessible to every designer, enabling creative teams
       to collaborate on and deliver engaging animations in record time.

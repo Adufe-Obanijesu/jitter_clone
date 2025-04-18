@@ -1,5 +1,7 @@
+"use client";
+
 import { useWindowSize } from "@react-hook/window-size";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 interface TabContent {
   id: number;
@@ -19,6 +21,14 @@ export default function Tab({
   progress = 0,
 }: TabContent) {
   const [width] = useWindowSize();
+
+  const [hasRendered, setHasRendered] = useState(false);
+
+  useEffect(() => {
+    setHasRendered(false);
+  }, []);
+
+  if (!hasRendered) return null;
 
   return (
     <div

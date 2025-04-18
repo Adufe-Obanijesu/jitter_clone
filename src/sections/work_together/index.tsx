@@ -55,13 +55,13 @@ export default function WorkTogether() {
 
   return (
     <div
-      className="mt-[92px] lg:mt-[200px] mobile_padding max-w-[400px] lg:max-w-auto mx-auto"
+      className="mt-[92px] lg:mt-[200px] mobile_padding max-w-[400px] lg:max-w-none lg:max-w-auto mx-auto"
       ref={refs.containerRef}
     >
       <div className="max-w-[860px] mx-auto">
         <Tag>Work together</Tag>
         <div className="grid lg:grid-cols-2 gap-5 mt-7">
-          <h1 className="text-[40px] lg:text-5xl font-bold w-full max-w-[630px]">
+          <h1 className="text-[40px] lg:text-5xl font-bold w-full max-w-[630px] lg:w-[576px]">
             Everything your team needs to collaborate and deliver their best
             work
           </h1>

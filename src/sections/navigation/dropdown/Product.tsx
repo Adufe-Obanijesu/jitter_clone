@@ -15,7 +15,7 @@ export default function Product() {
           <EachProduct
             text="A brand-new way to design and animate"
             link="#"
-            bg="purple"
+            bg="deep-purple"
           />
         </ScaleDown>
       </div>

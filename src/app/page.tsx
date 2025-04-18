@@ -28,7 +28,6 @@ export default function Home() {
             <FeatureVideo />
           </FadeOnScroll>
           <WhatWeDo />
-          ``
           <WhatWeOffer />
           <FadeOnScroll>
             <Testimonial {...testimonials[0]} />
