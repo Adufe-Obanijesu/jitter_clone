@@ -1,4 +1,5 @@
 import FadeOnScroll from "@/components/animations/FadeOnScroll";
+import Chat from "@/components/Chat";
 import Testimonial from "@/components/Testimonial";
 import { testimonials } from "@/data/testimonials";
 import CreateFaster from "@/sections/create_faster";
@@ -19,9 +20,9 @@ import WorkTogether from "@/sections/work_together";
 
 export default function Home() {
   return (
-    <main className="">
-      <div className="bg-white relative z-10">
-        <div className="lg:max-w-[860px] max-w-[400px] mx-auto overflow-hidden">
+    <main id="main">
+      <div className="bg-white relative z-10 overflow-hidden">
+        <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
           <Navbar />
           <Hero />
           <Customers />
@@ -31,7 +32,7 @@ export default function Home() {
           <WhatWeDo />
         </div>
         <HorizontalScroll />
-        <div className="lg:max-w-[860px] max-w-[400px] mx-auto overflow-hidden">
+        <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
           <WhatWeOffer />
           <FadeOnScroll>
             <Testimonial {...testimonials[0]} />
@@ -42,17 +43,19 @@ export default function Home() {
           </FadeOnScroll>
         </div>
         <WorkTogether />
-        <div className="lg:max-w-[860px] max-w-[400px] mx-auto overflow-hidden">
+        <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
           <CreativePower />
         </div>
         <UseCases />
         <Templates />
-        <div className="lg:max-w-[860px] max-w-[400px] mx-auto overflow-hidden">
+        <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
           <Info />
         </div>
       </div>
       <Footer />
       <Newsletter />
+
+      <Chat />
     </main>
   );
 }

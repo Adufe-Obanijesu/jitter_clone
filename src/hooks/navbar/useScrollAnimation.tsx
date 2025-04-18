@@ -1,20 +1,36 @@
 import { useGSAP } from "@gsap/react";
+import { useWindowSize } from "@react-hook/window-size";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { RefObject, useRef, useState } from "react";
+import { RefObject, useEffect, useRef, useState } from "react";
 
 export default function useScrollAnimation(
   containerRef: RefObject<HTMLDivElement | null>,
-  shadowContainerRef: RefObject<HTMLDivElement | null>,
+  shadowContainerRef: RefObject<HTMLDivElement | null>
 ) {
   const hasAnimatedDownRef = useRef(false);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+  const [width] = useWindowSize();
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  useGSAP(() => {
+    if (width >= 1024) {
+      setMobileSidebarOpen(false);
+      gsap.to(document.body, {
+        overflow: "scroll",
+      });
+    }
+  }, [width]);
+
+  useEffect(() => {
+    ScrollTrigger.refresh();
+  }, [width, mobileSidebarOpen]);
 
   const { contextSafe } = useGSAP(
     () => {
       const mm = gsap.matchMedia();
 
-      gsap.registerPlugin(ScrollTrigger);
       gsap.defaults({ duration: 1, ease: "elastic.out(.4)" });
 
       const scrollTrigger = ScrollTrigger.create({
@@ -26,7 +42,7 @@ export default function useScrollAnimation(
           if (shadowContainerRef.current) {
             if (isAtTop) {
               shadowContainerRef.current.classList.remove("shadow-nav");
-              gsap.to("#hamburger-menu", { background: "#f2f1f3" });
+              gsap.to("#hamburger-sidebar-menu", { background: "#f2f1f3" });
             } else {
               shadowContainerRef.current.classList.add("shadow-nav");
             }
@@ -35,9 +51,11 @@ export default function useScrollAnimation(
           if (self.direction === 1) {
             if (hasAnimatedDownRef.current) return;
 
-            gsap.fromTo("#shadow-container", { y: 0 }, { y: -200 });
-
-            gsap.to(".links", { y: -200 });
+            if (!mobileSidebarOpen) {
+              gsap.fromTo("#shadow-container", { y: 0 }, { y: -200 });
+              gsap.to(".links", { y: -200 });
+              console.log("direction", 1);
+            }
 
             mm.add("(min-width: 1024px)", () => {
               gsap.to("#try-for-free", { x: 0 });
@@ -52,9 +70,11 @@ export default function useScrollAnimation(
           } else {
             if (!hasAnimatedDownRef.current) return;
 
-            gsap.fromTo("#shadow-container", { y: -200 }, { y: 0 });
-
-            gsap.to(".links", { y: 0 });
+            if (!mobileSidebarOpen) {
+              gsap.fromTo("#shadow-container", { y: -200 }, { y: 0 });
+              gsap.to(".links", { y: 0 });
+              console.log("direction", 0);
+            }
 
             mm.add("(min-width: 1024px)", () => {
               gsap.to("#hamburger-menu", { scale: 0, opacity: 0 });
@@ -73,9 +93,10 @@ export default function useScrollAnimation(
 
       return () => {
         scrollTrigger.kill();
+        mm.revert();
       };
     },
-    { scope: containerRef, dependencies: [] },
+    { scope: containerRef, dependencies: [mobileSidebarOpen] }
   );
 
   const showNav = contextSafe(() => {
@@ -96,7 +117,7 @@ export default function useScrollAnimation(
     });
 
     tl.addLabel("start").to("#shadow-el", {
-      height: !mobileSidebarOpen ? "100vh" : "0px",
+      height: !mobileSidebarOpen ? "100vh" : "80px",
       width: "calc(100vw + 20px)",
       position: !mobileSidebarOpen ? "fixed" : "static",
       left: 0,
@@ -107,12 +128,16 @@ export default function useScrollAnimation(
       overwrite: "auto",
     });
 
+    gsap.to(document.body, {
+      overflow: !mobileSidebarOpen ? "hidden" : "scroll",
+    });
+
     if (!mobileSidebarOpen) {
-      gsap.to("hamburger-sidebar-menu", {
+      gsap.to("#hamburger-sidebar-menu", {
         background: "#19171c",
       });
     } else {
-      gsap.to("hamburger-sidebar-menu", {
+      gsap.to("#hamburger-sidebar-menu", {
         background: "#f2f1f3",
       });
     }

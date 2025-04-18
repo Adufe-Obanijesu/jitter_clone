@@ -11,6 +11,7 @@ import ListItem from "./ListItem";
 import Wrapper from "./dropdown/Wrapper";
 import useDropdownAnimation from "@/hooks/navbar/useDropdownAnimation";
 import { FaTimes } from "react-icons/fa";
+import Sidebar from "./Sidebar";
 
 export default function Navbar() {
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -24,7 +25,7 @@ export default function Navbar() {
 
   const { state, actions } = useScrollAnimation(
     containerRef,
-    shadowContainerRef,
+    shadowContainerRef
   );
 
   useDropdownAnimation(hoveredItem, activeDropdown);
@@ -97,9 +98,7 @@ export default function Navbar() {
                   ref={menuRef}
                   onClick={actions.showNav}
                   id="hamburger-menu"
-                  className={`text-dark lg:text-white ${
-                    state.mobileSidebarOpen ? "bg-dark" : "bg-light-grey"
-                  } lg:bg-dark shrink-0 rounded-full lg:w-[56px] lg:h-[56px] w-[52px] h-[52px] p-0 flex justify-center items-center scale-100 lg:scale-0 lg:opacity-0`}
+                  className={`text-dark lg:text-white bg-dark shrink-0 rounded-full lg:w-[56px] lg:h-[56px] w-[52px] h-[52px] p-0 flex justify-center items-center scale-100 lg:scale-0 lg:opacity-0`}
                 >
                   <IoMdMenu className="text-lg" />
                 </Button>
@@ -136,7 +135,9 @@ export default function Navbar() {
             id="shadow-el"
             ref={shadowContainerRef}
             className={`bg-white w-[920px] h-[80px] lg:h-[90px] shadow-nav lg:rounded-4xl rounded-xl top-0 left-0`}
-          />
+          >
+            {state.mobileSidebarOpen && <Sidebar />}
+          </div>
         </div>
       </div>
     </div>
