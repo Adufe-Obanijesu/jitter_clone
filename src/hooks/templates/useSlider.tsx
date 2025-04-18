@@ -122,7 +122,7 @@ export default function useSlider() {
       carousel.addEventListener("mousemove", handleMouseMove as EventListener);
       carousel.addEventListener(
         "touchstart",
-        handleTouchStart as EventListener
+        handleTouchStart as EventListener,
       );
       carousel.addEventListener("touchend", handleTouchEnd);
       carousel.addEventListener("touchmove", handleTouchMove as EventListener);
@@ -131,28 +131,28 @@ export default function useSlider() {
         if (carousel) {
           carousel.removeEventListener(
             "mousedown",
-            handleMouseDown as EventListener
+            handleMouseDown as EventListener,
           );
           carousel.removeEventListener("mouseleave", handleMouseLeave);
           carousel.removeEventListener("mouseup", handleMouseUp);
           carousel.removeEventListener(
             "mousemove",
-            handleMouseMove as EventListener
+            handleMouseMove as EventListener,
           );
           carousel.removeEventListener(
             "touchstart",
-            handleTouchStart as EventListener
+            handleTouchStart as EventListener,
           );
           carousel.removeEventListener("touchend", handleTouchEnd);
           carousel.removeEventListener(
             "touchmove",
-            handleTouchMove as EventListener
+            handleTouchMove as EventListener,
           );
         }
         pauseAutoScroll();
       };
     },
-    { scope: carouselRef }
+    { scope: carouselRef },
   );
 
   return {

@@ -28,7 +28,7 @@ export default function usePinButton() {
 
       return () => scrollTrigger.kill();
     },
-    { scope: containerRef, dependencies: [] }
+    { scope: containerRef, dependencies: [] },
   );
 
   return {

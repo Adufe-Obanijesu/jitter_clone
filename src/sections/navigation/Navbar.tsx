@@ -25,7 +25,7 @@ export default function Navbar() {
 
   const { state, actions } = useScrollAnimation(
     containerRef,
-    shadowContainerRef
+    shadowContainerRef,
   );
 
   useDropdownAnimation(hoveredItem, activeDropdown);

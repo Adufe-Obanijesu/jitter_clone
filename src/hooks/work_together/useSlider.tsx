@@ -83,7 +83,7 @@ export default function useSlider() {
         }
       };
     },
-    { scope: carouselRef, dependencies: [] }
+    { scope: carouselRef, dependencies: [] },
   );
 
   useEffect(() => {

@@ -32,7 +32,7 @@ export default function useAnimateText() {
           y: 0,
           duration: 1.2,
         },
-        0
+        0,
       );
 
       tl.to(
@@ -44,7 +44,7 @@ export default function useAnimateText() {
           y: 0,
           duration: 1.4,
         },
-        0.2
+        0.2,
       );
 
       tl.to(
@@ -56,7 +56,7 @@ export default function useAnimateText() {
           y: 0,
           duration: 1.6,
         },
-        0.4
+        0.4,
       );
 
       tl.to(
@@ -66,7 +66,7 @@ export default function useAnimateText() {
           duration: 0.3,
           ease: "power1.out",
         },
-        "-=0.2"
+        "-=0.2",
       );
 
       tl.to([headingRef.current, buttonRef.current, badgeRef.current], {
@@ -75,7 +75,7 @@ export default function useAnimateText() {
         ease: "power2.out",
       });
     },
-    { scope: containerRef }
+    { scope: containerRef },
   );
 
   return {

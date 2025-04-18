@@ -6,7 +6,7 @@ import { RefObject, useEffect, useRef, useState } from "react";
 
 export default function useScrollAnimation(
   containerRef: RefObject<HTMLDivElement | null>,
-  shadowContainerRef: RefObject<HTMLDivElement | null>
+  shadowContainerRef: RefObject<HTMLDivElement | null>,
 ) {
   const hasAnimatedDownRef = useRef(false);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
@@ -96,7 +96,7 @@ export default function useScrollAnimation(
         mm.revert();
       };
     },
-    { scope: containerRef, dependencies: [mobileSidebarOpen] }
+    { scope: containerRef, dependencies: [mobileSidebarOpen] },
   );
 
   const showNav = contextSafe(() => {
