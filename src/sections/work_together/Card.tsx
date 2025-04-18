@@ -1,5 +1,4 @@
-import { useWindowSize } from "@react-hook/window-size";
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { ReactNode } from "react";
 
 interface CardProps {
   backgroundColor?: string;
@@ -20,34 +19,21 @@ export default function Card({
   textColor,
   index,
 }: CardProps) {
-  const [width] = useWindowSize();
-  const isMobile = width < 1024;
-
-  const [hasRendered, setHasRendered] = useState(false);
-
-  useEffect(() => {
-    setHasRendered(true);
-  }, []);
-
-  if (!hasRendered) return null;
-
   return (
     <div
-      className={`rounded-[40px] lg:p-[50px] py-[40px] px-[30px] ${
-        isMobile ? "w-full h-[489px]" : "w-[335px] lg:w-[460px]"
-      } shrink-0`}
+      className="rounded-[40px] p-[50px] w-[460px] shrink-0"
       style={{
         background: backgroundColor,
-        marginLeft: !isMobile && index === 0 ? "calc((100vw - 860px) / 2" : "0",
+        marginLeft: index === 0 ? "calc((100vw - 860px) / 2" : "0",
       }}
     >
       <div className="mb-6">
-        <div className="p-4 rounded-2xl w-full mx-auto">
+        <div className="p-4 rounded-2xl w-full max-w-md mx-auto">
           <div className="relative aspect-video w-full">{media}</div>
         </div>
       </div>
 
-      <div className="mx-auto">
+      <div className="max-w-md mx-auto">
         <div
           className="inline-block px-2 py-1 mb-3"
           style={{ background: tagColor ?? "white" }}

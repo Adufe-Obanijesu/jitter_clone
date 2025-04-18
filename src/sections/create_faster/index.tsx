@@ -4,7 +4,7 @@ import Tag from "@/components/ui/Tag";
 
 export default function CreateFaster() {
   return (
-    <div className="max-w-[684px] mx-auto mobile_padding">
+    <div className="mt-[92px] lg:mt-[200px] max-w-[684px] mx-auto mobile_padding">
       <Tag>Create faster</Tag>
       <div className="grid lg:grid-cols-2 gap-5 mt-7">
         <h1 className="text-[40px] lg:text-5xl font-bold">

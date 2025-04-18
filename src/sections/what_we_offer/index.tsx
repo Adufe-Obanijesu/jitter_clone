@@ -9,7 +9,7 @@ export default function WhatWeOffer() {
   const { containerRef } = useCardScroll();
 
   return (
-    <div className="py-[60px] lg:mt-[200px] mt-[140px] mobile_padding">
+    <div className="pt-[60px] lg:mt-[200px] mt-[140px] mobile_padding">
       <div className="flex flex-col items-center gap-[30px]">
         <Tag>No learning curve</Tag>
         <h1 className="lg:text-7xl text-[40px] font-bold text-center max-w-[500px]">

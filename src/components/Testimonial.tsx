@@ -15,7 +15,7 @@ export default function Testimonial({
   text,
 }: TestimonialProps) {
   return (
-    <div className="flex flex-col items-center text-center px-4 py-12 space-y-10">
+    <div className="lg:mt-[180px] mt-[140px] flex flex-col items-center text-center px-4 pt-12 space-y-10">
       <blockquote className="text-4xl md:text-5xl font-bold leading-snug max-w-4xl">
         {text}
       </blockquote>
