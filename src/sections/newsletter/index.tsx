@@ -5,7 +5,7 @@ import Button from "@/components/ui/Button";
 export default function Newsletter() {
   return (
     <div className="sticky bottom-0 z-0 bg-black flex items-center justify-center w-full h-screen">
-      <div className="px-4 flex flex-wrap flex-col lg:flex-row items-center gap-12 lg:gap-16 lg:max-w-[860px] max-w-[400px] mx-auto">
+      <div className="px-4 flex flex-col lg:flex-row items-center gap-12 lg:gap-16 lg:max-w-[860px] max-w-[400px] mx-auto">
         <video
           src="/videos/newsletter/animation.mp4"
           muted
@@ -33,7 +33,7 @@ export default function Newsletter() {
                   required
                   className=" pl-6 py-3 w-full lg:w-auto text-white rounded-md flex-grow focus:outline-none font-bold"
                 />
-                <Button className="hidden lg:block bg-[#f5ff63] text-dark text-lg hover:scale-105 px-[50px]">
+                <Button className="hidden lg:inline bg-[#f5ff63] text-dark text-lg hover:scale-105 px-[50px]">
                   Subscribe
                 </Button>
               </form>

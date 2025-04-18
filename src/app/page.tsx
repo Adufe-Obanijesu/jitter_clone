@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <main className="">
       <div className="bg-white relative z-10">
-        <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
+        <div className="lg:max-w-[860px] max-w-[400px] mx-auto overflow-hidden">
           <Navbar />
           <Hero />
           <Customers />
@@ -31,7 +31,7 @@ export default function Home() {
           <WhatWeDo />
         </div>
         <HorizontalScroll />
-        <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
+        <div className="lg:max-w-[860px] max-w-[400px] mx-auto overflow-hidden">
           <WhatWeOffer />
           <FadeOnScroll>
             <Testimonial {...testimonials[0]} />
@@ -42,13 +42,13 @@ export default function Home() {
           </FadeOnScroll>
         </div>
         <WorkTogether />
-        <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
+        <div className="lg:max-w-[860px] max-w-[400px] mx-auto overflow-hidden">
           <CreativePower />
 
           <UseCases />
         </div>
         <Templates />
-        <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
+        <div className="lg:max-w-[860px] max-w-[400px] mx-auto overflow-hidden">
           <Info />
         </div>
       </div>

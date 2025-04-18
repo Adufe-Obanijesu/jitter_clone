@@ -2,12 +2,50 @@
 
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 
 export default function useSlider() {
   const carouselRef = useRef<HTMLDivElement | null>(null);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const autoplayRef = useRef<gsap.core.Tween | null>(null);
+
+  const startAutoScroll = useCallback((): void => {
+    if (!carouselRef.current) return;
+
+    pauseAutoScroll();
+
+    const carousel = carouselRef.current;
+    const scrollWidth = carousel.scrollWidth - carousel.clientWidth;
+
+    autoplayRef.current = gsap.to(carousel, {
+      scrollLeft: scrollWidth,
+      duration: 60,
+      ease: "none",
+      repeat: -1,
+      yoyo: true,
+      onRepeat: () => {
+        gsap.set(carousel, { scrollLeft: carousel.scrollLeft });
+      },
+    });
+
+    setIsPlaying(true);
+  }, []);
+
+  const pauseAutoScroll = (): void => {
+    if (autoplayRef.current) {
+      autoplayRef.current.kill();
+      autoplayRef.current = null;
+    }
+    setIsPlaying(false);
+  };
+
+  const toggleAutoScroll = (): void => {
+    if (isPlaying) {
+      pauseAutoScroll();
+    } else {
+      startAutoScroll();
+    }
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -18,7 +56,7 @@ export default function useSlider() {
       clearTimeout(timer);
       pauseAutoScroll();
     };
-  }, []);
+  }, [startAutoScroll]);
 
   useGSAP(
     () => {
@@ -84,7 +122,7 @@ export default function useSlider() {
       carousel.addEventListener("mousemove", handleMouseMove as EventListener);
       carousel.addEventListener(
         "touchstart",
-        handleTouchStart as EventListener,
+        handleTouchStart as EventListener
       );
       carousel.addEventListener("touchend", handleTouchEnd);
       carousel.addEventListener("touchmove", handleTouchMove as EventListener);
@@ -93,67 +131,29 @@ export default function useSlider() {
         if (carousel) {
           carousel.removeEventListener(
             "mousedown",
-            handleMouseDown as EventListener,
+            handleMouseDown as EventListener
           );
           carousel.removeEventListener("mouseleave", handleMouseLeave);
           carousel.removeEventListener("mouseup", handleMouseUp);
           carousel.removeEventListener(
             "mousemove",
-            handleMouseMove as EventListener,
+            handleMouseMove as EventListener
           );
           carousel.removeEventListener(
             "touchstart",
-            handleTouchStart as EventListener,
+            handleTouchStart as EventListener
           );
           carousel.removeEventListener("touchend", handleTouchEnd);
           carousel.removeEventListener(
             "touchmove",
-            handleTouchMove as EventListener,
+            handleTouchMove as EventListener
           );
         }
         pauseAutoScroll();
       };
     },
-    { scope: carouselRef },
+    { scope: carouselRef }
   );
-
-  const startAutoScroll = (): void => {
-    if (!carouselRef.current) return;
-
-    pauseAutoScroll();
-
-    const carousel = carouselRef.current;
-    const scrollWidth = carousel.scrollWidth - carousel.clientWidth;
-
-    autoplayRef.current = gsap.to(carousel, {
-      scrollLeft: scrollWidth,
-      duration: 60,
-      ease: "none",
-      repeat: -1,
-      yoyo: true,
-      onRepeat: () => {
-        gsap.set(carousel, { scrollLeft: carousel.scrollLeft });
-      },
-    });
-
-    setIsPlaying(true);
-  };
-
-  const pauseAutoScroll = (): void => {
-    if (autoplayRef.current) {
-      autoplayRef.current.kill();
-      autoplayRef.current = null;
-    }
-    setIsPlaying(false);
-  };
-
-  const toggleAutoScroll = (): void => {
-    if (isPlaying) {
-      pauseAutoScroll();
-    } else {
-      startAutoScroll();
-    }
-  };
 
   return {
     refs: {
