@@ -10,7 +10,7 @@ export default function UseCases() {
   const { refs, state, actions } = useVideoSlider();
 
   return (
-    <div className="mobile_padding">
+    <div className="lg:max-w-[860px] max-w-[400px] mx-auto mobile_padding">
       <div className="bg-light-grey lg:rounded-[80px] rounded-[40px] lg:p-[60px] p-[30px] lg:-mx-[60px] mt-[180px]">
         <div className="">
           <div className="flex flex-col gap-[30px]">

@@ -44,9 +44,8 @@ export default function Home() {
         <WorkTogether />
         <div className="lg:max-w-[860px] max-w-[400px] mx-auto overflow-hidden">
           <CreativePower />
-
-          <UseCases />
         </div>
+        <UseCases />
         <Templates />
         <div className="lg:max-w-[860px] max-w-[400px] mx-auto overflow-hidden">
           <Info />
