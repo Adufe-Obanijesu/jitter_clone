@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes, ReactNode, forwardRef } from "react";
-import { twMerge } from "tailwind-merge";
+import {cn} from "@/utils/tailwind";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
@@ -12,8 +12,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         {...rest}
-        className={twMerge(
-          "py-4 px-8 font-semibold bg-primary text-white rounded-full flex items-center gap-2",
+        className={cn(
+          "py-4 px-8 font-semibold bg-primary text-white rounded-full flex items-center justify-center gap-2",
           className,
         )}
       >

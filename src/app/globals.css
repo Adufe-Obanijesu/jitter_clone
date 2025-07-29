@@ -32,7 +32,7 @@
 }
 
 body {
-  font-family: var(--font-inter), sans-serif;
+  font-family: "TWKLausanne", sans-serif;
   color: var(--color-primary);
 }
 
@@ -57,40 +57,21 @@ button {
   @apply cursor-pointer;
 }
 
-.bg-blue-gradient {
+@utility bg-blue-gradient {
   background-image:
     linear-gradient(0deg, var(--color-blue), var(--color-blue)),
     linear-gradient(180deg, #a2d9ff, #29a9ff);
 }
 
-.text-white {
-  @apply text-white;
-}
-
-.bg-white {
-  @apply bg-white;
-}
-
-.text-primary {
-  @apply text-primary;
-}
-
-.bg-card-purple {
-  @apply bg-card-purple;
-}
-
-.bg-card-light-purple {
-  @apply bg-card-light-purple;
-}
-
-.bg-deep-purple {
-  @apply bg-purple;
-}
-
-.transition_item {
+@utility transition_item {
   @apply transition-all duration-300 ease-in;
 }
 
-.mobile_padding {
+@utility mobile_padding {
   @apply px-5 md:px-0;
+}
+
+/*GSDevTools*/
+.gs-dev-tools {
+  z-index: 1000;
 }
