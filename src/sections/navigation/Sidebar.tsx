@@ -1,5 +1,5 @@
 import Button from "@/components/ui/Button";
-import { sidebarLinks } from "@/data/sidebar";
+import { sidebarLinks } from "@/data/navigation/sidebar";
 import Link from "next/link";
 
 export default function Sidebar() {

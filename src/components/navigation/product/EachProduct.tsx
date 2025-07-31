@@ -1,29 +1,20 @@
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa6";
-
-interface ProductProps {
-  text: string;
-  link: string;
-  bg?: string;
-  text_color?: string;
-  text_width?: string;
-}
+import {IProduct} from "@/data/navigation/product";
+import {cn} from "@/utils/tailwind";
 
 export default function EachProduct({
-  text,
-  link,
-  bg = "light-grey",
-  text_color = "white",
-  text_width,
-}: ProductProps) {
+  product
+}: { product: IProduct }) {
+
   return (
     <div
-      className={`product opacity-0 scale-90 rounded-[20px] p-[30px] h-[185px] w-full flex items-end bg-${bg} text-${text_color}`}
+      className={cn("hover:scale-[.97] dropdown-card rounded-[20px] p-[30px] h-[185px] w-full flex items-end bg-light-grey", `${product.bg}`, `${product.text_color}`)}
     >
-      <div className="space-y-2" style={{ maxWidth: text_width || "160px" }}>
-        <h3 className="text-xl font-extrabold">{text}</h3>
+      <div className="space-y-2">
+        <h3 className="text-xl font-extrabold">{product.text}</h3>
         <div className="flex items-center gap-1.5">
-          <Link href={link} className="font-semibold">
+          <Link href={product.href} className="font-semibold">
             Learn more
           </Link>
           <FaArrowRight />

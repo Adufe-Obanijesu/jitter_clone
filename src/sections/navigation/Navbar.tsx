@@ -1,18 +1,18 @@
 "use client";
 
-import { nav_links } from "@/data/nav_links";
+import { nav_links } from "@/data/navigation/nav_links";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
 import { IoMdMenu } from "react-icons/io";
-import { useRef } from "react";
+import {useEffect, useRef, useState} from "react";
 // import useScrollAnimation from "@/hooks/navbar/useScrollAnimation";
 import ListItem from "./ListItem";
 import gsap from "gsap"
 import {useGSAP} from "@gsap/react";
 // import GSDevTools from "gsap/GSDevTools";
 import ScrollTrigger from "gsap/ScrollTrigger";
-// import Wrapper from "./dropdown/Wrapper";
+import {useWindowSize} from "@react-hook/window-size";
 // import useDropdownAnimation from "@/hooks/navbar/useDropdownAnimation";
 // import { FaTimes } from "react-icons/fa";
 // import Sidebar from "./Sidebar";
@@ -20,19 +20,12 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 export default function Navbar() {
   const scope = useRef<HTMLDivElement | null>(null);
   const timeline = useRef<gsap.core.Timeline>(null)
-  // const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+    const scaleNavTl = useRef<gsap.core.Tween>(null)
 
-  // const activeDropdown = hoveredItem
-  //   ? nav_links.find((item) => item.name === hoveredItem)?.dropdown_component
-  //   : null;
+    const [width, height] = useWindowSize();
 
-  // const handleMouseEnter = (itemName: string) => {
-  //   setHoveredItem(itemName);
-  // };
-  //
-  // const handleMouseLeave = () => {
-  //   setHoveredItem(null);
-  // };
+  const [hoveredItem, setHoveredItem] = useState(-1);
+  const [elementsHovered, setElementsHovered] = useState(0);
 
   useGSAP(() => {
 
@@ -121,6 +114,33 @@ export default function Navbar() {
     }
   }, [timeline.current]);
 
+  useGSAP(() => {
+      const shadowEl = gsap.utils.toArray("#shadow-el")[0] as HTMLElement
+      if (!shadowEl) return
+
+      const shadowElWidth = shadowEl.offsetWidth
+      const shadowElHeight = shadowEl.offsetHeight
+      const scaleXValue = width / shadowElWidth
+      const scaleYValue = (height - 100) / shadowElHeight
+
+      const scaleValue = Math.max(scaleXValue, scaleYValue)
+      scaleNavTl.current = gsap.to(shadowEl, {
+                                  transformOrigin: "top center",
+                                  scaleX: scaleValue,
+                                  scaleY: scaleValue,
+                                    paused: true,
+          overwrite: "auto",
+                              })
+
+  })
+
+    useEffect(() => {
+        if (elementsHovered > 0) {
+            scaleNavTl.current?.play()
+        } else {
+            scaleNavTl.current?.reverse()
+        }
+    }, [elementsHovered]);
 
   return (
     <div
@@ -131,7 +151,7 @@ export default function Navbar() {
         className={`w-full lg:px-[30px] mx-auto relative`}
         // onMouseLeave={handleMouseLeave}
       >
-        <nav className="flex items-center justify-between gap-8 max-w-[920px] w-full mx-auto z-30 lg:py-4 py-2 lg:px-8 pl-4 pr-2 relative">
+        <nav className="flex items-center justify-between gap-8 max-w w-full mx-auto z-30 lg:py-4 py-2 lg:px-8 pl-4 pr-2">
           <div className="links flex items-center gap-6 flex-1">
             <Image
               src="/logo.svg"
@@ -141,10 +161,14 @@ export default function Navbar() {
               className="aspect-[2.92/1] w-[68px] lg:w-[82px]"
             />
             <ul className="items-center lg:flex gap-0 group hidden">
-              {nav_links.map((item) => (
+              {nav_links.map((item, index) => (
                 <ListItem
                   key={item.name}
+                  index={index}
                   item={item}
+                  hoveredItem={hoveredItem}
+                  setHoveredItem={setHoveredItem}
+                  setElementsHovered={setElementsHovered}
                 />
               ))}
             </ul>
@@ -176,51 +200,16 @@ export default function Navbar() {
                 </Button>
             </div>
 
-              {/*<Link*/}
-              {/*  href="#"*/}
-              {/*  className="links px-5 py-4 lg:hidden font-semibold text-primary shrink-0"*/}
-              {/*>*/}
-              {/*  Log in*/}
-              {/*</Link>*/}
 
-              {/*<div className="hidden lg:block">*/}
-              {/*  <Button*/}
-              {/*    // onClick={actions.showNav}*/}
-              {/*    id="hamburger-menu"*/}
-              {/*    className={`text-dark lg:text-white bg-dark shrink-0 rounded-full lg:w-[56px] lg:h-[56px] w-[52px] h-[52px] p-0 flex justify-center items-center`}*/}
-              {/*  >*/}
-              {/*    <IoMdMenu className="text-lg" />*/}
-              {/*  </Button>*/}
-              {/*</div>*/}
-
-              {/*<div className="lg:hidden">*/}
-              {/*  <Button*/}
-              {/*    // onClick={actions.showSidebar}*/}
-              {/*    id="hamburger-sidebar-menu"*/}
-              {/*    className={`text-dark lg:text-white lg:bg-dark shrink-0 rounded-full lg:w-[56px] lg:h-[56px] w-[52px] h-[52px] p-0 flex justify-center items-center z-50 relative`}*/}
-              {/*  >*/}
-              {/*      <IoMdMenu className="text-lg" />*/}
-              {/*    /!*{state.mobileSidebarOpen ? (*!/*/}
-              {/*    /!*  <FaTimes className="text-lg text-white" />*!/*/}
-              {/*    /!*) : (*!/*/}
-              {/*    /!*  <IoMdMenu className="text-lg" />*!/*/}
-              {/*    /!*)}*!/*/}
-              {/*  </Button>*/}
-              {/*</div>*/}
           </div>
 
           <div
               id="shadow-container"
               className={`w-full h-full absolute top-0 left-0 flex justify-center -z-1`}
           >
-            {/*{activeDropdown && (*/}
-            {/*  <div className="absolute z-40 top-16">*/}
-            {/*    <Wrapper>{activeDropdown}</Wrapper>*/}
-            {/*  </div>*/}
-            {/*)}*/}
             <div
                 id="shadow-el"
-                className={`w-full h-full shadow-nav lg:rounded-b-4xl rounded-b-xl opacity-0`}
+                className={`w-full h-full max-w shadow-nav lg:rounded-b-4xl rounded-b-xl opacity-`}
             >
               {/*{state.mobileSidebarOpen && <Sidebar />}*/}
             </div>

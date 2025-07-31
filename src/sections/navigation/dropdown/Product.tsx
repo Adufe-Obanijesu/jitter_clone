@@ -1,49 +1,57 @@
-import ScaleDown from "@/components/animations/ScaleDown";
 import EachProduct from "@/components/navigation/product/EachProduct";
 import Button from "@/components/ui/Button";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa6";
+import {products} from "@/data/navigation/product";
+import {useGSAP} from "@gsap/react";
+import gsap from "gsap";
+import {useEffect} from "react";
 
 export default function Product() {
+
+  useGSAP(() => {
+    gsap.timeline({delay: .25})
+        .from(`.dropdown-card`, {
+          scale: 1.3,
+          opacity: 0,
+          stagger: .05,
+          ease: "back(3)",
+        })
+        .to(".dropdown-link", {
+          opacity: 1,
+          stagger: 0.05
+        }, "<")
+        .to(".dropdown-button", {
+          scale: 1,
+        }, "<")
+  })
+
   return (
-    <div className="flex gap-2.5 w-[860px]">
-      <div className="flex-1 space-y-2.5">
-        <ScaleDown>
-          <EachProduct text="Import from Figma" link="#" bg="blue-gradient" />
-        </ScaleDown>
-        <ScaleDown>
-          <EachProduct
-            text="A brand-new way to design and animate"
-            link="#"
-            bg="deep-purple"
-          />
-        </ScaleDown>
+      <div className="w-full">
+    <div className="flex gap-3 mx-auto w-[860px]">
+      <div className="flex-1 space-y-3">
+        {
+          products.slice(0, 2).map((product) => (
+          <EachProduct key={product.id} product={product} />
+          ))
+        }
       </div>
       <div className="flex-1 space-y-2.5">
-        <ScaleDown>
-          <EachProduct
-            text="Unlock collaboration"
-            link="#"
-            text_color="primary"
-          />
-        </ScaleDown>
-        <ScaleDown>
-          <EachProduct
-            text="Export to 4K, GIF, Lottie"
-            link="#"
-            text_color="primary"
-            text_width="158px"
-          />
-        </ScaleDown>
+          {
+              products.slice(2, products.length).map((product) => (
+                  <EachProduct key={product.id} product={product} />
+              ))
+          }
+
       </div>
       <div className="pl-20 space-y-5">
         <div className="space-y-3.5">
-          <p className="dropdown-links opacity-0 font-semibold text-xl">
+          <p className="dropdown-link opacity-0 font-semibold text-xl">
             What&apos;s new
           </p>
           <nav>
             <ul className="font-semibold space-y-2.5">
-              <li className="dropdown-links opacity-0">
+              <li className="dropdown-link opacity-0">
                 <Link
                   href="#"
                   className="hover:opacity-50 cursor-pointer transition_item"
@@ -51,7 +59,7 @@ export default function Product() {
                   New website
                 </Link>
               </li>
-              <li className="dropdown-links opacity-0">
+              <li className="dropdown-link opacity-0">
                 <Link
                   href="#"
                   className="hover:opacity-50 cursor-pointer transition_item"
@@ -59,7 +67,7 @@ export default function Product() {
                   CSS Easing export
                 </Link>
               </li>
-              <li className="dropdown-links opacity-0">
+              <li className="dropdown-link opacity-0">
                 <Link
                   href="#"
                   className="hover:opacity-50 cursor-pointer transition_item"
@@ -78,5 +86,6 @@ export default function Product() {
         </Button>
       </div>
     </div>
+      </div>
   );
 }
