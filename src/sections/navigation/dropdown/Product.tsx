@@ -4,27 +4,14 @@ import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa6";
 import {products} from "@/data/navigation/product";
 import {useGSAP} from "@gsap/react";
-import gsap from "gsap";
-import {useEffect} from "react";
+import {showDropdownAnim} from "@/sections/navigation/dropdown/animation";
+import {useCallback} from "react";
 
 export default function Product() {
 
-  useGSAP(() => {
-    gsap.timeline({delay: .25})
-        .from(`.dropdown-card`, {
-          scale: 1.3,
-          opacity: 0,
-          stagger: .05,
-          ease: "back(3)",
-        })
-        .to(".dropdown-link", {
-          opacity: 1,
-          stagger: 0.05
-        }, "<")
-        .to(".dropdown-button", {
-          scale: 1,
-        }, "<")
-  })
+  const animation = useCallback(showDropdownAnim, [])
+
+  useGSAP(animation)
 
   return (
       <div className="w-full">

@@ -5,29 +5,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa6";
 import {useGSAP} from "@gsap/react";
-import gsap from "gsap";
+import {showDropdownAnim} from "@/sections/navigation/dropdown/animation";
 
 export default function Customer() {
 
-    useGSAP(() => {
-        gsap.timeline({delay: .25})
-            .from(`.dropdown-card`, {
-                scale: 1.3,
-                opacity: 0,
-                stagger: .05,
-                ease: "back(3)",
-            })
-            .to(".dropdown-link", {
-                opacity: 1,
-                stagger: 0.05
-            }, "<")
-            .to(".dropdown-button", {
-                scale: 1,
-            }, "<")
-    })
+    useGSAP(showDropdownAnim)
 
   return (
-    <div className="flex gap-2.5 w-[860px] mx-auto">
+      <div className="w-full">
+    <div className="flex gap-3 w-[860px] mx-auto">
       <div className="flex-1">
           <div className="dropdown-card hover:scale-95 cursor-pointer flex-1 bg-primary p-[30px] h-[380px] rounded-[20px] flex flex-col justify-between">
             <div className="h-[200px] flex justify-center items-center">
@@ -111,5 +97,6 @@ export default function Customer() {
         </Button>
       </div>
     </div>
+      </div>
   );
 }

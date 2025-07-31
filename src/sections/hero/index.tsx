@@ -2,7 +2,7 @@
 
 import Button from "@/components/ui/Button";
 import Link from "next/link";
-import useAnimateText from "@/hooks/hero/useAnimateText";
+// import useAnimateText from "@/hooks/hero/useAnimateText";
 
 export default function Hero() {
   // const { refs } = useAnimateText();
