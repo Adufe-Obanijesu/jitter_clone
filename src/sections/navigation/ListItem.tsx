@@ -2,6 +2,7 @@ import { INavLink } from "@/data/navigation/nav_links";
 import {cn} from "@/utils/tailwind";
 import Wrapper from "./dropdown/Wrapper";
 import {useState} from "react";
+import Link from "next/link";
 
 interface ListItemProps {
   item: INavLink;
@@ -29,7 +30,6 @@ export default function ListItem({
     }
 
     const onLeave = () => {
-        console.log("leave")
         if (!item.dropdown_component) return
         setIsHovered(false)
         setElementsHovered(prev => prev === 0 ? 0 : prev - 1)
@@ -40,9 +40,9 @@ export default function ListItem({
           onMouseEnter={onHover}
           onMouseLeave={onLeave}
           className={cn("ease-in font-semibold text-primary transition-opacity duration-200 group-hover:opacity-50 hover:!opacity-100 ")}>
-          <div className="cursor-pointer px-5 py-4">
+          <Link href={item.href} className="cursor-pointer px-5 py-4">
             {item.name}
-          </div>
+          </Link>
 
             {
                 (item.dropdown_component && hoveredItem === index && isHovered) && (

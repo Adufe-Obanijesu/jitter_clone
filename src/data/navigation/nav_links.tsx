@@ -3,27 +3,27 @@ import Product from "@/sections/navigation/dropdown/Product";
 
 export interface INavLink {
   name: string;
-  link: string;
+  href: string;
   dropdown_component?: React.ReactNode;
 }
 
 export const nav_links: INavLink[] = [
   {
     name: "Product",
-    link: "#",
+    href: "#",
     dropdown_component: <Product />,
   },
   {
     name: "Customers",
-    link: "#",
+    href: "#",
     dropdown_component: <Customer />,
   },
   {
     name: "Templates",
-    link: "#",
+    href: "#",
   },
   {
     name: "Pricing",
-    link: "#",
+    href: "#",
   },
 ];

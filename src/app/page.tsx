@@ -27,6 +27,8 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP, GSDevTools);
 
+import "@/effects"
+
 export default function Home() {
 
   useGSAP(() => {

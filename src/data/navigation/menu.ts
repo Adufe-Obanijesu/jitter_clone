@@ -1,4 +1,4 @@
-export const sidebarLinks = [
+export const menuLinks = [
   {
     name: "Product",
     link: "#",
