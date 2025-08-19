@@ -36,10 +36,11 @@ export default function Home() {
   })
 
   return (
-    <main id="main">
-      <div className="bg-white relative z-10 overflow-hidden">
+    <div className="bg-white relative z-10 overflow-hidden">
+      <h1 className="sr-only">Jitter</h1>
         <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
           <Navbar />
+        <main id="main">
           <Hero />
             <br />
             <br />
@@ -54,7 +55,7 @@ export default function Home() {
           {/*  <FeatureVideo />*/}
           {/*</FadeOnScroll>*/}
           {/*<WhatWeDo />*/}
-        </div>
+        {/* </div> */}
         {/*<HorizontalScroll />*/}
         {/*<div className="lg:max-w-[860px] max-w-[400px] mx-auto">*/}
         {/*  <WhatWeOffer />*/}
@@ -75,11 +76,12 @@ export default function Home() {
         {/*<div className="lg:max-w-[860px] max-w-[400px] mx-auto">*/}
         {/*  <Info />*/}
         {/*</div>*/}
-      </div>
-      {/*<Footer />*/}
-      {/*<Newsletter />*/}
+    {/*<Footer />*/}
+    {/*<Newsletter />*/}
 
-      {/*<Chat />*/}
+    {/*<Chat />*/}
     </main>
+      </div>
+      </div>
   );
 }

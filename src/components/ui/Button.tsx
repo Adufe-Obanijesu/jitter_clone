@@ -10,7 +10,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ children, rightIcon, animateOnHover=true, className = "", ...rest }, ref) => {
+  ({ children, rightIcon, animateOnHover=true, id, className = "", ...rest }, ref) => {
 
     const scope = useRef<HTMLDivElement>(null)
     const timeline = useRef<gsap.core.Timeline>(null)
@@ -33,6 +33,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <div ref={scope}>
       <button
         ref={ref}
+        {...(!rest["aria-label"] && !rest["aria-labelledby"]
+          ? { "aria-labelledby": id }
+          : {})}
         {...rest}
         className={cn(
           "py-4 px-8 font-semibold bg-primary text-white rounded-full flex items-center justify-center gap-2",
@@ -41,7 +44,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         onMouseEnter={onHover}
         onMouseLeave={onLeave}
       >
-        <span className="shrink-0">{children}</span>
+        <span id={id} className="shrink-0">{children}</span>
         {rightIcon && <span>{rightIcon}</span>}
       </button>
       </div>

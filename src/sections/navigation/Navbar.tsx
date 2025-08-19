@@ -60,11 +60,13 @@ export default function Navbar() {
                     href="#"
                     id="try-for-free"
                     className="shrink-0 relative z-20 hidden lg:block"
+                    tabIndex={-1}
                   >
-                    <Button className="min-w-[150px]">Try for free</Button>
+                    <Button id="try" className="min-w-[150px]">Try for free</Button>
                   </Link>
                     <Button
                       id="hamburger-menu"
+                      aria-label="open menu"
                       className={`right-0 top-0 lg:absolute text-dark lg:text-white lg:bg-dark bg-light-grey shrink-0 rounded-full lg:w-14 lg:h-14 w-13 h-13 p-0 flex justify-center items-center lg:scale-0`}
                       onClick={() => {
                           if (state.width >= 1024) {
@@ -80,6 +82,7 @@ export default function Navbar() {
 
                     <Button
                         id="hamburger-menu-close"
+                      aria-label="close menu"
                         className={`right-0 top-0 absolute text-white bg-dark shrink-0 rounded-full lg:w-14 lg:h-14 w-13 h-13 p-0 flex justify-center items-center lg:hidden scale-0`}
                         onClick={actions.closeMenu}
                         animateOnHover={false}
