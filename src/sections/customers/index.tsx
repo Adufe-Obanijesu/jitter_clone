@@ -1,60 +1,89 @@
 "use client";
 
 import Image from "next/image";
-import { logoSet } from "@/data/logo_set";
+import {logoItems} from "@/data/logo_set";
 import useBrandDisplay from "@/hooks/customers/useBrandDisplay";
-import { useEffect, useState } from "react";
+import {useMemo} from "react";
+import {cn} from "@/utils/tailwind";
 
 export default function Customers() {
   const { state, refs } = useBrandDisplay();
-  const allLogos = state.isMobile ? logoSet.flat() : logoSet[state.index];
-  const [hasMounted, setHasMounted] = useState(false);
-
-  useEffect(() => {
-    setHasMounted(true);
-  }, []);
-
-  if (!hasMounted) return null;
+  const allLogos = useMemo(() => {
+      return logoItems.flatMap(item => item.images)
+  }, [])
 
   return (
-    <div className="space-y-10 mt-20">
+    <div ref={refs.scope} aria-hidden={true} className="space-y-10 mt-20 px-3 xl:px-0">
       <p className="text-[15px] text-dark text-center">
-        <strong>Over 20,000 creative teams use Jitter</strong> to create
-        stunning animations online.
+        <strong>Over 20,000 creative teams use Jitter</strong> <span className="font-light">to create
+        stunning animations online.</span>
       </p>
 
-      {state.isMobile ? (
-        <div
-          className="overflow-hidden md:-mx-10 md:w-[480px] lg:mx-auto lg:w-full w-full"
-          ref={refs.scrollContainerRef}
-        >
-          <div className="flex items-center gap-8">
-            {[...allLogos, ...allLogos].map((src, i) => (
-              <Image
-                key={i}
-                src={src}
-                width={90}
-                height={25}
-                alt="logo"
-                className="scroll-logo max-h-[25px] flex-shrink-0"
-              />
-            ))}
-          </div>
+        <div className="wrapper">
+            {
+                state.hasMounted && (
+                    <div>
+                        {
+                        state.isDesktop ? (
+                        <div className="flex justify-center items-center gap-8">
+
+                            {logoItems.map((items, i) => (
+                                <div key={i} className="logo-container flex justify-center relative h-[35px] w-full">
+                                    {
+                                        items.images.map((item, i) => (
+                                            <Image
+                                                key={item.alt}
+                                                src={item.src}
+                                                width={item.width}
+                                                height={item.height}
+                                                alt={item.alt}
+                                                className={cn("logo absolute top-0 left-1/2 -translate-x-1/2", {"scale-0 opacity-50": i === 1}, `w-${item.width}`, `h-${item.height}`)}
+                                            />
+                                        ))
+                                    }
+                                </div>
+                            ))}
+                        </div>
+                        ) : (
+                        <div className="fade-edges">
+                            <div className="w-full overflow-hidden">
+                                <div className="customers-marquee flex items-center" style={{width: "max-content"}}>
+                                    {
+                                        allLogos.map((item) => (
+                                            <div key={item.alt} className="px-4">
+                                                <Image
+                                                    src={item.src}
+                                                    width={item.width}
+                                                    height={item.height}
+                                                    alt={item.alt}
+                                                    className={cn("logo", `w-${item.width}`, `h-${item.height}`)}
+                                                />
+                                            </div>
+                                        ))
+                                    }
+                                    {
+                                        allLogos.map((item) => (
+                                            <div key={item.alt} className="px-4">
+                                                <Image
+                                                    src={item.src}
+                                                    width={item.width}
+                                                    height={item.height}
+                                                    alt={item.alt}
+                                                    className={cn("logo", `w-${item.width}`, `h-${item.height}`)}
+                                                />
+                                            </div>
+                                        ))
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        )
+                        }
+                    </div>
+                )
+            }
         </div>
-      ) : (
-        <div className="flex items-center gap-8">
-          {allLogos.map((src, i) => (
-            <Image
-              key={i}
-              src={src}
-              width={125}
-              height={35}
-              alt="logo"
-              className="logo max-h-[35px]"
-            />
-          ))}
-        </div>
-      )}
+
     </div>
   );
 }

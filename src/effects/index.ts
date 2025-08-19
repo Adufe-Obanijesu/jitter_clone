@@ -1,1 +1,2 @@
 import "./scale";
+import "./marquee";

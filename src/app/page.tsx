@@ -7,7 +7,7 @@
 // import { testimonials } from "@/data/testimonials";
 // import CreateFaster from "@/sections/create_faster";
 // import CreativePower from "@/sections/creative_power";
-// import Customers from "@/sections/customers";
+import Customers from "@/sections/customers";
 // import FeatureVideo from "@/sections/feature_video";
 // import Footer from "@/sections/footer";
 import Hero from "@/sections/hero";
@@ -42,6 +42,7 @@ export default function Home() {
           <Navbar />
         <main id="main">
           <Hero />
+          <Customers />
             <br />
             <br />
             <br />
@@ -50,7 +51,6 @@ export default function Home() {
             <br />
             <br />
             <br />
-          {/*<Customers />*/}
           {/*<FadeOnScroll>*/}
           {/*  <FeatureVideo />*/}
           {/*</FadeOnScroll>*/}

@@ -232,9 +232,20 @@ export default function useNavbar() {
 
   useEffect(() => {
       if (elementsHovered > 0) {
+          gsap.set("#shadow-el", {
+              opacity: 1
+          })
           scaleNavTl.current?.play()
       } else {
-          scaleNavTl.current?.reverse()
+          if (!scaleNavTl.current) return
+          if (window.scrollY === 0) {
+              scaleNavTl.current.pause(0)
+              gsap.set("#shadow-el", {
+                  opacity: 0
+              })
+          } else {
+              scaleNavTl.current.reverse()
+          }
       }
   }, [elementsHovered]);
 

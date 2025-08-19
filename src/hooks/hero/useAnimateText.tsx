@@ -11,13 +11,6 @@ export default function useAnimateText() {
     () => {
       if (!containerRef.current) return;
 
-      // gsap.set(".hero-text .hero-badge .hero-button", {
-      //   scale: 2.5,
-      //   opacity: 0,
-      //   rotate: 5,
-      //   y: -50,
-      // });
-
       gsap.set(".hero-container", {
         autoAlpha: 1
       })
@@ -38,31 +31,6 @@ export default function useAnimateText() {
         },
         0,
       )
-
-      // tl.to(
-      //   ".hero-text",
-      //   {
-      //     scale: 1,
-      //     opacity: 1,
-      //     rotate: 0,
-      //     y: 0,
-      //     duration: 1.4,
-      //   },
-      //   0.2,
-      // );
-
-      // tl.to(
-      //   ".hero-button",
-      //   {
-      //     scale: 1,
-      //     opacity: 1,
-      //     rotate: 0,
-      //     y: 0,
-      //     duration: 1.6,
-      //   },
-      //   0.4,
-      // );
-
       .to(
         ".hero-text, .hero-button, .hero-badge",
         {

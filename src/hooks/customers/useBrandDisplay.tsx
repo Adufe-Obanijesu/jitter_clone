@@ -1,103 +1,107 @@
-import { logoSet } from "@/data/logo_set";
 import { useGSAP } from "@gsap/react";
 import { useWindowSize } from "@react-hook/window-size";
 import gsap from "gsap";
-import { useEffect, useRef, useState } from "react";
+import {useEffect, useRef, useState} from "react";
 
 export default function useBrandDisplay() {
-  const [index, setIndex] = useState(0);
   const [width] = useWindowSize();
-  const isMobile = width < 1024;
-  const scrollContainerRef = useRef(null);
-  const [imagesLoaded, setImagesLoaded] = useState(false);
+  console.log("width", width)
+  const isDesktop = width > 1023;
+  const scope = useRef(null);
+  const [hasMounted, setHasMounted] = useState(false)
 
   useEffect(() => {
-    if (isMobile) {
-      const imgs = document.querySelectorAll(".scroll-logo");
-      let loaded = 0;
-      imgs.forEach((img) => {
-        if ((img as HTMLImageElement).complete) loaded++;
-        else
-          img.addEventListener("load", () => {
-            loaded++;
-            if (loaded === imgs.length) setImagesLoaded(true);
-          });
-      });
+    setHasMounted(true);
+  }, []);
 
-      if (loaded === imgs.length) setImagesLoaded(true);
-    }
-  }, [isMobile]);
 
-  useGSAP(() => {
-    if (isMobile) return;
+  function animateLogos(container: HTMLDivElement) {
+    const logos = container.querySelectorAll(".logo");
+    const logoSet = Array.from(logos);
 
-    const interval = setInterval(() => {
-      const tl = gsap.timeline({
-        defaults: { duration: 0.3, ease: "power2.out" },
-        onComplete: () => {
-          setIndex((i) => (i + 1) % logoSet.length);
-        },
-      });
+    if (logoSet.length !== 2) return;
 
-      tl.to(".logo", { opacity: 0, scale: 0, stagger: 0.05 });
-    }, 3500);
-
-    return () => clearInterval(interval);
-  }, [isMobile]);
-
-  useGSAP(
-    () => {
-      if (isMobile) return;
-
-      gsap.fromTo(
-        ".logo",
-        { opacity: 0, scale: 0 },
-        {
-          opacity: 1,
+    return gsap.timeline({repeat: -1, repeatDelay: 2})
+        .to(logoSet[0], {
+          scale: 0,
+          opacity: .5,
+          ease: "sine",
+          duration: .75,
+        })
+        .to(logoSet[1], {
           scale: 1,
-          stagger: 0.05,
-          duration: 0.3,
-          ease: "power2.out",
-        }
-      );
-    },
-    { dependencies: [index, isMobile] }
-  );
+          opacity: 1,
+          ease: "power4.out",
+        }, "-=75%")
+        .to({}, { duration: 2 })
+        .to(logoSet[1], {
+          scale: 0,
+          opacity: .5,
+          duration: .75,
+          ease: "sine",
+        })
+        .to(logoSet[0], {
+          scale: 1,
+          opacity: 1,
+          ease: "power4.out",
+        }, "-=75%")
+  }
 
   useGSAP(() => {
-    if (!isMobile || !scrollContainerRef.current || !imagesLoaded) return;
+    const mm = gsap.matchMedia()
 
-    const logos = gsap.utils.toArray<HTMLElement>(".scroll-logo");
-    if (!logos.length) return;
+    mm.add("(min-width: 1024px)", () => {
+      const logoContainers: HTMLDivElement[] = gsap.utils.toArray(".logo-container");
+      if (logoContainers.length === 0) return;
 
-    const totalWidth = logos.reduce((width, logo) => {
-      return width + (logo.offsetWidth + 32);
-    }, 0);
+      const timeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".wrapper",
+          start: "top bottom",
+          end: "bottom top",
+          toggleActions: "play pause play pause"
+        }
+      })
 
-    gsap.set(logos, { x: 0 });
+      logoContainers.forEach((container, i) => {
+        const containerTimeline = animateLogos(container)
 
-    gsap.to(logos, {
-      x: `-=${totalWidth / 2}`,
-      duration: 20,
-      ease: "none",
-      repeat: -1,
-      modifiers: {
-        x: gsap.utils.unitize((x) => {
-          return parseFloat(x) % (totalWidth / 2);
-        }),
-      },
-    });
+        if (containerTimeline) {
+          timeline.add(containerTimeline, i * .035)
+        }
+      })
+    })
 
-    return () => gsap.killTweensOf(logos);
-  }, [isMobile, imagesLoaded]);
+    mm.add("(max-width: 1023px)", () => {
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: ".wrapper",
+          start: "top bottom",
+          end: "bottom top",
+          toggleActions: "play pause play pause"
+        }
+      })
+          .add(
+            gsap.effects.infiniteSlide(".customers-marquee", {
+              duration: 15,
+              xPercent: -50,
+            })
+          )
+    })
+
+    return () => {
+      mm.revert()
+    }
+
+  }, {scope, dependencies: [isDesktop, hasMounted]})
 
   return {
     refs: {
-      scrollContainerRef,
+      scope,
     },
     state: {
-      isMobile,
-      index,
+      isDesktop,
+      hasMounted
     },
   };
 }

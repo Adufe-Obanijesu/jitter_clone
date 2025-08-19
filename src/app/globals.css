@@ -85,6 +85,31 @@ button {
   max-width: 420px;
 }
 
+.fade-edges {
+  position: relative;
+}
+
+.fade-edges::before,
+.fade-edges::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40px; /* Adjust fade width */
+  pointer-events: none;
+  z-index: 10;
+}
+
+.fade-edges::before {
+  left: -2px;
+  background: linear-gradient(to right, white, transparent);
+}
+
+.fade-edges::after {
+  right: -10px;
+  background: linear-gradient(to left, white, transparent);
+}
+
 /*GSDevTools*/
 .gs-dev-tools {
   z-index: 1000;
