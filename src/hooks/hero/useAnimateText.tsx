@@ -5,71 +5,74 @@ import gsap from "gsap";
 import { useRef } from "react";
 
 export default function useAnimateText() {
-  const headingRef = useRef<HTMLHeadingElement>(null);
-  const buttonRef = useRef<HTMLDivElement>(null);
-  const badgeRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
       if (!containerRef.current) return;
 
-      gsap.set([headingRef.current, buttonRef.current, badgeRef.current], {
-        scale: 2.5,
-        opacity: 0,
-        rotate: 5,
-        y: -50,
-      });
+      // gsap.set(".hero-text .hero-badge .hero-button", {
+      //   scale: 2.5,
+      //   opacity: 0,
+      //   rotate: 5,
+      //   y: -50,
+      // });
+
+      gsap.set(".hero-container", {
+        autoAlpha: 1
+      })
 
       const tl = gsap.timeline({ defaults: { ease: "elastic.out(1, 0.3)" } });
 
-      tl.to(
-        badgeRef.current,
+      tl.from(
+        ".hero-badge, .hero-text, .hero-button",
         {
-          scale: 1,
-          opacity: 1,
-          rotate: 0,
-          y: 0,
-          duration: 1.2,
+          scale: 2.5,
+          opacity: 0,
+          rotate: 5,
+          y: -50,
+          duration: (index) => {
+            return 1 + (0.2 * (index + 1))
+          },
+          stagger: .2,
         },
         0,
-      );
+      )
 
-      tl.to(
-        headingRef.current,
-        {
-          scale: 1,
-          opacity: 1,
-          rotate: 0,
-          y: 0,
-          duration: 1.4,
-        },
-        0.2,
-      );
+      // tl.to(
+      //   ".hero-text",
+      //   {
+      //     scale: 1,
+      //     opacity: 1,
+      //     rotate: 0,
+      //     y: 0,
+      //     duration: 1.4,
+      //   },
+      //   0.2,
+      // );
 
-      tl.to(
-        buttonRef.current,
-        {
-          scale: 1,
-          opacity: 1,
-          rotate: 0,
-          y: 0,
-          duration: 1.6,
-        },
-        0.4,
-      );
+      // tl.to(
+      //   ".hero-button",
+      //   {
+      //     scale: 1,
+      //     opacity: 1,
+      //     rotate: 0,
+      //     y: 0,
+      //     duration: 1.6,
+      //   },
+      //   0.4,
+      // );
 
-      tl.to(
-        [headingRef.current, buttonRef.current, badgeRef.current],
+      .to(
+        ".hero-text, .hero-button, .hero-badge",
         {
           scale: 1.05,
           duration: 0.3,
           ease: "power1.out",
         },
         "-=0.2",
-      );
-
-      tl.to([headingRef.current, buttonRef.current, badgeRef.current], {
+      )
+      .to(".hero-text, .hero-button, .hero-badge", {
         scale: 1,
         duration: 0.3,
         ease: "power2.out",
@@ -80,9 +83,6 @@ export default function useAnimateText() {
 
   return {
     refs: {
-      headingRef,
-      buttonRef,
-      badgeRef,
       containerRef,
     },
   };
