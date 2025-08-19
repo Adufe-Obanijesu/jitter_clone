@@ -1,7 +1,6 @@
 import gsap from "gsap";
 
 export function showDropdownAnim() {
-    console.log("show dropdown anim")
     const shadowEl = gsap.utils.toArray("#shadow-el")[0] as HTMLElement
     if (!shadowEl) return
 
@@ -25,4 +24,24 @@ export function showDropdownAnim() {
         .to(".dropdown-button", {
             scale: 1,
         }, "<")
+}
+
+export function cardHoverAnim() {
+    const dropdownCards = gsap.utils.toArray<HTMLElement>(".dropdown-card");
+
+    dropdownCards.forEach(card => {
+        const hoverTimeline = gsap.timeline({ paused: true });
+
+        hoverTimeline.add(gsap.effects.scaleEffect(card))
+
+        card.addEventListener("mouseenter", () => hoverTimeline.play());
+        card.addEventListener("mouseleave", () => hoverTimeline.reverse());
+    });
+
+    return () => {
+        dropdownCards.forEach(card => {
+            card.removeEventListener("mouseenter", () => {});
+            card.removeEventListener("mouseleave", () => {});
+        });
+    };
 }

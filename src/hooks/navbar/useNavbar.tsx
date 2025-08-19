@@ -9,6 +9,7 @@ export default function useNavbar() {
   const timeline = useRef<gsap.core.Timeline>(null)
     const scaleNavTl = useRef<gsap.core.Timeline>(null)
     const openMenuTl = useRef<gsap.core.Timeline>(null)
+    const hasRendered = useRef(false)
 
     const [width, height] = useWindowSize();
 
@@ -23,7 +24,6 @@ export default function useNavbar() {
     timeline.current = gsap.timeline({ id: "navbar", paused: true, defaults: {duration: .6, ease: "elastic.in(1,1)"} })
         .to("img, li > div, #shadow-el, #log-in", {
           y: () => -200,
-        immediateRender: false
         })
         .to("#try-for-free", {
           x: -65,
@@ -70,8 +70,13 @@ export default function useNavbar() {
       onUpdate: (self) => {
 
         if (shadowEl.dataset.open === "true") return
+        if (!hasRendered.current) {
+          hasRendered.current = true
+          return
+        }
 
         if (self.direction === 1) {
+          if (hoveredItem >= 0) return
           timeline.current?.play();
           mm.add("(max-width: 1023px)", () => {
             gsap.to("#hamburger-menu", {
@@ -122,11 +127,13 @@ export default function useNavbar() {
       const scaleValue = Math.max(scaleXValue, scaleYValue)
 
       scaleNavTl.current = gsap.timeline({paused: true})
-          .to(shadowEl, {
+          .fromTo(shadowEl, {
+            scaleX: 1,
+            scaleY: 1
+          }, {
               transformOrigin: "center 10%",
               scaleX: scaleValue,
-              scaleY: Math.max(scaleValue, 7),
-              overwrite: "auto",
+              scaleY: Math.max(scaleValue, 7)
           })
           .set("#shadow-el", {
               attr: {
@@ -183,15 +190,17 @@ export default function useNavbar() {
                     .to("#hamburger-menu", {
                         scale: 0
                     }, "<")
-                    .to("#hamburger-menu-close", {
-                        scale: 1
+                    .fromTo("#hamburger-menu-close", {
+                      scale: 0
+                    }, {
+                        scale: 1,
                     }, "<")
             })
 
         return () => {
             mm.revert()
         }
-    })
+    }, [])
 
     const openMenu = contextSafe(() => {
       openMenuTl.current?.play()

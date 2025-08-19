@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/.idx
 /.pnp
 .pnp.*
 .yarn/*

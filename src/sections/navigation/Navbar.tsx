@@ -73,6 +73,7 @@ export default function Navbar() {
                             actions.openMenu()
                           }
                       }}
+                      animateOnHover={false}
                     >
                       <IoMdMenu className="text-lg" />
                     </Button>
@@ -81,6 +82,7 @@ export default function Navbar() {
                         id="hamburger-menu-close"
                         className={`right-0 top-0 absolute text-white bg-dark shrink-0 rounded-full lg:w-14 lg:h-14 w-13 h-13 p-0 flex justify-center items-center lg:hidden scale-0`}
                         onClick={actions.closeMenu}
+                        animateOnHover={false}
                     >
                         <FaTimes className="text-lg" />
                     </Button>

@@ -22,7 +22,6 @@ export default function ListItem({
     const [ isHovered, setIsHovered ] = useState(hoveredItem === index)
 
     const onHover = () => {
-        console.log("hovered")
         if (!item.dropdown_component) return
         setHoveredItem(index)
         setIsHovered(true)
@@ -40,9 +39,11 @@ export default function ListItem({
           onMouseEnter={onHover}
           onMouseLeave={onLeave}
           className={cn("ease-in font-semibold text-primary transition-opacity duration-200 group-hover:opacity-50 hover:!opacity-100 ")}>
+          <div>
           <Link href={item.href} className="cursor-pointer px-5 py-4">
             {item.name}
           </Link>
+          </div>
 
             {
                 (item.dropdown_component && hoveredItem === index && isHovered) && (
