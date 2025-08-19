@@ -5,12 +5,13 @@ import gsap from "gsap"
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
+  ariaId?: string;
   animateOnHover?: boolean;
   rightIcon?: ReactNode;
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ children, rightIcon, animateOnHover=true, id, className = "", ...rest }, ref) => {
+  ({ children, rightIcon, animateOnHover=true, ariaId, className = "", ...rest }, ref) => {
 
     const scope = useRef<HTMLDivElement>(null)
     const timeline = useRef<gsap.core.Timeline>(null)
@@ -34,7 +35,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         {...(!rest["aria-label"] && !rest["aria-labelledby"]
-          ? { "aria-labelledby": id }
+          ? { "aria-labelledby": ariaId }
           : {})}
         {...rest}
         className={cn(
@@ -44,7 +45,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         onMouseEnter={onHover}
         onMouseLeave={onLeave}
       >
-        <span id={id} className="shrink-0">{children}</span>
+        <span id={ariaId} className="shrink-0">{children}</span>
         {rightIcon && <span>{rightIcon}</span>}
       </button>
       </div>

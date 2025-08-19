@@ -32,7 +32,7 @@ export default function Hero() {
       </h2>
 
       <div>
-        <Button id="try_jitter" className="hero-button bg-[#b593ff] text-dark font-semibold px-12 py-4 text-xl">
+        <Button ariaId="try_jitter" className="hero-button bg-[#b593ff] text-dark font-semibold px-12 py-4 text-xl">
           Try Jitter for free
         </Button>
       </div>

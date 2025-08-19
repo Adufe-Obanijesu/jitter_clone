@@ -16,6 +16,13 @@ export default function useNavbar() {
   const [hoveredItem, setHoveredItem] = useState(-1);
   const [elementsHovered, setElementsHovered] = useState(0);
 
+  // Animate down the navbar on load
+  useGSAP(() => {
+    gsap.to('.nav-container', {
+      y: 0
+    })
+  }, {scope})
+
 //   Scroll animation for the navbar element
   useGSAP(() => {
 
@@ -70,14 +77,15 @@ export default function useNavbar() {
       onUpdate: (self) => {
 
         if (shadowEl.dataset.open === "true") return
-        if (!hasRendered.current) {
-          hasRendered.current = true
-          return
-        }
-
+        
         if (self.direction === 1) {
           if (hoveredItem >= 0) return
-          timeline.current?.play();
+          if (!hasRendered.current) {
+            timeline.current?.play(timeline.current?.totalDuration() ?? 0);
+          } else {
+            timeline.current?.play();  
+          }
+
           mm.add("(max-width: 1023px)", () => {
             gsap.to("#hamburger-menu", {
               backgroundColor: "#f2f1f3"
@@ -93,13 +101,20 @@ export default function useNavbar() {
             })
           })
           timeline.current?.reverse();
+
+          if (self.progress === 0) {
+            gsap.to("#shadow-el", {
+              opacity: 0
+            })
+          } else {
+            gsap.to("#shadow-el", {
+              opacity: 1
+            })
+          }
         }
 
         mm.add("(max-width: 1023px)", () => {
         if (self.progress === 0) {
-          gsap.to("#shadow-el", {
-            opacity: 0
-          })
           gsap.to("#hamburger-menu", {
             backgroundColor: "#f2f1f3"
           })
@@ -107,6 +122,8 @@ export default function useNavbar() {
         })
       },
     });
+    
+    hasRendered.current = true
 
     return () => {
       mm.revert()
@@ -141,7 +158,7 @@ export default function useNavbar() {
               }
           })
 
-  }, [height, width])
+  }, {scope, dependencies: [height, width]})
 
 //   Open and close menu on mobile
     const {contextSafe} = useGSAP(() => {
@@ -156,6 +173,9 @@ export default function useNavbar() {
             mm.add("(max-width: 1023px)", () => {
 
                 openMenuTl.current = gsap.timeline({paused: true})
+                    .set("#menu", {
+                        pointerEvents: "auto"
+                    })
                     .set("body", {
                         overflow: "hidden"
                     })

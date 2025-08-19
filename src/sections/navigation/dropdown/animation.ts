@@ -11,9 +11,12 @@ export function showDropdownAnim() {
     }
 
     gsap.timeline({delay: .25})
-        .from(`.dropdown-card`, {
+        .fromTo(`.dropdown-card`, {
             scale: 1.3,
             opacity: 0,
+        }, {
+            scale: 1,
+            opacity: 1,
             stagger: .05,
             ease: "back(3)",
         })
