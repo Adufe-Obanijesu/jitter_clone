@@ -1,14 +1,14 @@
 // TODO: remove use client
 "use client"
 
-// import FadeOnScroll from "@/components/animations/FadeOnScroll";
+import FadeOnScroll from "@/components/animations/FadeOnScroll";
 // import Chat from "@/components/Chat";
 // import Testimonial from "@/components/Testimonial";
 // import { testimonials } from "@/data/testimonials";
 // import CreateFaster from "@/sections/create_faster";
 // import CreativePower from "@/sections/creative_power";
 import Customers from "@/sections/customers";
-// import FeatureVideo from "@/sections/feature_video";
+import FeatureVideo from "@/sections/feature_video";
 // import Footer from "@/sections/footer";
 import Hero from "@/sections/hero";
 // import HorizontalScroll from "@/sections/horizontal_scroll";
@@ -43,6 +43,9 @@ export default function Home() {
         <main id="main">
           <Hero />
           <Customers />
+          <FadeOnScroll>
+            <FeatureVideo />
+          </FadeOnScroll>
             <br />
             <br />
             <br />
@@ -51,9 +54,23 @@ export default function Home() {
             <br />
             <br />
             <br />
-          {/*<FadeOnScroll>*/}
-          {/*  <FeatureVideo />*/}
-          {/*</FadeOnScroll>*/}
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
           {/*<WhatWeDo />*/}
         {/* </div> */}
         {/*<HorizontalScroll />*/}

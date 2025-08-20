@@ -6,7 +6,6 @@ import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa6";
 import {useGSAP} from "@gsap/react";
 import {cardHoverAnim, showDropdownAnim} from "@/sections/navigation/dropdown/animation";
-import gsap from "gsap"
 
 export default function Customer() {
 

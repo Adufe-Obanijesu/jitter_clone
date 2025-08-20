@@ -19,7 +19,7 @@ export default function Customers() {
         stunning animations online.</span>
       </p>
 
-        <div className="wrapper">
+        <div className="wrapper h-[35px]">
             {
                 state.hasMounted && (
                     <div>
