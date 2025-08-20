@@ -5,7 +5,6 @@ import {useEffect, useRef, useState} from "react";
 
 export default function useBrandDisplay() {
   const [width] = useWindowSize();
-  console.log("width", width)
   const isDesktop = width > 1023;
   const scope = useRef(null);
   const [hasMounted, setHasMounted] = useState(false)

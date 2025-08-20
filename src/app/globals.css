@@ -19,7 +19,7 @@
   --color-primary: #191919;
   --color-secondary: #6e6e6e;
   --color-grey: #6e6e73;
-  --color-purple: #a981ff;
+  --color-purple: #6936d1;
   --color-card-purple: #cab3f8;
   --color-card-light-purple: #f2ecfd;
   --color-blue: #00b2ff;
@@ -83,6 +83,10 @@ button {
 
 @utility max-w-mobile {
   max-width: 420px;
+}
+
+@utility max-w-desktop {
+  max-width: 860px;
 }
 
 .fade-edges {

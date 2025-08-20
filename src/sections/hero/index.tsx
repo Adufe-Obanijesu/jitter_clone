@@ -18,13 +18,13 @@ export default function Hero() {
         <Link href="https://jitter.video/changelog/2025-02-04-infinite-canvas/" aria-labelledby="changelog">
           <div id="changelog" className="bg-light-grey rounded-full py-2 px-4 w-fit">
             <strong>New:</strong> Pen tool & Morphing{" "}
-            <span className="text-purple font-semibold">Learn more</span>
+            <span className="text-purple font-semibold ml-1">Learn more</span>
           </div>
         </Link>
       </div>
 
       <h2
-        className="hero-text lg:text-[80px] text-[64px] font-extrabold tracking-[-2.4px] !leading-[90%] text-center text-dark"
+        className="hero-text lg:text-[80px] text-6xl font-extrabold tracking-[-2.4px] !leading-[90%] text-center text-dark"
       >
         Super <br className="md:hidden" /> fast motion
         <br />

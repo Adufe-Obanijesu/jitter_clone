@@ -1,45 +1,32 @@
-import { useRef } from "react";
-import { useGSAP } from "@gsap/react";
+import {useGSAP} from "@gsap/react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+import SplitText from "gsap/SplitText";
 
 export function useScrollTextAnimation() {
-  const textRef = useRef<HTMLHeadingElement>(null);
+    useGSAP(() => {
 
-  useGSAP(
-    () => {
-      if (!textRef.current) return;
+            new SplitText(".reveal-about", {
+                type: "words",
+                autoSplit: true,
+                onSplit: (splitText) => {
+                    gsap.set(splitText.words, { opacity: 0 });
 
-      const text = textRef.current.innerText;
-      const words = text.split(" ");
-      textRef.current.innerHTML = words
-        .map((word) => `<span style="color:#d7d7db">${word}</span>`)
-        .join(" ");
-
-      const wordSpans = textRef.current.querySelectorAll("span");
-
-      ScrollTrigger.create({
-        trigger: textRef.current,
-        start: "top bottom",
-        end: "bottom center",
-        scrub: true,
-        onUpdate: (self) => {
-          const progress = self.progress;
-          const index = Math.floor(progress * (wordSpans.length - 1));
-
-          wordSpans.forEach((span, i) => {
-            gsap.to(span, {
-              color: i <= index ? "#000000" : "#d7d7db",
-              duration: 0.1,
+                    gsap.to(splitText.words, {
+                        opacity: 1,
+                        duration: 0.2,
+                        stagger: 0.1,
+                        scrollTrigger: {
+                            trigger: ".about-jitter",
+                            start: "top 95%",
+                            end: "bottom 60%",
+                            scrub: true,
+                        }
+                    });
+                }
             });
-          });
-        },
-      });
-    },
-    { scope: textRef },
-  );
 
-  return textRef;
+
+            gsap.set(".about-jitter", { autoAlpha: 1 });
+
+    });
 }
