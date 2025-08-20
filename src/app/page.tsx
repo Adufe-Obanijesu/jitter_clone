@@ -11,7 +11,6 @@
 // import Newsletter from "@/sections/newsletter";
 // import Templates from "@/sections/templates";
 // import UseCases from "@/sections/use_cases";
-// import WhatWeOffer from "@/sections/what_we_offer";
 // import WorkTogether from "@/sections/work_together";
 
 // Tools
@@ -27,6 +26,7 @@ import Hero from "@/sections/hero";
 import Customers from "@/sections/customers";
 import FeatureVideo from "@/sections/feature_video";
 import WhatWeDo from "@/sections/what_we_do";
+import WhatWeOffer from "@/sections/what_we_offer";
 
 // Components
 import FadeOnScroll from "@/components/animations/FadeOnScroll";
@@ -40,7 +40,7 @@ export default function Home() {
     <div className="bg-white relative z-10 overflow-hidden">
       <h1 className="sr-only">Jitter</h1>
         <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
-          <Navbar />
+          {/*<Navbar />*/}
         <main id="main">
           <Hero />
           <Customers />
@@ -48,13 +48,13 @@ export default function Home() {
             <FeatureVideo />
           </FadeOnScroll>
           <WhatWeDo />
+          <WhatWeOffer />
 
           <div className="h-[200vh] w-full" />
 
         {/* </div> */}
         {/*<HorizontalScroll />*/}
         {/*<div className="lg:max-w-[860px] max-w-[400px] mx-auto">*/}
-        {/*  <WhatWeOffer />*/}
         {/*  <FadeOnScroll>*/}
         {/*    <Testimonial {...testimonials[0]} />*/}
         {/*  </FadeOnScroll>*/}

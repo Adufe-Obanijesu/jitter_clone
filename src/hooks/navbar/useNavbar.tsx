@@ -3,6 +3,7 @@ import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { useEffect, useRef, useState } from "react";
 import { useWindowSize } from "@react-hook/window-size";
+import useDebounce from "@/hooks/useDebounce";
 
 export default function useNavbar() {
     const scope = useRef<HTMLDivElement | null>(null);
@@ -12,11 +13,14 @@ export default function useNavbar() {
     const hasRendered = useRef(false)
 
     const [width, height] = useWindowSize();
+    const debouncedWidth = useDebounce(width, 150);
+    const debouncedHeight = useDebounce(height, 150);
 
-  const [hoveredItem, setHoveredItem] = useState(-1);
+
+    const [hoveredItem, setHoveredItem] = useState(-1);
   const [elementsHovered, setElementsHovered] = useState(0);
 
-  // Animate down the navbar on load
+  // Animate down the navbar onload
   useGSAP(() => {
     gsap.to('.nav-container', {
       y: 0
@@ -158,7 +162,7 @@ export default function useNavbar() {
               }
           })
 
-  }, {scope, dependencies: [height, width]})
+  }, {scope, dependencies: [debouncedHeight, debouncedWidth]})
 
 //   Open and close menu on mobile
     const {contextSafe} = useGSAP(() => {
