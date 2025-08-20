@@ -31,10 +31,13 @@ import WhatWeOffer from "@/sections/what_we_offer";
 // Components
 import FadeOnScroll from "@/components/animations/FadeOnScroll";
 import SplitText from "gsap/SplitText";
+import useLenis from "@/hooks/useLenis";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP, SplitText, GSDevTools);
 
 export default function Home() {
+
+  useLenis()
 
   return (
     <div className="bg-white relative z-10 overflow-hidden">

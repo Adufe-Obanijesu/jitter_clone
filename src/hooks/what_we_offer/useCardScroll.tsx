@@ -25,12 +25,11 @@ export default function useCardScroll() {
         });
 
           ScrollTrigger.create({
-            markers: true,
             trigger: scope.current,
             start: "top top",
             end: "+=200%",
             pin: true,
-            scrub: 1,
+            scrub: true,
             animation: gsap.to(notFirstCards, {
               yPercent: index => {
                 return (index + 1) * 5

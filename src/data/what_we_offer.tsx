@@ -1,4 +1,5 @@
 import Image from "next/image";
+import AnimateEffortlessly from "@/components/what_we_offer/AnimateEffortlessly";
 
 export const what_we_offer = [
   {
@@ -27,19 +28,7 @@ export const what_we_offer = [
     className: "bg-[#00b2ff] absolute",
     titleClassName: "bg-white text-dark",
     descriptionClassName: "text-white",
-    media: (
-      <div className="flex flex-col items-center justify-center gap-4">
-        <div className="bg-[#A9DBFF] text-white text-2xl px-10 py-6 rounded-full">
-          Freeze
-        </div>
-        <div className="bg-[#A9DBFF] text-white text-2xl px-10 py-6 rounded-full scale-110">
-          Slide down
-        </div>
-        <div className="bg-[#A9DBFF] text-white text-2xl px-10 py-6 rounded-full">
-          Bounce
-        </div>
-      </div>
-    ),
+    media: <AnimateEffortlessly />,
   },
   {
     title: "Export in one click",
@@ -49,8 +38,8 @@ export const what_we_offer = [
     titleClassName: "bg-white text-dark",
     descriptionClassName: "text-white",
     media: (
-      <div className="flex justify-center">
-        <h1 className="text-[160px] bg-gradient-to-b from-[#140726] to-[#711de2] bg-clip-text text-transparent">
+      <div className="flex justify-center items-center flex-1">
+        <h1 className="lg:text-[160px] text-[140px] bg-gradient-to-b from-[#140726] to-[#711de2] bg-clip-text text-transparent">
           4K
         </h1>
       </div>

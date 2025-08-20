@@ -21,7 +21,7 @@ export default function Card({
   return (
     <div
       className={cn(
-        "card top-0 left-0 rounded-[40px] lg:py-[50px] py-9 lg:pt-[60px] pt-[45px] lg:w-[460px] h-[610px] overflow-hidden",
+        "card top-0 left-0 rounded-[40px] lg:py-[50px] py-9 lg:pt-[60px] pt-[45px] lg:w-[460px] lg:h-[610px] h-[500px] overflow-hidden",
         className,
       )}
     >
