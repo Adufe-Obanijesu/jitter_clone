@@ -14,6 +14,7 @@ export const what_we_offer = [
           src="/images/what_we_do/1.webp"
           height={314}
           width={400}
+          className="w-full h-auto"
           alt="Jitter artboards"
         />
       </div>
@@ -23,7 +24,7 @@ export const what_we_offer = [
     title: "Animate effortlessly",
     description:
       "Jitter lets you animate with intuitive actions instead of complex keyframes. It's as simple as telling your layers what to do.",
-    className: "bg-[#00b2ff]",
+    className: "bg-[#00b2ff] absolute",
     titleClassName: "bg-white text-dark",
     descriptionClassName: "text-white",
     media: (
@@ -44,7 +45,7 @@ export const what_we_offer = [
     title: "Export in one click",
     description:
       "Export as 4K video, GIF, Lottie, and more. No complicated settings — your file is ready to use instantly on any platform.",
-    className: "bg-[#a981ff]",
+    className: "bg-[#a981ff] absolute",
     titleClassName: "bg-white text-dark",
     descriptionClassName: "text-white",
     media: (

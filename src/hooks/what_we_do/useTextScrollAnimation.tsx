@@ -19,14 +19,14 @@ export function useScrollTextAnimation() {
                             trigger: ".about-jitter",
                             start: "top 95%",
                             end: "bottom 60%",
-                            scrub: true,
+                            scrub: true
                         }
                     });
                 }
             });
 
 
-            gsap.set(".about-jitter", { autoAlpha: 1 });
+            gsap.to(".about-jitter", { autoAlpha: 1 });
 
     });
 }

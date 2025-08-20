@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { twMerge } from "tailwind-merge";
+import {cn} from "@/utils/tailwind";
 
 interface CardProps {
   title: string;
@@ -20,15 +20,15 @@ export default function Card({
 }: CardProps) {
   return (
     <div
-      className={twMerge(
-        "card rounded-[40px] lg:p-[50px] p-9 lg:pt-[60px] pt-[45px] lg:w-[460px] h-[505px] relative",
+      className={cn(
+        "card top-0 left-0 rounded-[40px] lg:py-[50px] py-9 lg:pt-[60px] pt-[45px] lg:w-[460px] h-[610px] overflow-hidden",
         className,
       )}
     >
       <div className="h-full flex flex-col gap-4">
-        <div className="space-y-2.5">
+        <div className="space-y-2.5 px-9 lg:px-[50px]">
           <div
-            className={twMerge(
+            className={cn(
               "inline-block bg-black px-4 py-2 mb-4 text-xl font-bold text-white w-fit",
               titleClassName,
             )}

@@ -89,6 +89,26 @@ button {
   max-width: 860px;
 }
 
+@utility h-center {
+  display: flex;
+  justify-content: center;
+}
+
+@utility v-center {
+  display: flex;
+  align-items: center;
+}
+
+@utility hv-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.margin-t {
+  @apply mt-36
+}
+
 .fade-edges {
   position: relative;
 }

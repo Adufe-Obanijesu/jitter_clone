@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { twMerge } from "tailwind-merge";
+import {cn} from "@/utils/tailwind";
 
 interface TagProps {
   children: ReactNode;
@@ -9,7 +9,7 @@ interface TagProps {
 export default function Tag({ children, className = "" }: TagProps) {
   return (
     <span
-      className={twMerge(
+      className={cn(
         "bg-light-grey py-1 px-4 font-semibold rounded-full lg:text-xl w-fit",
         className,
       )}

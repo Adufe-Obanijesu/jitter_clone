@@ -1,40 +1,53 @@
 import { useGSAP } from "@gsap/react";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
-
 export default function useCardScroll() {
-  const containerRef = useRef<HTMLDivElement | null>(null);
+  const scope = useRef<HTMLDivElement | null>(null);
 
   useGSAP(
     () => {
-      const ctx = gsap.context(() => {
-        const cards = containerRef.current?.querySelectorAll(".card") || [];
+
+      const cards: HTMLDivElement[] = gsap.utils.toArray(".card");
+      const notFirstCards = cards.slice(1);
+
+      if (cards.length === 0) return;
 
         cards.forEach((card, index) => {
-          ScrollTrigger.create({
-            trigger: card,
-            start: `top-=${(index + 1) * 25 + 25} top`,
-            endTrigger: containerRef.current,
-            end: "bottom bottom",
-            pin: true,
-            scrub: 0.1,
-            pinType: "fixed",
-            anticipatePin: 1,
-          });
-        });
-      }, containerRef);
 
-      return () => ctx.revert();
+          if (index !== 0) {
+            gsap.set(card, {
+              yPercent: 105
+            })
+          }
+
+        });
+
+          ScrollTrigger.create({
+            markers: true,
+            trigger: scope.current,
+            start: "top top",
+            end: "+=200%",
+            pin: true,
+            scrub: 1,
+            animation: gsap.to(notFirstCards, {
+              yPercent: index => {
+                return (index + 1) * 5
+              },
+              stagger: .5,
+            })
+          });
+
+          gsap.to(".invisible", {autoAlpha: 1})
+
     },
-    { dependencies: [] },
+    { scope },
   );
 
-  useEffect(() => {
-    ScrollTrigger.refresh();
-  }, []);
-
-  return { containerRef };
+  return {
+    refs: {
+      scope
+    }
+  };
 }
