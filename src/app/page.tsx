@@ -8,7 +8,6 @@
 // import Newsletter from "@/sections/newsletter";
 // import Templates from "@/sections/templates";
 // import UseCases from "@/sections/use_cases";
-// import WorkTogether from "@/sections/work_together";
 
 // Tools
 import gsap from "gsap"
@@ -27,6 +26,7 @@ import WhatWeDo from "@/sections/what_we_do";
 import WhatWeOffer from "@/sections/what_we_offer";
 import Testimonial from "@/components/Testimonial";
 import CreateFaster from "@/sections/create_faster";
+import WorkTogether from "@/sections/work_together";
 
 // Components
 import FadeOnScroll from "@/components/animations/FadeOnScroll";
@@ -58,17 +58,17 @@ export default function Home() {
             <Testimonial {...testimonials[0]} />
           </FadeOnScroll>
           <CreateFaster />
+          <FadeOnScroll translate>
+            <Testimonial {...testimonials[1]} />
+          </FadeOnScroll>
+        <WorkTogether />
 
           <div className="h-[200vh] w-full" />
 
         {/* </div> */}
         {/*<HorizontalScroll />*/}
         {/*<div className="lg:max-w-[860px] max-w-[400px] mx-auto">*/}
-        {/*  <FadeOnScroll>*/}
-        {/*    <Testimonial {...testimonials[1]} />*/}
-        {/*  </FadeOnScroll>*/}
         {/*</div>*/}
-        {/*<WorkTogether />*/}
         {/*<div className="lg:max-w-[860px] max-w-[400px] mx-auto">*/}
         {/*  <CreativePower />*/}
         {/*</div>*/}

@@ -11,7 +11,7 @@ export const testimonials = [
         <Image
           src="/images/testimonials/1/text.webp"
           height={76}
-          width={300}
+          width={248.75}
           className="-mt-6 inline ml-2 w-[142px] h-[44px] lg:w-[300px] lg:h-[76px]"
           alt="motion"
         />

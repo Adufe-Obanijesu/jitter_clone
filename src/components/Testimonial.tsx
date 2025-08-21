@@ -30,7 +30,7 @@ export default function Testimonial({
         />
         <div className="text-left">
           <p className="font-semibold text-dark text-base">{name}</p>
-          <p className="text-[#97979b] font-semibold text-base">{job}</p>
+          <p className="text-gray-500 font-semibold text-base">{job}</p>
         </div>
       </div>
     </div>
