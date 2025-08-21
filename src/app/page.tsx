@@ -45,7 +45,7 @@ export default function Home() {
     <div className="bg-white relative z-10 overflow-hidden">
       <h1 className="sr-only">Jitter</h1>
         <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
-          <Navbar />
+          {/*<Navbar />*/}
         <main id="main">
           <Hero />
           <Customers />

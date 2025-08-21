@@ -1,8 +1,8 @@
 "use client";
 
-import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ReactNode, useRef } from "react";
+import {useGSAP} from "@gsap/react";
 
 interface FadeOnScrollProps {
   children: ReactNode;
@@ -11,42 +11,48 @@ interface FadeOnScrollProps {
 
 export default function FadeOnScroll({ children, translate=false }: FadeOnScrollProps) {
   const wrapperRef = useRef<HTMLDivElement | null>(null);
+  const tweenY = useRef<gsap.core.Tween | null>(null);
 
   useGSAP(() => {
 
-    if (wrapperRef.current) {
-      gsap.to(wrapperRef.current, {
-        opacity: .3,
-          y: 200,
-        scrollTrigger: {
-          markers: true,
-          trigger: wrapperRef.current,
-          start: "bottom-=400px top",
-          end: "bottom top",
-          scrub: true,
-          onUpdate: (st) => {
-//             const currentScroll = st.scroll(); // Current scroll position in pixels
-//             const pixelsScrolled = currentScroll - st.start; // Pixels scrolled from start
-// console.log(pixelsScrolled)
-//             gsap.to(wrapperRef.current, {
-//               y: pixelsScrolled / 2
-//             })
-          }
-        },
-      });
+    let animation: gsap.core.Tween | undefined;
+    const distance = 400
 
-    //   if (translate) {
-    //     gsap.to(wrapperRef.current, {
-    //       y: 200,
-    //       scrollTrigger: {
-    //         markers: true,
-    //         trigger: wrapperRef.current,
-    //         start: "top+=100px top",
-    //         end: "bottom top",
-    //         scrub: true,
-    //       }
-    //     })
-    //   }
+    const mm = gsap.matchMedia()
+
+    mm.add("(min-width: 1024px)", () => {
+      if (wrapperRef.current) {
+        animation = gsap.to(wrapperRef.current, {
+          opacity: .1,
+          scrollTrigger: {
+            trigger: wrapperRef.current,
+            start: `bottom-=${distance}px top`,
+            end: "bottom top",
+            scrub: true,
+            onUpdate: self => {
+              if (!translate) return
+
+              tweenY.current = gsap.to(wrapperRef.current, {
+                y: self.progress * (distance / 2.5),
+                delay: .1,
+              })
+            }
+          },
+        });
+      }
+
+      return () => {
+        tweenY.current?.kill()
+        gsap.set(wrapperRef.current, {clearProps: "all"})
+      }
+    })
+
+    return () => {
+      if (animation) {
+        animation.scrollTrigger?.kill();
+      }
+
+      mm.revert()
     }
   }, {scope: wrapperRef, dependencies: []});
 

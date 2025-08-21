@@ -92,7 +92,7 @@ export default function useBrandDisplay() {
       mm.revert()
     }
 
-  }, {scope, dependencies: [isDesktop, hasMounted]})
+  }, {scope, dependencies: [hasMounted]})
 
   return {
     refs: {

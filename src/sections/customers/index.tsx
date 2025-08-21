@@ -23,9 +23,7 @@ export default function Customers() {
             {
                 state.hasMounted && (
                     <div>
-                        {
-                        state.isDesktop ? (
-                        <div className="flex justify-center items-center gap-8">
+                        <div className={cn("flex justify-center items-center gap-8", {"hidden": !state.isDesktop})}>
 
                             {logoItems.map((items, i) => (
                                 <div key={i} className="logo-container flex justify-center relative h-[35px] w-full">
@@ -44,8 +42,8 @@ export default function Customers() {
                                 </div>
                             ))}
                         </div>
-                        ) : (
-                        <div className="fade-edges">
+
+                        <div className={cn("fade-edges", {"hidden": state.isDesktop})}>
                             <div className="w-full overflow-hidden">
                                 <div className="customers-marquee flex items-center" style={{width: "max-content"}}>
                                     {
@@ -77,8 +75,6 @@ export default function Customers() {
                                 </div>
                             </div>
                         </div>
-                        )
-                        }
                     </div>
                 )
             }
