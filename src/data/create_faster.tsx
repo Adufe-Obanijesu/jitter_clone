@@ -1,17 +1,10 @@
 import Image from "next/image";
+import ImageVideoOverlay from "@/components/ImageVideoOverlay";
 
 export const create_faster = [
   {
     media: (
-      <video
-        src="/videos/create faster/1.mp4"
-        loop
-        muted
-        playsInline
-        autoPlay
-        aria-hidden="true"
-        className="py-12"
-      />
+        <ImageVideoOverlay imageSrc="/videos/create faster/1.webp" imageWidth={680} imageHeight={850} videoSrc="/videos/create faster/1.mp4" />
     ),
     heading: "Infinite canvas",
     icon: (
@@ -26,15 +19,7 @@ export const create_faster = [
   },
   {
     media: (
-      <video
-        src="/videos/create faster/2.mp4"
-        loop
-        muted
-        playsInline
-        autoPlay
-        aria-hidden="true"
-        className="py-12"
-      />
+        <ImageVideoOverlay imageSrc="/videos/create faster/2.webp" imageWidth={680} imageHeight={850} videoSrc="/videos/create faster/2.mp4" />
     ),
     heading: "Reusable animations",
     icon: (
