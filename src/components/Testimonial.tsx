@@ -26,7 +26,7 @@ export default function Testimonial({
           alt="Matt Sewell"
           width={40}
           height={40}
-          className="rounded-full"
+          className="rounded-full aspect-square"
         />
         <div className="text-left">
           <p className="font-semibold text-dark text-base">{name}</p>
