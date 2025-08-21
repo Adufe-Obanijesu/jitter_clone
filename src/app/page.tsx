@@ -19,7 +19,7 @@ import useLenis from "@/hooks/useLenis";
 import "@/effects"
 
 // Sections
-import Navbar from "@/sections/navigation/Navbar";
+// import Navbar from "@/sections/navigation/Navbar";
 import Hero from "@/sections/hero";
 import Customers from "@/sections/customers";
 import FeatureVideo from "@/sections/feature_video";
