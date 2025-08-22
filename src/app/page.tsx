@@ -1,7 +1,6 @@
 "use client"
 
 // import Chat from "@/components/Chat";
-// import CreativePower from "@/sections/creative_power";
 // import Footer from "@/sections/footer";
 // import HorizontalScroll from "@/sections/horizontal_scroll";
 // import Info from "@/sections/info";
@@ -29,6 +28,7 @@ import WhatWeOffer from "@/sections/what_we_offer";
 import Testimonial from "@/components/Testimonial";
 import CreateFaster from "@/sections/create_faster";
 import WorkTogether from "@/sections/work_together";
+import CreativePower from "@/sections/creative_power";
 
 // Components
 import FadeOnScroll from "@/components/animations/FadeOnScroll";
@@ -64,6 +64,7 @@ export default function Home() {
             <Testimonial {...testimonials[1]} />
           </FadeOnScroll>
           <WorkTogether />
+          <CreativePower />
 
           <div className="h-[200vh] w-full" />
 
@@ -72,7 +73,6 @@ export default function Home() {
         {/*<div className="lg:max-w-[860px] max-w-[400px] mx-auto">*/}
         {/*</div>*/}
         {/*<div className="lg:max-w-[860px] max-w-[400px] mx-auto">*/}
-        {/*  <CreativePower />*/}
         {/*</div>*/}
         {/*<UseCases />*/}
         {/*<Templates />*/}

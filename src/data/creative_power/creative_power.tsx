@@ -1,32 +1,17 @@
 import Image from "next/image";
+import ImageVideoOverlay from "@/components/ImageVideoOverlay";
 
 export const creative_power = [
   {
     media: (
-      <video
-        src="/videos/creative power/text animations.mp4"
-        loop
-        muted
-        playsInline
-        autoPlay
-        aria-hidden="true"
-        className="w-[320px] h-[267px]"
-      />
+        <ImageVideoOverlay imageSrc="/videos/creative power/text animations.webp" imageWidth={820} imageHeight={684} videoSrc="/videos/creative power/text animations.mp4" />
     ),
     heading: "Text animations",
     body: "Create unique kinetic type effects with built-in presets that let you animate lines, words, and letters",
   },
   {
     media: (
-      <video
-        src="/videos/creative power/powerful effects.mp4"
-        loop
-        muted
-        playsInline
-        autoPlay
-        aria-hidden="true"
-        className="w-[320px] h-[267px]"
-      />
+        <ImageVideoOverlay imageSrc="/videos/creative power/powerful effects.webp" imageWidth={820} imageHeight={684} videoSrc="/videos/creative power/powerful effects.mp4" />
     ),
     heading: "Powerful effects",
     preheading: "new",
@@ -46,15 +31,7 @@ export const creative_power = [
   },
   {
     media: (
-      <video
-        src="/videos/creative power/video audio.mp4"
-        loop
-        muted
-        playsInline
-        autoPlay
-        aria-hidden="true"
-        className="py-12 w-[320px] h-[267px]"
-      />
+        <ImageVideoOverlay imageSrc="/videos/creative power/video audio.webp" imageWidth={820} imageHeight={684} videoSrc="/videos/creative power/video audio.mp4" />
     ),
     heading: "Video & Audio",
     body: "Import videos, soundtracks, voiceovers, and sound effects to create richer, more dynamic content.",
