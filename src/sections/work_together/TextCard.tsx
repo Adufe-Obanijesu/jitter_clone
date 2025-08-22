@@ -1,12 +1,13 @@
 "use client";
 
 import Button from "@/components/ui/Button";
-import { useWindowSize } from "@react-hook/window-size";
-import { useEffect, useState } from "react";
+import {useEffect, useMemo, useState} from "react";
+import {useWindowWidth} from "@react-hook/window-size/throttled";
 
 export default function TextCard() {
-  const [width] = useWindowSize();
-  const isMobile = width < 1024;
+  const width = useWindowWidth()
+  const isMobile = useMemo(() => width < 1024, [width])
+  const cardWidth = useMemo(() => width - 40 - Math.max((width - 400), 0), [width])
 
   const [hasRendered, setHasRendered] = useState(false);
 
@@ -18,10 +19,10 @@ export default function TextCard() {
 
   return (
     <div
-      className="rounded-[40px] lg:p-[50px] py-[40px] px-[30px] lg:w-[460px] w-[335px] shrink-0"
+      className="rounded-[40px] lg:p-[50px] py-[40px] px-[30px] lg:w-[460px] w-[400px] shrink-0"
       style={{
         background: "linear-gradient(180deg,#a981ff,#d0bafe)",
-        marginRight: !isMobile ? "calc((100vw - 860px) / 2" : "20px",
+        width: isMobile ? `${Math.min(400, cardWidth)}px` : undefined
       }}
     >
       <div className="flex flex-col justify-between gap-4 h-full">

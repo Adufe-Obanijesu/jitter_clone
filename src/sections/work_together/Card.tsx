@@ -1,7 +1,7 @@
 "use client";
 
-import { useWindowSize } from "@react-hook/window-size";
-import { ReactNode, useEffect, useState } from "react";
+import {ReactNode, useEffect, useMemo, useState} from "react";
+import {useWindowWidth} from "@react-hook/window-size/throttled";
 
 interface CardProps {
   backgroundColor?: string;
@@ -10,7 +10,6 @@ interface CardProps {
   media: ReactNode;
   tagColor?: string;
   textColor?: string;
-  index: number;
 }
 
 export default function Card({
@@ -19,27 +18,26 @@ export default function Card({
   body,
   media,
   tagColor,
-  textColor,
-  index,
+  textColor
 }: CardProps) {
-  const [width] = useWindowSize();
-  const isMobile = width < 1024;
 
-  const [hasRendered, setHasRendered] = useState(false);
+  const width = useWindowWidth()
+  const isMobile = useMemo(() => width < 1024, [width])
+  const cardWidth = useMemo(() => width - 40 - Math.max((width - 400), 0), [width])
+  const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
-    setHasRendered(true);
-  }, []);
+    setHasMounted(true);
+  }, [])
 
-  if (!hasRendered) return null;
+  if (isMobile && !hasMounted) return null
 
   return (
     <div
-      className="rounded-[40px] lg:p-[50px] py-[40px] px-[30px] lg:w-[460px] w-[335px] shrink-0"
+      className="rounded-[40px] lg:p-[50px] py-[40px] px-[30px] lg:w-[460px] shrink-0"
       style={{
         background: backgroundColor,
-        marginLeft:
-          index === 0 && !isMobile ? "calc((100vw - 860px) / 2" : "20px",
+        width: isMobile ? `${Math.min(400, cardWidth)}px` : undefined
       }}
     >
       <div className="mb-6">

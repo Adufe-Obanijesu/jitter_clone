@@ -13,6 +13,8 @@
 import gsap from "gsap"
 import {useGSAP} from "@gsap/react";
 import {GSDevTools} from "gsap/GSDevTools";
+import Draggable from "gsap/Draggable";
+import InertiaPlugin from "gsap/InertiaPlugin";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import useLenis from "@/hooks/useLenis";
 import "@/effects"
@@ -35,7 +37,7 @@ import SplitText from "gsap/SplitText";
 // Data
 import { testimonials } from "@/data/testimonials";
 
-gsap.registerPlugin(ScrollTrigger, useGSAP, SplitText, GSDevTools);
+gsap.registerPlugin(ScrollTrigger, useGSAP, SplitText, Draggable, InertiaPlugin, GSDevTools);
 
 export default function Home() {
 
@@ -61,7 +63,7 @@ export default function Home() {
           <FadeOnScroll translate>
             <Testimonial {...testimonials[1]} />
           </FadeOnScroll>
-        <WorkTogether />
+          <WorkTogether />
 
           <div className="h-[200vh] w-full" />
 

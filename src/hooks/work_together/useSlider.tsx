@@ -2,168 +2,131 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { Draggable } from "gsap/Draggable";
-import { useRef, useState, useEffect } from "react";
+import {useRef, useState, useMemo, useCallback} from "react";
+import {useWindowWidth} from "@react-hook/window-size/throttled";
+
+const dist = 400;
 
 export default function useSlider() {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const carouselRef = useRef<HTMLDivElement | null>(null);
+  const scope = useRef<HTMLDivElement>(null);
+  const draggableEl = useRef<HTMLDivElement>(null);
+
+  const width = useWindowWidth()
+  const mobileDist = useMemo(() => width - 20 - Math.max((width - 400), 0), [width])
+  const bounds = useRef({ minX: 0, maxX: 0 });
+
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
-  const scrollDistance = 300;
+  const [index, setIndex] = useState(0);
 
-  gsap.registerPlugin(Draggable);
+  const updateButtons = useCallback(() => {
+    if (!draggableEl.current) return;
+    const x = gsap.getProperty(draggableEl.current, "x") as number;
+    setCanScrollLeft(x < bounds.current.maxX);
+    setCanScrollRight(x > bounds.current.minX);
+  }, [])
 
-  useGSAP(
-    () => {
-      if (!carouselRef.current) return;
-      const carousel = carouselRef.current;
+  const updateDots = useCallback(() => {
+    const currentX = Number(gsap.getProperty(draggableEl.current, "x"));
+    const index = Math.round(currentX / mobileDist)
+    setIndex(Math.abs(index))
+  }, [mobileDist])
 
-      function checkScrollability() {
-        const buffer = 2;
-        const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
+  useGSAP(() => {
 
-        setCanScrollLeft(carousel.scrollLeft > buffer);
-        setCanScrollRight(carousel.scrollLeft < maxScrollLeft - buffer);
-      }
+    const mm = gsap.matchMedia()
 
-      checkScrollability();
+    mm.add("(min-width: 1024px)", () => {
+      if (!draggableEl.current) return;
 
-      const proxy = document.createElement("div");
-      gsap.set(proxy, {
-        width: 100,
-        height: 100,
-        position: "absolute",
-        top: 0,
-        left: 0,
-        opacity: 0,
-      });
-      document.body.appendChild(proxy);
+      const minX = draggableEl.current.offsetWidth * -1.22;
+      const maxX = 0;
+      bounds.current = { minX, maxX };
 
-      let startX: number;
-      let startScrollLeft: number;
-
-      const draggable = Draggable.create(proxy, {
+      Draggable.create("#wt-draggable", {
         type: "x",
-        trigger: carousel,
+        bounds: { minX, maxX },
         inertia: true,
-        onPress: function () {
-          carousel.classList.add("active");
-          startX = this.x;
-          startScrollLeft = carousel.scrollLeft;
-          gsap.killTweensOf(carousel);
+        onThrowComplete: updateButtons,
+        onDragEnd: updateButtons,
+      });
+
+      updateButtons();
+    })
+
+    mm.add("(max-width: 1023px)", () => {
+      if (!draggableEl.current) return;
+
+      const minX = mobileDist * -3;
+      const maxX = 0;
+
+      Draggable.create("#wt-draggable", {
+        type: "x",
+        bounds: { minX, maxX },
+        inertia: true,
+        snap: {
+          x: (endValue) => Math.round(endValue / mobileDist) * mobileDist
         },
-        onDrag: function () {
-          const diff = this.x - startX;
-          carousel.scrollLeft = startScrollLeft - diff;
-          checkScrollability();
-        },
-        onRelease: function () {
-          carousel.classList.remove("active");
-          checkScrollability();
-        },
-        onThrowUpdate: function () {
-          const diff = this.x - startX;
-          carousel.scrollLeft = startScrollLeft - diff;
-          checkScrollability();
-        },
-        allowContextMenu: true,
-        allowEventDefault: true,
-        allowNativeTouchScrolling: true,
-      })[0];
+        onDragEnd: updateDots,
+        onThrowComplete: updateDots
+      });
 
-      carousel.addEventListener("scroll", checkScrollability);
-
-      return () => {
-        if (carousel) {
-          carousel.removeEventListener("scroll", checkScrollability);
-          draggable.kill();
-          if (proxy && proxy.parentNode) {
-            proxy.parentNode.removeChild(proxy);
-          }
-        }
-      };
-    },
-    { scope: carouselRef, dependencies: [] },
-  );
-
-  useEffect(() => {
-    if (!carouselRef.current) return;
-
-    const carousel = carouselRef.current;
-
-    const checkScrollability = () => {
-      const buffer = 2;
-      const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
-
-      setCanScrollLeft(carousel.scrollLeft > buffer);
-      setCanScrollRight(carousel.scrollLeft < maxScrollLeft - buffer);
-    };
-
-    const handleResize = () => {
-      checkScrollability();
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    setTimeout(checkScrollability, 100);
+      updateDots()
+    })
 
     return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+      mm.revert()
+    }
 
-  const scrollLeft = () => {
-    if (!carouselRef.current || !canScrollLeft) return;
-    gsap.to(carouselRef.current, {
-      duration: 0.5,
-      scrollLeft: `-=${scrollDistance}`,
-      ease: "power2.out",
-      onUpdate: () => {
-        if (carouselRef.current) {
-          const carousel = carouselRef.current;
-          const buffer = 2;
-          const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
+  }, { scope, dependencies: [width] });
 
-          setCanScrollLeft(carousel.scrollLeft > buffer);
-          setCanScrollRight(carousel.scrollLeft < maxScrollLeft - buffer);
-        }
-      },
+  const { contextSafe } = useGSAP(() => {}, { scope, dependencies: [] });
+
+  const moveLeft = contextSafe(() => {
+    if (!draggableEl.current) return;
+    const currentX = gsap.getProperty(draggableEl.current, "x") as number;
+    const nextX = Math.min(bounds.current.maxX, currentX + dist);
+    gsap.to(draggableEl.current, {
+      x: nextX,
+      onComplete: updateButtons,
     });
-  };
+  });
 
-  const scrollRight = () => {
-    if (!carouselRef.current || !canScrollRight) return;
-    gsap.to(carouselRef.current, {
-      duration: 0.5,
-      scrollLeft: `+=${scrollDistance}`,
-      ease: "power2.out",
-      onUpdate: () => {
-        if (carouselRef.current) {
-          const carousel = carouselRef.current;
-          const buffer = 2;
-          const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
-
-          setCanScrollLeft(carousel.scrollLeft > buffer);
-          setCanScrollRight(carousel.scrollLeft < maxScrollLeft - buffer);
-        }
-      },
+  const moveRight = contextSafe(() => {
+    if (!draggableEl.current) return;
+    const currentX = gsap.getProperty(draggableEl.current, "x") as number;
+    const nextX = Math.max(bounds.current.minX, currentX - dist);
+    gsap.to(draggableEl.current, {
+      x: nextX,
+      onComplete: updateButtons,
     });
-  };
+  });
+
+  const moveTo = contextSafe((index: number) => {
+    if (!draggableEl.current) return;
+
+    setIndex(index)
+
+    gsap.to(draggableEl.current, {
+      x: index * -mobileDist,
+      onComplete: updateDots
+    })
+  })
 
   return {
     refs: {
-      containerRef,
-      carouselRef,
+      scope,
+      draggableEl
     },
     state: {
       canScrollLeft,
       canScrollRight,
+      index
     },
     actions: {
-      setCanScrollLeft,
-      setCanScrollRight,
-      scrollLeft,
-      scrollRight,
-    },
-  };
+      moveLeft,
+      moveRight,
+      moveTo
+    }
+  }
 }
