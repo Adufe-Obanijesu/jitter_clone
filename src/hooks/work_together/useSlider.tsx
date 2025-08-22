@@ -59,6 +59,7 @@ export default function useSlider() {
 
       const minX = mobileDist * -3;
       const maxX = 0;
+      bounds.current = { minX, maxX };
 
       Draggable.create("#wt-draggable", {
         type: "x",
@@ -79,6 +80,39 @@ export default function useSlider() {
     }
 
   }, { scope, dependencies: [width] });
+
+  useGSAP(() => {
+    let wheelTimeout: NodeJS.Timeout;
+
+    draggableEl.current?.addEventListener(
+        "wheel",
+        (e) => {
+          if (Math.abs(e.deltaX) < Math.abs(e.deltaY)) return;
+          e.preventDefault();
+
+          const currentX = gsap.getProperty(draggableEl.current, "x") as number;
+          const speed = 1.5;
+          const nextX = currentX - e.deltaX * speed;
+
+          const clamped = gsap.utils.clamp(bounds.current.minX, bounds.current.maxX, nextX);
+
+          gsap.to(draggableEl.current, {
+            x: clamped,
+            duration: 0.3,
+            ease: "power2.out",
+            onUpdate: updateButtons,
+          });
+
+          clearTimeout(wheelTimeout);
+          wheelTimeout = setTimeout(() => {
+            updateDots();
+            updateButtons();
+          }, 100);
+        },
+        { passive: false }
+    );
+
+  }, { scope, dependencies: [] });
 
   const { contextSafe } = useGSAP(() => {}, { scope, dependencies: [] });
 

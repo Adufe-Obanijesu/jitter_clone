@@ -30,7 +30,7 @@ export default function Card({
     setHasMounted(true);
   }, [])
 
-  if (isMobile && !hasMounted) return null
+  if (!hasMounted) return null
 
   return (
     <div

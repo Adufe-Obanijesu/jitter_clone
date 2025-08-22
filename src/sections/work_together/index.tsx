@@ -28,11 +28,17 @@ export default function WorkTogether() {
           <div
               ref={refs.draggableEl}
               id="wt-draggable"
-              className="flex gap-5 cursor-grab active:cursor-grabbing"
+              className="flex cursor-grab active:cursor-grabbing"
           >
-            {slider_data.map(item => (
-                <Card key={item.heading} {...item} />
+            {slider_data.map((item, index) => (
+                <div key={item.heading} className="flex">
+                    <Card {...item} />
+                    {
+                        index !== slider_data.length - 1 && <div className="w-5 h-full rounded-full" />
+                    }
+                </div>
             ))}
+              <div className="w-5 rounded-full shrink-0" />
             <TextCard />
           </div>
         </div>
