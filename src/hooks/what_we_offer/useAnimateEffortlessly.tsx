@@ -44,7 +44,12 @@ export default function useAnimateEffortlessly() {
 
         if (cards.length === 0) return;
 
-        const masterTimeline = gsap.timeline({paused: true})
+        const masterTimeline = gsap.timeline({scrollTrigger: {
+            trigger: scope.current,
+                start: "top bottom",
+                end: "bottom top",
+                toggleActions: "play pause play pause"
+            }})
 
         cards.forEach((card, index) => {
 
@@ -53,8 +58,6 @@ export default function useAnimateEffortlessly() {
                 tl.progress(index / 3)
             }, 0)
         })
-
-        masterTimeline.play()
 
         return () => {
             masterTimeline.kill()
