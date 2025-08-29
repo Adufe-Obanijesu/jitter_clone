@@ -5,19 +5,21 @@ interface Props {
     imageWidth: number,
     imageHeight: number,
     videoSrc: string,
+    adjustWidth?: number,
 }
 
-export default function ImageVideoOverlay({ imageSrc, imageWidth, imageHeight, videoSrc }: Props) {
+export default function ImageVideoOverlay({ imageSrc, imageWidth, imageHeight, videoSrc, adjustWidth}: Props) {
     const aspectRatio = `${imageWidth}/${imageHeight}`;
 
     return (
-        <div className="w-full relative" style={{ aspectRatio }}>
+        <div className="w-full relative hv-center" style={{ aspectRatio }}>
             <Image
                 src={imageSrc}
                 width={imageWidth}
                 height={imageHeight}
                 className="w-full"
                 alt="video preview"
+                style={{width: `${adjustWidth}%`}}
             />
             <div className="absolute left-0 top-0 w-full h-full px-10 lg:px-0 flex items-center z-0">
                 <video
@@ -28,6 +30,7 @@ export default function ImageVideoOverlay({ imageSrc, imageWidth, imageHeight, v
                     autoPlay
                     aria-hidden="true"
                     className="w-full z-1"
+                    style={{width: `${adjustWidth}%`}}
                 />
             </div>
         </div>

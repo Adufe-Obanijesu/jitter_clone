@@ -5,7 +5,6 @@
 // import HorizontalScroll from "@/sections/horizontal_scroll";
 // import Info from "@/sections/info";
 // import Newsletter from "@/sections/newsletter";
-// import Templates from "@/sections/templates";
 
 // Tools
 import gsap from "gsap"
@@ -29,6 +28,7 @@ import CreateFaster from "@/sections/create_faster";
 import WorkTogether from "@/sections/work_together";
 import CreativePower from "@/sections/creative_power";
 import UseCases from "@/sections/use_cases";
+import Templates from "@/sections/templates";
 
 // Components
 import FadeOnScroll from "@/components/animations/FadeOnScroll";
@@ -66,6 +66,7 @@ export default function Home() {
           <WorkTogether />
           <CreativePower />
           <UseCases />
+          <Templates />
 
           <div className="h-[200vh] w-full" />
 
@@ -75,7 +76,6 @@ export default function Home() {
         {/*</div>*/}
         {/*<div className="lg:max-w-[860px] max-w-[400px] mx-auto">*/}
         {/*</div>*/}
-        {/*<Templates />*/}
         {/*<div className="lg:max-w-[860px] max-w-[400px] mx-auto">*/}
         {/*  <Info />*/}
         {/*</div>*/}
