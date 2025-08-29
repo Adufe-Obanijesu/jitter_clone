@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import {cn} from "@/utils/tailwind";
+import {useWindowWidth} from "@react-hook/window-size/throttled";
 
 interface CardProps {
   title: string;
@@ -18,12 +19,16 @@ export default function Card({
   titleClassName = "",
   descriptionClassName = "",
 }: CardProps) {
+
+  const isMobile = useWindowWidth() - 1024
+
   return (
     <div
       className={cn(
         "card top-0 left-0 rounded-[40px] lg:py-[50px] py-9 lg:pt-[60px] pt-[45px] lg:w-[460px] lg:h-[610px] h-[500px] overflow-hidden",
         className,
       )}
+      style={{minHeight: isMobile ? "calc(100vh - 1rem)" : undefined}}
     >
       <div className="h-full flex flex-col gap-4">
         <div className="space-y-2.5 px-9 lg:px-[50px]">
