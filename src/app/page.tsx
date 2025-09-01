@@ -3,7 +3,6 @@
 // import Chat from "@/components/Chat";
 // import Footer from "@/sections/footer";
 // import HorizontalScroll from "@/sections/horizontal_scroll";
-// import Info from "@/sections/info";
 // import Newsletter from "@/sections/newsletter";
 
 // Tools
@@ -29,6 +28,7 @@ import WorkTogether from "@/sections/work_together";
 import CreativePower from "@/sections/creative_power";
 import UseCases from "@/sections/use_cases";
 import Templates from "@/sections/templates";
+import Info from "@/sections/info";
 
 // Components
 import FadeOnScroll from "@/components/animations/FadeOnScroll";
@@ -67,6 +67,7 @@ export default function Home() {
           <CreativePower />
           <UseCases />
           <Templates />
+          <Info />
 
           <div className="h-[200vh] w-full" />
 
@@ -77,7 +78,6 @@ export default function Home() {
         {/*<div className="lg:max-w-[860px] max-w-[400px] mx-auto">*/}
         {/*</div>*/}
         {/*<div className="lg:max-w-[860px] max-w-[400px] mx-auto">*/}
-        {/*  <Info />*/}
         {/*</div>*/}
     {/*<Footer />*/}
     {/*<Newsletter />*/}

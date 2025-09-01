@@ -3,6 +3,8 @@ import gsap from 'gsap';
 interface IConfig {
     scale?: number;
   direction?: 'down' | 'up';
+  duration?: number;
+  ease?: string;
 }
 
 gsap.registerEffect({

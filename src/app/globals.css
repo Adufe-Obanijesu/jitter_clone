@@ -134,6 +134,14 @@ button {
   background: linear-gradient(to left, white, transparent);
 }
 
+.bg-card-light-purple {
+  @apply bg-card-light-purple;
+}
+
+.bg-card-purple {
+  @apply bg-card-purple;
+}
+
 /*GSDevTools*/
 .gs-dev-tools {
   z-index: 1000;

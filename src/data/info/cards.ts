@@ -4,7 +4,7 @@ export const cards = [
     heading: "Powerful updates every week",
     link_text: "See what's new",
     link: "#",
-    bg: "card-purple",
+    bg: "bg-card-purple",
     tag_bg: "white",
   },
   {
@@ -12,7 +12,7 @@ export const cards = [
     heading: "Start for free. Upgrade anytime",
     link_text: "See our plans",
     link: "#",
-    bg: "card-light-purple",
+    bg: "bg-card-light-purple",
     tag_bg: "card-purple",
   },
 ];
