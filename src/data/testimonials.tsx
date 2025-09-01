@@ -10,8 +10,8 @@ export const testimonials = [
         &quot;Jitter gives you no excuse to skip <br className="lg:hidden" />
         <Image
           src="/images/testimonials/1/text.webp"
-          height={76}
-          width={248.75}
+          height={671}
+          width={208}
           className="-mt-6 inline ml-2 w-[142px] h-[44px] lg:w-[300px] lg:h-[76px]"
           alt="motion"
         />
@@ -29,8 +29,8 @@ export const testimonials = [
         in <br className="lg:hidden" />
         <Image
           src="/images/testimonials/2/text.webp"
-          height={74}
-          width={300}
+          height={183}
+          width={638}
           className="-mt-6 inline ml-2 w-[142px] h-[44px] lg:w-[300px] lg:h-[76px]"
           alt="no time"
         />

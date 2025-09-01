@@ -12,9 +12,9 @@ export default function WhatWeOffer() {
     <section className="pt-[60px] lg:mt-[200px] margin-t mobile_padding">
       <div className="flex flex-col items-center gap-[30px]">
         <Tag>No learning curve</Tag>
-        <h1 className="lg:text-7xl text-[40px] font-bold text-center max-w-[500px]">
+        <h2 className="lg:text-7xl text-[40px] font-bold text-center max-w-[500px]">
           Motion design made simple
-        </h1>
+        </h2>
         <p className="text-center text-lg max-w-[460px]">
           <strong>Motion doesn&apos;t have to be hard.</strong> With Jitter, any
           designer can create professional animations in minutes, no matter

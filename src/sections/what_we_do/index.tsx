@@ -14,10 +14,10 @@ export default function WhatWeDo() {
               Jitter makes motion accessible to every designer, enabling creative teams
               to collaborate on and deliver engaging animations in record time.
             </div>
-            <div className="absolute top-0 left-0 reveal-about">
+            <p className="absolute top-0 left-0 reveal-about" aria-hidden={true}>
                 Jitter makes motion accessible to every designer, enabling creative teams
                 to collaborate on and deliver engaging animations in record time.
-            </div>
+            </p>
         </h2>
       </div>
   );

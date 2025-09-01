@@ -18,10 +18,10 @@ export default function WorkTogether() {
             <div className="mobile_padding lg:px-0">
               <Tag>Work together</Tag>
               <div className="grid lg:grid-cols-2 gap-5 mt-7">
-                <h1 className="text-[40px] lg:text-5xl font-bold lg:w-[630px]">
+                <h2 className="text-[40px] lg:text-5xl font-bold lg:w-[630px]">
                   Everything your team needs to collaborate and deliver their best
                   work
-                </h1>
+                </h2>
               </div>
             </div>
 
@@ -60,6 +60,7 @@ export default function WorkTogether() {
                   className={cn("w-12 h-12 rounded-full flex items-center justify-center transition_item bg-gray-100 disabled:opacity-40", {"bg-gray-50 !cursor-not-allowed": !state.canScrollLeft})}
                   onClick={actions.moveLeft}
                   disabled={!state.canScrollLeft}
+                  aria-label={state.canScrollLeft ? "Scroll left" : "No more slides to the left"}
               >
                 <FaChevronLeft />
               </button>
@@ -67,6 +68,7 @@ export default function WorkTogether() {
                   className={cn("w-12 h-12 rounded-full flex items-center justify-center transition_item bg-gray-100 disabled:opacity-40", {"bg-gray-50 !cursor-not-allowed": !state.canScrollRight})}
                   onClick={actions.moveRight}
                   disabled={!state.canScrollRight}
+                  aria-label={state.canScrollRight ? "Scroll right" : "No more slides to the right"}
               >
                 <FaChevronRight />
               </button>

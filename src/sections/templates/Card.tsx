@@ -39,7 +39,7 @@ export default function Card({
         <Image src={logo} width={50} height={50} alt={logoAlt} />
 
         <div>
-          <h3 className="font-semibold text-xl text-dark">{title}</h3>
+          <h2 className="font-semibold text-xl text-dark">{title}</h2>
           <p className="font-sm text-secondary">{text}</p>
         </div>
       </div>

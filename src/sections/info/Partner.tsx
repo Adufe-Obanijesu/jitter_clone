@@ -12,8 +12,8 @@ export default function Partner({ heading, body, icon }: PartnerProps) {
       {icon}
 
       <div>
-        <h4 className="font-semibold">{heading}</h4>
-        <p className="text-[13px] text-dark opacity-50 mt-1 font-medium">
+        <h2 className="font-semibold">{heading}</h2>
+        <p className="text-[13px] text-gray-500 mt-1 font-medium">
           {body}
         </p>
       </div>

@@ -9,9 +9,9 @@ export default function Footer() {
         <footer className="relative z-10 pt-[120px] lg:pt-[160px] pb-[98px] bg-light-grey lg:rounded-b-[80px] rounded-b-[40px] mobile_padding">
             <div className="lg:px-8 max-w-[400px] lg:max-w-[860px] mx-auto space-y-[100px]">
                 <div className="w-full flex flex-col items-center gap-[30px]">
-                    <h1 className="text-[60px] lg:text-7xl font-bold text-center">
+                    <h2 className="text-[60px] lg:text-7xl font-bold text-center">
                         Try Jitter today
-                    </h1>
+                    </h2>
                     <p className="text-center text-lg max-w-[310px]">
                         No download, no install, no waiting. Start creating instantly.
                     </p>
@@ -21,9 +21,9 @@ export default function Footer() {
                 <div className="max-w-[400px] lg:max-w-[860px] grid lg:grid-cols-5 grid-cols-2 gap-8 lg:py-12 py-7 text-sm">
                     {footerLinks.map((section) => (
                         <div key={section.title}>
-                            <h3 className="font-semibold text-lg text-dark mb-6">
+                            <h2 className="font-semibold text-lg text-dark mb-6">
                                 {section.title}
-                            </h3>
+                            </h2>
                             <ul className="space-y-4">
                                 {section.items.map((item) => (
                                     <li key={item.id}>
@@ -66,7 +66,7 @@ export default function Footer() {
                     </div>
 
                     <div className="container mx-auto px-4 mt-[60px]">
-                        <p className="text-xs text-[#97979b] leading-[150%] max-w-4xl">
+                        <p className="text-xs text-gray-600 leading-[150%] max-w-4xl">
                             All featured work on this website is presented for illustrative
                             purposes only, showcasing real-life examples of motion design.
                             Jitter does not claim ownership of any of the displayed works. All

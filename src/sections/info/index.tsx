@@ -20,9 +20,9 @@ export default function Info() {
             className="w-10 h-10"
           />
 
-          <h1 className="text-[40px] lg:text-5xl font-bold">
+          <h2 className="text-[40px] lg:text-5xl font-bold">
             Loved by the best creative teams all over the world
-          </h1>
+          </h2>
 
           <Button className="bg-[#f5ff63] text-dark text-lg">
             Read customer stories

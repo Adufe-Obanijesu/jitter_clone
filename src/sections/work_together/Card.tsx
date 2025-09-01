@@ -38,15 +38,15 @@ export default function Card({
           className="inline-block px-2 py-1 mb-3"
           style={{ background: tagColor ?? "white" }}
         >
-          <h3
+          <h2
             className="text-xl font-bold"
             style={{ color: tagColor ? "white" : "#19171c" }}
           >
             {heading}
-          </h3>
+          </h2>
         </div>
 
-        <p style={{ color: textColor ?? "white" }}>{body}</p>
+        <p style={{ color: textColor ?? "black", opacity: !textColor ? .7 : undefined }}>{body}</p>
       </div>
     </div>
   );

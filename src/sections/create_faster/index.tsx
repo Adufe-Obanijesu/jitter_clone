@@ -7,9 +7,9 @@ export default function CreateFaster() {
     <div className="mt-[92px] lg:mt-[200px] max-w-[684px] mx-auto mobile_padding">
       <Tag>Create faster</Tag>
       <div className="grid lg:grid-cols-2 gap-5 mt-7">
-        <h1 className="text-[40px] lg:text-5xl font-bold">
+        <h2 className="text-[40px] lg:text-5xl font-bold">
           Built for teams who move fast
-        </h1>
+        </h2>
 
         <p className="text-lg">
           <strong>

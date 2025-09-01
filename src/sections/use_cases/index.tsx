@@ -17,9 +17,9 @@ export default function UseCases() {
         <div className="">
           <div className="flex flex-col gap-[30px]">
             <Tag className="bg-[#f468ff]">Use cases</Tag>
-            <h1 className="text-[36px] lg:text-5xl font-bold mb-5 max-w-[649px]">
+            <h2 className="text-[36px] lg:text-5xl font-bold mb-5 max-w-[649px]">
               Animate for social media, ads, marketing, brand, product, and more
-            </h1>
+            </h2>
             <div className="flex flex-col lg:flex-row justify-between gap-4">
               <p className="text-lg max-w-[420px]">
                 The best brands use motion across all platforms to capture

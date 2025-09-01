@@ -14,8 +14,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="preconnect" href="/fonts/lausanne/TWKLausanne-800.woff2" as="font" type="font/woff2" crossOrigin="" />
-        <link rel="preconnect" href="/fonts/lausanne/TWKLausanne-600.woff2" as="font" type="font/woff2" crossOrigin="" />
+        <link rel="preload" href="/fonts/lausanne/TWKLausanne-800.woff2" as="font" type="font/woff2" crossOrigin="" />
+        <link rel="preload" href="/fonts/lausanne/TWKLausanne-600.woff2" as="font" type="font/woff2" crossOrigin="" />
       </head>
 
     <body className="antialiased">{children}</body>

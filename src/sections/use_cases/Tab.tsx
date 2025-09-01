@@ -53,14 +53,14 @@ export default function Tab({
       className={cn("item cursor-pointer lg:p-[50px] p-10 bg-white transition-color relative transition_item h-[220px] lg:h-auto")}
       onClick={() => setActiveTab(id)}
     >
-      <h3
+      <h2
         className={`text-xl font-medium mb-2 text-dark transition_item ${
           isActive ? "opacity-100" : "lg:opacity-50"
         }`}
       >
         {title}
-      </h3>
-        <p ref={paragraph} className="text-[#c3c3c6] lg:h-0 h-auto overflow-hidden">{description}</p>
+      </h2>
+        <p ref={paragraph} className="text-gray-500 lg:h-0 h-auto overflow-hidden">{description}</p>
 
       {isActive && (
         <div className="absolute bottom-0 left-0 w-full h-1 bg-white">

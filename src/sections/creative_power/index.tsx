@@ -12,9 +12,9 @@ export default function CreativePower() {
     <div className="mt-20 mobile_padding">
       <div className="flex flex-col items-center gap-[30px]">
         <Tag>Creative power</Tag>
-        <h1 className="text-[40px] lg:text-7xl font-bold text-center">
+        <h2 className="text-[40px] lg:text-7xl font-bold text-center">
           Supercharge your creativity
-        </h1>
+        </h2>
         <p className="text-center text-lg max-w-[500px]">
           <strong>
             Jitter combines powerful features with intuitive controls

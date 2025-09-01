@@ -11,7 +11,7 @@ export default function Feature({ icon, heading, body }: FeatureProps) {
     <div className="space-y-2.5">
       <div className="flex items-center gap-3">
         <Image src={icon} width={22} height={22} alt="Vector paths icon" />
-        <h4 className="font-semibold text-xl">{heading}</h4>
+        <h2 className="font-semibold text-xl">{heading}</h2>
       </div>
 
       <p className="text-[#6e6e73] text-base">{body}</p>

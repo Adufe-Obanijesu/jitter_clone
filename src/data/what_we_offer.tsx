@@ -13,8 +13,8 @@ export const what_we_offer = [
       <div className="flex justify-center">
         <Image
           src="/images/what_we_do/1.webp"
-          height={314}
-          width={400}
+          height={800}
+          width={1020}
           className="w-full h-auto"
           alt="Jitter artboards"
         />
@@ -39,9 +39,9 @@ export const what_we_offer = [
     descriptionClassName: "text-white",
     media: (
       <div className="flex justify-center items-center flex-1">
-        <h1 className="lg:text-[160px] text-[140px] bg-gradient-to-b from-[#140726] to-[#711de2] bg-clip-text text-transparent">
+        <h2 className="lg:text-[160px] text-[140px] bg-gradient-to-b from-[#140726] to-[#711de2] bg-clip-text text-transparent">
           4K
-        </h1>
+        </h2>
       </div>
     ),
   },
