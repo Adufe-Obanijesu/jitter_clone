@@ -38,7 +38,7 @@ export default function Templates() {
         </div>
       </div>
 
-      <div className="overflow-hidden mt-20">
+      <div className="templates-cards overflow-hidden mt-20">
         <div
           ref={refs.carouselRef}
           className="flex gap-5 overflow-x-auto cursor-grab active:cursor-grabbing px-5 lg:px-0"

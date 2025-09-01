@@ -57,7 +57,7 @@ export default function useSlider() {
     mm.add("(max-width: 1023px)", () => {
       if (!draggableEl.current) return;
 
-      const minX = mobileDist * -3;
+      const minX = (mobileDist * -3);
       const maxX = 0;
       bounds.current = { minX, maxX };
 

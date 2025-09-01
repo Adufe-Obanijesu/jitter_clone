@@ -1,7 +1,6 @@
 "use client";
 
-import {ReactNode, useEffect, useMemo, useState} from "react";
-import {useWindowWidth} from "@react-hook/window-size/throttled";
+import {ReactNode} from "react";
 
 interface CardProps {
   backgroundColor?: string;
@@ -21,23 +20,11 @@ export default function Card({
   textColor
 }: CardProps) {
 
-  const width = useWindowWidth()
-  const isMobile = useMemo(() => width < 1024, [width])
-  const cardWidth = useMemo(() => width - 40 - Math.max((width - 400), 0), [width])
-  const [hasMounted, setHasMounted] = useState(false);
-
-  useEffect(() => {
-    setHasMounted(true);
-  }, [])
-
-  if (!hasMounted) return null
-
   return (
     <div
-      className="rounded-[40px] lg:p-[50px] py-[40px] px-[30px] lg:w-[460px] shrink-0"
+      className="rounded-[40px] lg:p-[50px] py-[40px] px-[30px] lg:w-[460px] shrink-0 max-w-[360px] lg:max-w-[460px] w-[calc(100vw-40px)]"
       style={{
         background: backgroundColor,
-        width: isMobile ? `${Math.min(400, cardWidth)}px` : undefined
       }}
     >
       <div className="mb-6">

@@ -70,7 +70,7 @@ button {
 }
 
 @utility mobile_padding {
-  @apply px-5 md:px-0;
+  @apply px-5 lg:px-0;
 }
 
 @utility back_ease {

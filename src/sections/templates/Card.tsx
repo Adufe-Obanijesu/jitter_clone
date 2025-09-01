@@ -1,7 +1,5 @@
 import { ReactNode, useEffect, useState } from "react";
 import Image from "next/image";
-import { templates } from "@/data/templates";
-import { useWindowSize } from "@react-hook/window-size";
 
 interface CardProps {
   title: string;
@@ -18,10 +16,7 @@ export default function Card({
   media,
   logo,
   logoAlt,
-  index,
 }: CardProps) {
-  const [width] = useWindowSize();
-  const isMobile = width < 768;
 
   const [hasRendered, setHasRendered] = useState(false);
 

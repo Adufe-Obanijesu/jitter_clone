@@ -62,10 +62,13 @@ export default function Home() {
           <FadeOnScroll translate>
             <Testimonial {...testimonials[1]} />
           </FadeOnScroll>
-          {/*<WorkTogether />*/}
+        </div>
+          <WorkTogether />
+
+        <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
           <CreativePower />
           <UseCases />
-          {/*<Templates />*/}
+          <Templates />
           <Info />
       </div>
 
