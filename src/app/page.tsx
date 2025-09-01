@@ -1,9 +1,7 @@
 "use client"
 
 // import Chat from "@/components/Chat";
-// import Footer from "@/sections/footer";
 // import HorizontalScroll from "@/sections/horizontal_scroll";
-// import Newsletter from "@/sections/newsletter";
 
 // Tools
 import gsap from "gsap"
@@ -29,6 +27,7 @@ import CreativePower from "@/sections/creative_power";
 import UseCases from "@/sections/use_cases";
 import Templates from "@/sections/templates";
 import Info from "@/sections/info";
+import Footer from "@/sections/footer";
 
 // Components
 import FadeOnScroll from "@/components/animations/FadeOnScroll";
@@ -44,11 +43,11 @@ export default function Home() {
   useLenis()
 
   return (
-    <div className="bg-white relative z-10 overflow-hidden">
+    <div className="bg-white relative z-10 ">
       <h1 className="sr-only">Jitter</h1>
-        <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
           {/*<Navbar />*/}
         <main id="main">
+        <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
           <Hero />
           <Customers />
           <FadeOnScroll>
@@ -63,13 +62,15 @@ export default function Home() {
           <FadeOnScroll translate>
             <Testimonial {...testimonials[1]} />
           </FadeOnScroll>
-          <WorkTogether />
+          {/*<WorkTogether />*/}
           <CreativePower />
           <UseCases />
-          <Templates />
+          {/*<Templates />*/}
           <Info />
+      </div>
 
-          <div className="h-[200vh] w-full" />
+          <Footer />
+    </main>
 
         {/* </div> */}
         {/*<HorizontalScroll />*/}
@@ -79,12 +80,8 @@ export default function Home() {
         {/*</div>*/}
         {/*<div className="lg:max-w-[860px] max-w-[400px] mx-auto">*/}
         {/*</div>*/}
-    {/*<Footer />*/}
-    {/*<Newsletter />*/}
 
     {/*<Chat />*/}
-    </main>
-      </div>
       </div>
   );
 }
