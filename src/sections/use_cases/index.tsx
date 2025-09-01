@@ -6,14 +6,13 @@ import { tabs } from "@/data/use_cases/tabs";
 import Tab from "./Tab";
 import useVideoSlider from "@/hooks/use_cases/useVideoSlider";
 import Image from "next/image";
-import {slider_data} from "@/data/work_together";
 import {cn} from "@/utils/tailwind";
 
 export default function UseCases() {
   const { refs, state, actions } = useVideoSlider();
 
   return (
-    <div className="lg:max-w-[860px] max-w-[400px] mx-auto mobile_padding">
+    <section className="lg:max-w-[860px] max-w-[400px] mx-auto mobile_padding">
       <div id="use-cases" className="invisible bg-light-grey lg:rounded-[80px] rounded-[20px] lg:p-[60px] p-[20px] lg:-mx-[60px] mt-[180px]">
         <div className="">
           <div className="flex flex-col gap-[30px]">
@@ -137,6 +136,6 @@ export default function UseCases() {
             )
         }
       </div>
-    </div>
+    </section>
   );
 }

@@ -50,12 +50,12 @@ export default function Tab({
   return (
     <div
       key={id}
-      className={cn("item cursor-pointer p-[50px] bg-white transition-color relative transition_item")}
+      className={cn("item cursor-pointer lg:p-[50px] p-10 bg-white transition-color relative transition_item h-[220px] lg:h-auto")}
       onClick={() => setActiveTab(id)}
     >
       <h3
         className={`text-xl font-medium mb-2 text-dark transition_item ${
-          isActive ? "opacity-100" : "opacity-50"
+          isActive ? "opacity-100" : "lg:opacity-50"
         }`}
       >
         {title}

@@ -63,7 +63,7 @@ export default function useVideoSlider() {
       video.removeEventListener("ended", handleVideoEnded);
       mm.revert()
     };
-  }, [activeTab, tabCount]);
+  }, [activeTab, tabCount, videoRef.current]);
 
   const moveTo = contextSafe((index: number) => {
     setProgress(0);
@@ -80,7 +80,6 @@ export default function useVideoSlider() {
       setActiveTab(newActiveTab);
       setProgress(0);
 
-      // Reset video if needed
       const video = videoRef.current;
       if (video) {
         video.currentTime = 0;

@@ -27,7 +27,6 @@ export default function Card({
         "card top-0 left-0 rounded-[40px] lg:py-[50px] py-9 lg:pt-[60px] pt-[45px] lg:w-[460px] lg:h-[610px] lg:min-h-auto h-[calc(100vh-1rem)] max-h-[700px] lg:max-h-auto overflow-hidden",
         className,
       )}
-      // style={{minHeight: isMobile ? "calc(100vh - 1rem)" : undefined}}
     >
       <div className="h-full flex flex-col gap-4">
         <div className="space-y-2.5 px-9 lg:px-[50px]">
