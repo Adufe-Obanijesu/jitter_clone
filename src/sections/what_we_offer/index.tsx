@@ -24,7 +24,7 @@ export default function WhatWeOffer() {
 
       <div
         ref={refs.scope}
-        className="h-center lg:items-end mt-[90px] space-y-[100px]  min-h-screen"
+        className="h-center lg:items-end mt-[90px] space-y-[100px]"
       >
         <div className="w-full py-2 lg:w-[460px] relative flex flex-col items-center invisible">
           {what_we_offer.map((item) => (

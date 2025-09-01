@@ -1,6 +1,5 @@
 "use client"
 
-// import Chat from "@/components/Chat";
 // import HorizontalScroll from "@/sections/horizontal_scroll";
 
 // Tools
@@ -8,6 +7,7 @@ import gsap from "gsap"
 import {useGSAP} from "@gsap/react";
 import {GSDevTools} from "gsap/GSDevTools";
 import Draggable from "gsap/Draggable";
+import SplitText from "gsap/SplitText";
 import InertiaPlugin from "gsap/InertiaPlugin";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import useLenis from "@/hooks/useLenis";
@@ -31,7 +31,7 @@ import Footer from "@/sections/footer";
 
 // Components
 import FadeOnScroll from "@/components/animations/FadeOnScroll";
-import SplitText from "gsap/SplitText";
+// import Chat from "@/components/Chat";
 
 // Data
 import { testimonials } from "@/data/testimonials";
@@ -71,17 +71,9 @@ export default function Home() {
 
           <Footer />
     </main>
-
-        {/* </div> */}
         {/*<HorizontalScroll />*/}
-        {/*<div className="lg:max-w-[860px] max-w-[400px] mx-auto">*/}
-        {/*</div>*/}
-        {/*<div className="lg:max-w-[860px] max-w-[400px] mx-auto">*/}
-        {/*</div>*/}
-        {/*<div className="lg:max-w-[860px] max-w-[400px] mx-auto">*/}
-        {/*</div>*/}
 
-    {/*<Chat />*/}
+        {/*<Chat />*/}
       </div>
   );
 }

@@ -18,7 +18,7 @@ export default function useCardScroll() {
 
           if (index !== 0) {
             gsap.set(card, {
-              yPercent: 105
+              yPercent: index * 105
             })
           }
 
@@ -26,7 +26,7 @@ export default function useCardScroll() {
 
           ScrollTrigger.create({
             trigger: scope.current,
-            start: "top top",
+            start: "top 7.5%",
             end: "+=200%",
             pin: true,
             scrub: true,
@@ -34,7 +34,8 @@ export default function useCardScroll() {
               yPercent: index => {
                 return (index + 1) * 5
               },
-              stagger: .5,
+              duration: (index) => (index + 1) * .5,
+              ease: "none"
             })
           });
 
