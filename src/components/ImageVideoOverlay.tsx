@@ -12,7 +12,7 @@ export default function ImageVideoOverlay({ imageSrc, imageWidth, imageHeight, v
     const aspectRatio = `${imageWidth}/${imageHeight}`;
 
     return (
-        <div className="w-full relative hv-center" style={{ aspectRatio }}>
+        <div className="w-full h-full relative hv-center" style={{ aspectRatio }}>
             <Image
                 src={imageSrc}
                 width={imageWidth}
@@ -29,7 +29,7 @@ export default function ImageVideoOverlay({ imageSrc, imageWidth, imageHeight, v
                     playsInline
                     autoPlay
                     aria-hidden="true"
-                    className="w-full z-1"
+                    className="w-full h-full z-1"
                     style={{width: `${adjustWidth}%`}}
                 />
             </div>

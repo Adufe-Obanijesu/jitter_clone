@@ -7,7 +7,7 @@ import Fifth from "./screens/Fifth";
 import Fourth from "./screens/Fourth";
 import Second from "./screens/Second";
 import Third from "./screens/Third";
-import Base from "@/sections/horizontal_scroll/screens/Base";
+import First from "@/sections/horizontal_scroll/screens/First";
 import {useWindowWidth} from "@react-hook/window-size/throttled";
 
 export default function HorizontalScroll() {
