@@ -14,7 +14,7 @@ import useLenis from "@/hooks/useLenis";
 import "@/effects"
 
 // Sections
-// import Navbar from "@/sections/navigation/Navbar";
+import Navbar from "@/sections/navigation/Navbar";
 import Hero from "@/sections/hero";
 import Customers from "@/sections/customers";
 import FeatureVideo from "@/sections/feature_video";
@@ -45,7 +45,9 @@ export default function Home() {
   return (
     <div className="bg-white relative z-10 ">
       <h1 className="sr-only">Jitter</h1>
-          {/*<Navbar />*/}
+        <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
+          <Navbar />
+        </div>
         <main id="main">
         <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
           <Hero />

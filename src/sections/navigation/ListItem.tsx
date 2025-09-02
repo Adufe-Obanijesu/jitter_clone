@@ -38,7 +38,7 @@ export default function ListItem({
       <li
           onMouseEnter={onHover}
           onMouseLeave={onLeave}
-          className={cn("ease-in font-semibold text-primary transition-opacity duration-200 group-hover:opacity-50 hover:!opacity-100 ")}>
+          className={cn("nav-item ease-in font-semibold text-primary transition-opacity duration-200 group-hover:opacity-50 hover:!opacity-100 ")}>
           <div>
           <Link href={item.href} className="cursor-pointer px-5 py-4">
             {item.name}

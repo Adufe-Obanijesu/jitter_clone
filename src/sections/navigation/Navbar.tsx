@@ -27,6 +27,7 @@ export default function Navbar() {
             <nav className="flex items-center justify-between gap-8 lg:max-w max-w-mobile w-full mx-auto z-30 lg:py-4 py-2 lg:px-8 pl-4 pr-2">
               <div className="links flex items-center gap-6 flex-1">
                 <Image
+                    id="logo"
                   src="/logo.svg"
                   width={82}
                   height={28}
@@ -109,7 +110,7 @@ export default function Navbar() {
                 <div
                     id="shadow-el"
                     data-open="false"
-                    className={`w-full h-full lg:max-w max-w-mobile shadow-nav lg:rounded-b-4xl rounded-b-xl bg-white opacity-0`}
+                    className={`w-full h-full lg:max-w max-w-mobile shadow-nav lg:rounded-4xl rounded-xl bg-white opacity-0`}
                 >
                 </div>
               </div>
