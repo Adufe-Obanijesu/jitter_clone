@@ -1,6 +1,5 @@
 "use client"
 
-// import HorizontalScroll from "@/sections/horizontal_scroll";
 
 // Tools
 import gsap from "gsap"
@@ -18,6 +17,7 @@ import Navbar from "@/sections/navigation/Navbar";
 import Hero from "@/sections/hero";
 import Customers from "@/sections/customers";
 import FeatureVideo from "@/sections/feature_video";
+import HorizontalScroll from "@/sections/horizontal_scroll";
 import WhatWeDo from "@/sections/what_we_do";
 import WhatWeOffer from "@/sections/what_we_offer";
 import Testimonial from "@/components/Testimonial";
@@ -46,37 +46,44 @@ export default function Home() {
     <div className="bg-white relative z-10 ">
       <h1 className="sr-only">Jitter</h1>
         <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
-          <Navbar />
+          {/*<Navbar />*/}
         </div>
         <main id="main">
-        <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
-          <Hero />
-          <Customers />
-          <FadeOnScroll>
-            <FeatureVideo />
-          </FadeOnScroll>
-          <WhatWeDo />
-          <WhatWeOffer />
-          <FadeOnScroll translate>
-            <Testimonial {...testimonials[0]} />
-          </FadeOnScroll>
-          <CreateFaster />
-          <FadeOnScroll translate>
-            <Testimonial {...testimonials[1]} />
-          </FadeOnScroll>
-        </div>
-          <WorkTogether />
+        {/*<div className="lg:max-w-[860px] max-w-[400px] mx-auto">*/}
+        {/*  <Hero />*/}
+        {/*  <Customers />*/}
+        {/*  <FadeOnScroll>*/}
+        {/*    <FeatureVideo />*/}
+        {/*  </FadeOnScroll>*/}
+        {/*  <WhatWeDo />*/}
+        {/*</div>*/}
+          <div className="h-screen"/>
+          <HorizontalScroll />
+          <div className="h-screen">d</div>
+          <div className="h-screen"/>
+          <div className="h-screen"/>
 
-        <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
-          <CreativePower />
-          <UseCases />
-          <Templates />
-          <Info />
-      </div>
+      {/*  <div className="lg:max-w-[860px] max-w-[400px] mx-auto">*/}
+      {/*    <WhatWeOffer />*/}
+      {/*    <FadeOnScroll translate>*/}
+      {/*      <Testimonial {...testimonials[0]} />*/}
+      {/*    </FadeOnScroll>*/}
+      {/*    <CreateFaster />*/}
+      {/*    <FadeOnScroll translate>*/}
+      {/*      <Testimonial {...testimonials[1]} />*/}
+      {/*    </FadeOnScroll>*/}
+      {/*  </div>*/}
+      {/*    <WorkTogether />*/}
 
-          <Footer />
+      {/*  <div className="lg:max-w-[860px] max-w-[400px] mx-auto">*/}
+      {/*    <CreativePower />*/}
+      {/*    <UseCases />*/}
+      {/*    <Templates />*/}
+      {/*    <Info />*/}
+      {/*</div>*/}
+
+      {/*    <Footer />*/}
     </main>
-        {/*<HorizontalScroll />*/}
 
         {/*<Chat />*/}
       </div>

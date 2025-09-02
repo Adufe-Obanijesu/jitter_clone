@@ -23,10 +23,11 @@ export default function Fifth() {
       </div>
 
       <Image
-        src="/images/horizontal_scroll/portrait.webp"
-        width={243}
-        height={493}
-        alt="fashion"
+        src="/images/horizontal_scroll/phone-frame.webp"
+        width={584}
+        height={1190}
+        className="h-[400px] w-full rounded-4xl"
+        alt="mobile view"
       />
     </div>
   );

@@ -3,62 +3,78 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
 import Fifth from "./screens/Fifth";
-import First from "./screens/First";
 import Fourth from "./screens/Fourth";
 import Second from "./screens/Second";
 import Third from "./screens/Third";
-import { useWindowSize } from "@react-hook/window-size";
-
-gsap.registerPlugin(ScrollTrigger);
+import Base from "@/sections/horizontal_scroll/screens/Base";
+import {useWindowWidth} from "@react-hook/window-size/throttled";
 
 export default function HorizontalScroll() {
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionsRef = useRef<HTMLDivElement>(null);
-  const [width] = useWindowSize();
+  const windowWidth = useWindowWidth()
 
   useGSAP(() => {
-    const sections = sectionsRef.current;
-    const container = containerRef.current;
 
-    if (!sections || !container) return;
+      if (!sectionsRef.current) return
 
-    const totalWidth = sections.scrollWidth - width;
+      const distance = sectionsRef.current.offsetWidth - (windowWidth / 1.5);
 
-    ScrollTrigger.create({
-      trigger: container,
-      pin: true,
-      start: "top top",
-      end: "+=5000",
-      scrub: 1,
-      animation: gsap.to(sections, {
-        x: -totalWidth,
-        ease: "none",
-      }),
-      invalidateOnRefresh: true,
-    });
+      const timeline = gsap.timeline({
+          scrollTrigger: {
+              trigger: ".horizontal-wrapper",
+              start: "top top",
+              end: `+=${sectionsRef.current.offsetWidth}px`,
+              pin: true,
+              scrub: true,
+              markers: true,
+          }
+      })
+          .to(".zoom-el", {
+              scale: 6.5,
+              transformOrigin: "center 37%",
+          })
+          .to(".left-item", {
+              x: -100
+          }, "<")
+          .to(".right-item", {
+              x: 100
+          }, "<")
+          .to(".top-item", {
+              y: -100
+          }, "<")
+          .to(".bottom-item", {
+              y: 100
+          }, "<")
+          .to(sectionsRef.current, {
+            x: -distance
+          })
 
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-    };
-  }, []);
+      return () => {
+          timeline.scrollTrigger?.kill()
+          timeline.kill()
+      }
+  }, [windowWidth])
 
   return (
-    <div
+    <section
       ref={containerRef}
-      className="mt-[140px] lg:mt-[180px] bg-[#e9e9e9] h-screen w-full overflow-hidden"
+      className="mt-[140px] lg:mt-[180px] h-screen w-full overflow-hidden"
     >
-      <div
-        ref={sectionsRef}
-        className="h-full p-[50px] flex items-center gap-10"
-      >
-        <First />
-        <Second />
-        <Third />
-        <Fourth />
-        <Fifth />
+      <div className="horizontal-wrapper bg-[#dddddd]">
+        <div
+          ref={sectionsRef}
+          className="h-full w-max flex items-center gap-10 bg-[#dddddd]"
+        >
+          <First />
+          {/*<First />*/}
+          <Second />
+          <Third />
+          <Fourth />
+          <Fifth />
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
