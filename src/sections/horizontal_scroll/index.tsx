@@ -29,6 +29,9 @@ export default function HorizontalScroll() {
               pin: true,
               scrub: true,
               markers: true,
+          },
+          defaults: {
+            ease: "none"
           }
       })
           .to(".zoom-el", {
@@ -65,14 +68,15 @@ export default function HorizontalScroll() {
       <div className="horizontal-wrapper bg-[#dddddd]">
         <div
           ref={sectionsRef}
-          className="h-full w-max flex items-center gap-10 bg-[#dddddd]"
+          className="h-full w-max flex items-center bg-[#dddddd]"
         >
           <First />
-          {/*<First />*/}
-          <Second />
-          <Third />
-          <Fourth />
-          <Fifth />
+          <div className="flex items-center gap-30">
+            <Second />
+            <Third />
+            <Fourth />
+            <Fifth />
+          </div>
         </div>
       </div>
     </section>

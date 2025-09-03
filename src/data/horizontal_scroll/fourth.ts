@@ -1,7 +1,27 @@
 export const videos = [
-  "twitch.mp4",
-  "fire_of_love.mp4",
-  "jump.mp4",
-  "civil_war.mp4",
-  "moma.mp4",
-];
+  {
+    video: "twitch",
+    width: 750,
+    height: 980
+  },
+  {
+    video: "fire_of_love",
+    width: 750,
+    height: 750
+  },
+  {
+    video: "jump",
+    width: 750,
+    height: 750
+  },
+  {
+    video: "civil_war",
+    width: 750,
+    height: 750
+  },
+  {
+    video: "moma",
+    width: 750,
+    height: 750
+  },
+]

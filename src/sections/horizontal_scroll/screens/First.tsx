@@ -6,7 +6,7 @@ import {videos} from "@/data/horizontal_scroll/first";
 export default function First() {
 
     return (
-        <div className="h-screen flex items-center justify-center w-screen bg-blue-100 shrink-0 overflow-hidden">
+        <div className="h-screen flex items-center justify-center w-screen shrink-0 bg-white overflow-hidden">
             <div className="zoom-el w-full aspect-[1.777/1] relative flex justify-center py-[67px] lg:max-w-[860px] max-w-[400px]">
                 <Image src="/images/horizontal_scroll/dashboard.webp" width={1280} height={720} className="lg:max-w-[860px] max-w-[400px] absolute top-0 left-0 w-full shadow-lg" alt="base" />
                 <div className="relative z-10 grid grid-cols-3 gap-4 grid-rows-3 h-[243px]">
