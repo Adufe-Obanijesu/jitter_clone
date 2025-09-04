@@ -46,43 +46,38 @@ export default function Home() {
     <div className="bg-white relative z-10 ">
       <h1 className="sr-only">Jitter</h1>
         <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
-          {/*<Navbar />*/}
+          <Navbar />
         </div>
         <main id="main">
-        {/*<div className="lg:max-w-[860px] max-w-[400px] mx-auto">*/}
-        {/*  <Hero />*/}
-        {/*  <Customers />*/}
-        {/*  <FadeOnScroll>*/}
-        {/*    <FeatureVideo />*/}
-        {/*  </FadeOnScroll>*/}
-        {/*  <WhatWeDo />*/}
-        {/*</div>*/}
-          <div className="h-screen"/>
+        <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
+          <Hero />
+          <Customers />
+          <FadeOnScroll>
+            <FeatureVideo />
+          </FadeOnScroll>
+          <WhatWeDo />
+        </div>
           <HorizontalScroll />
-          <div className="h-screen">d</div>
-          <div className="h-screen"/>
-          <div className="h-screen"/>
+        <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
+          <WhatWeOffer />
+          <FadeOnScroll translate>
+            <Testimonial {...testimonials[0]} />
+          </FadeOnScroll>
+          <CreateFaster />
+          <FadeOnScroll translate>
+            <Testimonial {...testimonials[1]} />
+          </FadeOnScroll>
+        </div>
+          <WorkTogether />
 
-      {/*  <div className="lg:max-w-[860px] max-w-[400px] mx-auto">*/}
-      {/*    <WhatWeOffer />*/}
-      {/*    <FadeOnScroll translate>*/}
-      {/*      <Testimonial {...testimonials[0]} />*/}
-      {/*    </FadeOnScroll>*/}
-      {/*    <CreateFaster />*/}
-      {/*    <FadeOnScroll translate>*/}
-      {/*      <Testimonial {...testimonials[1]} />*/}
-      {/*    </FadeOnScroll>*/}
-      {/*  </div>*/}
-      {/*    <WorkTogether />*/}
+        <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
+          <CreativePower />
+          <UseCases />
+          <Templates />
+          <Info />
+      </div>
 
-      {/*  <div className="lg:max-w-[860px] max-w-[400px] mx-auto">*/}
-      {/*    <CreativePower />*/}
-      {/*    <UseCases />*/}
-      {/*    <Templates />*/}
-      {/*    <Info />*/}
-      {/*</div>*/}
-
-      {/*    <Footer />*/}
+          <Footer />
     </main>
 
         {/*<Chat />*/}
