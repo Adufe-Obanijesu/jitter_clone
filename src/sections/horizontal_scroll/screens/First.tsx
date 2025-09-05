@@ -5,7 +5,7 @@ import { videos } from "@/data/horizontal_scroll/first";
 
 export default function First() {
   return (
-    <div className="lg:h-screen flex items-center justify-center w-screen shrink-0 bg-white overflow-hidden">
+    <div className="lg:h-screen flex items-center justify-center w-screen shrink-0 bg-white overflow-hidden px-5 lg:px-0">
       <div className="zoom-el w-full aspect-[1.777/1] relative flex justify-center py-[67px] lg:max-w-[860px] max-w-[400px]">
         <Image
           src="/images/horizontal_scroll/dashboard.webp"
@@ -19,7 +19,7 @@ export default function First() {
             <div
               key={index}
               className={cn(
-                "w-[110px] h-[70px] px- flex justify-center items-center ",
+                "w-[110px] h-[70px] px- flex justify-center items-center",
                 { "left-item": index % 3 === 0 },
                 { "right-item": index % 3 === 2 },
                 { "top-item": index < 3 },
