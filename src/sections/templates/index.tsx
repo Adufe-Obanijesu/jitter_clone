@@ -18,10 +18,10 @@ export default function Templates() {
   const { refs: pinRefs } = usePinButton();
 
   return (
-    <div ref={pinRefs.containerRef} className="mt-[200px] mobile_padding">
-      <div className="flex flex-col items-center gap-[30px]">
+    <div ref={pinRefs.containerRef} className="mt-[200px] lg:mobile_padding">
+      <div className="flex flex-col items-center gap-[30px] mobile_padding lg:px-0">
         <Tag className="bg-[#ae8bf4]">Templates</Tag>
-        <h2 className="text-[40px] lg:text-7xl font-bold text-center w-[400px] lg:w-[700px]">
+        <h2 className="text-[40px] lg:text-7xl font-bold text-center lg:max-w-[700px] max-w-[400px] lg:w-[700px]">
           Never start from scratch again
         </h2>
         <p className="text-center text-lg lg:max-w-[500px] max-w-[400px]">
@@ -42,7 +42,7 @@ export default function Templates() {
       <div className="templates-cards overflow-hidden mt-20">
         <div
           ref={refs.carouselRef}
-          className="flex overflow-hidden cursor-grab active:cursor-grabbing lg:px-0 w-max"
+          className="flex overflow-hidden lg:px-0 w-max"
         >
             <Cards occurrences={state.occurrences} />
         </div>
@@ -77,12 +77,20 @@ export default function Templates() {
 const Cards = memo(function Cards({ occurrences }: { occurrences: number }) {
     return (
         <>
-            {Array(occurrences)
-                .fill(0)
-                .flatMap(() => templates)
-                .map((item, index) => (
+            <div className="hidden lg:flex w-max">
+                {Array(occurrences)
+                    .fill(0)
+                    .flatMap(() => templates)
+                    .map((item, index) => (
+                        <Card key={`${item.title}-${index}`} index={index} {...item} />
+                ))}
+            </div>
+
+            <div className="flex lg:hidden w-max">
+                {templates.map((item, index) => (
                     <Card key={`${item.title}-${index}`} index={index} {...item} />
                 ))}
+            </div>
         </>
     );
 });

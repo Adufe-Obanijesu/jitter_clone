@@ -68,52 +68,77 @@ export default function useSlider() {
         const dimensions = getTrackDimensions();
         if (!dimensions) return;
 
-        const { track, sectionWidth, rangeSize } = dimensions;
-        const cloneWidth = numClones * rangeSize;
+        const mm = gsap.matchMedia()
 
-        const startX = -cloneWidth;
-        gsap.set(track, { x: startX });
-        currentPos.current = startX;
-
-        // Create a single timeline for the animation
-        timelineRef.current = gsap.timeline({
-            repeat: -1,
-        }).fromTo(track, {
-            x: startX
-        }, {
-            x: startX - sectionWidth,
-            duration: 20,
-            ease: "none"
-        });
-
-        setIsPlaying(true)
-
-        draggableRef.current = Draggable.create(track, {
-            type: "x",
-            bounds: {
-                minX: -(cloneWidth * 2 + sectionWidth),
-                maxX: 0
-            },
-            inertia: true,
-            onDragStart: function() {
-                timelineRef.current?.kill();
-                setIsPlaying(false)
-                draggableRef.current?.update()
-                currentPos.current = this.x;
-            },
-            onThrowComplete: function() {
-                checkBoundary(this.x);
+        mm.add({
+            isDesktop: "(min-width: 1024px)",
+            isMobile: "(max-width: 1023px)",
+        }, ctx => {
+            const { isDesktop } = ctx.conditions as {
+                isDesktop: boolean;
+                isMobile: boolean;
             }
-        })[0];
+
+            const { track, sectionWidth, rangeSize, totalWidth } = dimensions;
+            const cloneWidth = numClones * rangeSize;
+
+            const startX = isDesktop ? -cloneWidth : 0;
+            gsap.set(track, { x: startX });
+            currentPos.current = startX;
+
+            if (isDesktop) {
+
+                    timelineRef.current = gsap.timeline({
+                        repeat: -1,
+                    }).fromTo(track, {
+                        x: startX
+                    }, {
+                        x: startX - sectionWidth,
+                        duration: 20,
+                        ease: "none"
+                    });
+
+                    setIsPlaying(true)
+                }
+
+            const minX = isDesktop ? -(cloneWidth * 2 + sectionWidth) : -(totalWidth - (totalWidth - 10) / 14) + 30;
+
+            draggableRef.current = Draggable.create(track, {
+                type: "x",
+                bounds: {
+                    minX,
+                    maxX: 0
+                },
+                inertia: true,
+                onDragStart: function() {
+                    if (isDesktop) {
+                        timelineRef.current?.kill();
+                        setIsPlaying(false)
+                        draggableRef.current?.update()
+                        currentPos.current = this.x;
+                    }
+                },
+                onThrowComplete: function() {
+                    if (isDesktop) {
+                     checkBoundary(this.x);
+                    }
+                }
+            })[0];
+
+            return () => {
+                if (draggableRef.current) {
+                    draggableRef.current.kill();
+                }
+                if (timelineRef.current) {
+                    timelineRef.current.kill();
+                }
+            };
+        })
 
         return () => {
-            if (draggableRef.current) {
-                draggableRef.current.kill();
-            }
-            if (timelineRef.current) {
-                timelineRef.current.kill();
-            }
-        };
+            mm.revert()
+        }
+
     }, [getTrackDimensions, checkBoundary]);
 
     const toggleAutoScroll = useCallback(() => {

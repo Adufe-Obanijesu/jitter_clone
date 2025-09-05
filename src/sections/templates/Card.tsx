@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import Image from "next/image";
+import {cn} from "@/utils/tailwind";
 
 interface CardProps {
   title: string;
@@ -16,12 +17,13 @@ export default function Card({
   media,
   logo,
   logoAlt,
+  index,
 }: CardProps) {
 
   return (
-      <div className="px-2.5">
+      <div className={cn("px-2.5", {"pl-5": index === 0})}>
         <div
-          className="rounded-[40px] py-[40px] lg:py-[60px] lg:px-10 px-[30px] max-w-[400px] lg:w-[460px] lg:h-[546px] h-[370px] shrink-0 bg-light-grey relative flex flex-col gap-4 justify-between"
+          className="rounded-[40px] py-[40px] lg:py-[60px] lg:px-10 px-[30px] max-w-[calc(100vw-60px)] lg:w-[460px] lg:h-[546px] h-[370px] shrink-0 bg-light-grey relative flex flex-col gap-4 justify-between"
         >
           <div className="flex-1 w-full h-full flex justify-center items-center">
             <div className="aspect-video w-full flex justify-center items-center">
