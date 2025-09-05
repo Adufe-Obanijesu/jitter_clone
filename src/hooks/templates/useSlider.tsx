@@ -1,101 +1,52 @@
 "use client";
 
 import gsap from "gsap";
-import { useRef, useEffect } from "react";
+import {useRef, useCallback, useMemo, useState} from "react";
 import {Draggable} from "gsap/Draggable";
 import {templates} from "@/data/templates";
+import {useGSAP} from "@gsap/react";
 
 export default function useSlider() {
   const carouselRef = useRef<HTMLDivElement | null>(null);
     const draggableRef = useRef<Draggable>(null);
     const timelineRef = useRef<gsap.core.Timeline>(null);
+    const currentPos = useRef(0)
+    const [isPlaying, setIsPlaying] = useState(false)
 
-    useEffect(() => {
-        if (!carouselRef.current) return;
+
+    const numClones = 1
+    const occurrences = useMemo(() => numClones * 2 + 1, [])
+    const totalImages = useMemo(() => templates.length, [])
+
+    const getTrackDimensions = useCallback(() => {
+        if (!carouselRef.current) return null;
         const track = carouselRef.current;
-        const totalImages = templates.length
-        const totalWidth = track.offsetWidth
-        const imageWidth = totalWidth / (totalImages * 5)
-        const numClones = 2;
+        const totalWidth = track.offsetWidth;
+        const imageWidth = totalWidth / (totalImages * occurrences);
+        const rangeSize = totalImages * imageWidth;
+        const sectionWidth = totalWidth / occurrences;
 
-        console.log("totalWidth: ", totalWidth)
-        console.log("imageWidth: ", imageWidth)
-        console.log("totalImages: ", totalImages)
-        console.log("numClones: =", numClones)
-
-        const sectionWidth = totalWidth / 5;
-        const cloneWidth = numClones * totalImages * imageWidth;
-
-
-        // Position track so original images are in the center
-        const startX = -cloneWidth;
-        gsap.set(track, { x: startX });
-
-        timelineRef.current = gsap.timeline({
-            repeat: -1,
-        })
-            .fromTo(carouselRef.current, {
-                x: startX
-            }, {
-                x: startX - sectionWidth,
-                duration: 20,
-                ease: "none"
-            })
-
-        // Create draggable
-        draggableRef.current = Draggable.create(track, {
-            type: "x",
-            bounds: {
-                minX: -(cloneWidth * 2 + sectionWidth),
-                maxX: 0
-            },
-            inertia: true,
-            onDragStart: function() {
-                timelineRef.current?.kill()
-            },
-            onDragEnd: function() {
-                // checkBoundary(this.x);
-            },
-            onThrowUpdate: function() {
-
-            },
-            onThrowComplete: function() {
-                checkBoundary(this.x);
-            }
-        })[0];
-
-        return () => {
-            if (draggableRef.current) {
-                draggableRef.current.kill();
-            }
+        return {
+            track,
+            totalWidth,
+            imageWidth,
+            rangeSize,
+            sectionWidth
         };
-    }, [carouselRef.current]);
+    }, [totalImages, occurrences]);
 
-    function checkBoundary(currentX: number) {
-        if (!carouselRef.current) return;
-        const track = carouselRef.current;
-        const totalImages = templates.length
-        const totalWidth = track.offsetWidth
-        const imageWidth = totalWidth / (totalImages * 5)
-        const numClones = 2;
+    const checkBoundary = useCallback((currentX: number) => {
+        const dimensions = getTrackDimensions();
+        if (!dimensions || !carouselRef.current) return;
 
-        console.log("currentx: ", currentX)
-
-        const rangeSize = templates.length * imageWidth;
-        const leftBoundary = -numClones * rangeSize;
+        const { rangeSize, sectionWidth } = dimensions;
         const rightBoundary = (-numClones * rangeSize) - rangeSize;
-        const min = rightBoundary - 1
-        console.log("left: ", leftBoundary)
-        console.log("right: ", rightBoundary)
-        console.log("min: ", min)
+        const min = rightBoundary - 1;
 
-        const isScrollingRight = currentX < rightBoundary;
+        const isScrollingRight = currentX < currentPos.current;
 
-        // if (currentX < rightBoundary) {
-        const newX = ((currentX - min) % rangeSize + rangeSize) % rangeSize + min
-        console.log(newX)
+        const newX = ((currentX - min) % rangeSize + rangeSize) % rangeSize + min;
         gsap.set(carouselRef.current, { x: newX });
-        const sectionWidth = totalWidth / 5;
 
         gsap.delayedCall(0.1, () => {
             timelineRef.current = gsap.timeline({
@@ -108,22 +59,85 @@ export default function useSlider() {
                     duration: 20,
                     ease: "none"
                 })
+
+                setIsPlaying(true)
         })
-        // }
-        // else {
-        //     gsap.set(trackRef.current, { x: currentX - (currentX - rightBoundary) });
-        // }
-    }
+    }, [getTrackDimensions])
 
-  return {
-    refs: {
-      carouselRef,
-    },
-    state: {
+    useGSAP(() => {
+        const dimensions = getTrackDimensions();
+        if (!dimensions) return;
 
-    },
-    actions: {
+        const { track, sectionWidth, rangeSize } = dimensions;
+        const cloneWidth = numClones * rangeSize;
 
-    },
-  };
+        const startX = -cloneWidth;
+        gsap.set(track, { x: startX });
+        currentPos.current = startX;
+
+        // Create a single timeline for the animation
+        timelineRef.current = gsap.timeline({
+            repeat: -1,
+        }).fromTo(track, {
+            x: startX
+        }, {
+            x: startX - sectionWidth,
+            duration: 20,
+            ease: "none"
+        });
+
+        setIsPlaying(true)
+
+        draggableRef.current = Draggable.create(track, {
+            type: "x",
+            bounds: {
+                minX: -(cloneWidth * 2 + sectionWidth),
+                maxX: 0
+            },
+            inertia: true,
+            onDragStart: function() {
+                timelineRef.current?.kill();
+                setIsPlaying(false)
+                draggableRef.current?.update()
+                currentPos.current = this.x;
+            },
+            onThrowComplete: function() {
+                checkBoundary(this.x);
+            }
+        })[0];
+
+        return () => {
+            if (draggableRef.current) {
+                draggableRef.current.kill();
+            }
+            if (timelineRef.current) {
+                timelineRef.current.kill();
+            }
+        };
+    }, [getTrackDimensions, checkBoundary]);
+
+    const toggleAutoScroll = useCallback(() => {
+        if (!timelineRef.current) return;
+
+        if (timelineRef.current.paused()) {
+            timelineRef.current.play();
+            setIsPlaying(true);
+        } else {
+            timelineRef.current.pause();
+            setIsPlaying(false);
+        }
+    }, []);
+
+    return {
+        refs: {
+            carouselRef,
+        },
+        state: {
+            occurrences,
+            isPlaying,
+        },
+        actions: {
+            toggleAutoScroll
+        },
+    };
 }

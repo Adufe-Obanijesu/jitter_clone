@@ -9,6 +9,7 @@ import { FaPlay, FaPause } from "react-icons/fa6";
 import useSlider from "@/hooks/templates/useSlider";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import usePinButton from "@/hooks/templates/usePinButton";
+import {memo} from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -42,18 +43,8 @@ export default function Templates() {
         <div
           ref={refs.carouselRef}
           className="flex overflow-hidden cursor-grab active:cursor-grabbing lg:px-0 w-max"
-          // style={{
-          //   scrollbarWidth: "none",
-          //   msOverflowStyle: "none",
-          //   WebkitOverflowScrolling: "touch",
-          // }}
         >
-            {Array(5)
-                .fill(0)
-                .flatMap(() => templates)
-                .map((item, index) => (
-                    <Card key={`${item.title}-${index}`} index={index} {...item} />
-                ))}
+            <Cards occurrences={state.occurrences} />
         </div>
       </div>
 
@@ -69,16 +60,29 @@ export default function Templates() {
       >
         <button
           className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center"
-          // onClick={actions.toggleAutoScroll}
-          // aria-label={state.isPlaying ? "Pause carousel" : "Play carousel"}
+          onClick={actions.toggleAutoScroll}
+          aria-label={state.isPlaying ? "Pause carousel" : "Play carousel"}
         >
-          {/*{state.isPlaying ? (*/}
-          {/*  <FaPause className="text-black" />*/}
-          {/*) : (*/}
-          {/*  <FaPlay className="text-black" />*/}
-          {/*)}*/}
+          {state.isPlaying ? (
+            <FaPause className="text-black" />
+          ) : (
+            <FaPlay className="text-black" />
+          )}
         </button>
       </div>
     </div>
   );
 }
+
+const Cards = memo(function Cards({ occurrences }: { occurrences: number }) {
+    return (
+        <>
+            {Array(occurrences)
+                .fill(0)
+                .flatMap(() => templates)
+                .map((item, index) => (
+                    <Card key={`${item.title}-${index}`} index={index} {...item} />
+                ))}
+        </>
+    );
+});
