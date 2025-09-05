@@ -1,172 +1,129 @@
 "use client";
 
-import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { useRef, useState, useEffect, useCallback } from "react";
+import { useRef, useEffect } from "react";
+import {Draggable} from "gsap/Draggable";
+import {templates} from "@/data/templates";
 
 export default function useSlider() {
   const carouselRef = useRef<HTMLDivElement | null>(null);
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
-  const autoplayRef = useRef<gsap.core.Tween | null>(null);
+    const draggableRef = useRef<Draggable>(null);
+    const timelineRef = useRef<gsap.core.Timeline>(null);
 
-  const startAutoScroll = useCallback((): void => {
-    if (!carouselRef.current) return;
+    useEffect(() => {
+        if (!carouselRef.current) return;
+        const track = carouselRef.current;
+        const totalImages = templates.length
+        const totalWidth = track.offsetWidth
+        const imageWidth = totalWidth / (totalImages * 5)
+        const numClones = 2;
 
-    pauseAutoScroll();
+        console.log("totalWidth: ", totalWidth)
+        console.log("imageWidth: ", imageWidth)
+        console.log("totalImages: ", totalImages)
+        console.log("numClones: =", numClones)
 
-    const carousel = carouselRef.current;
-    const scrollWidth = carousel.scrollWidth - carousel.clientWidth;
+        const sectionWidth = totalWidth / 5;
+        const cloneWidth = numClones * totalImages * imageWidth;
 
-    autoplayRef.current = gsap.to(carousel, {
-      scrollLeft: scrollWidth,
-      duration: 60,
-      ease: "none",
-      repeat: -1,
-      yoyo: true,
-      onRepeat: () => {
-        gsap.set(carousel, { scrollLeft: carousel.scrollLeft });
-      },
-    });
 
-    setIsPlaying(true);
-  }, []);
+        // Position track so original images are in the center
+        const startX = -cloneWidth;
+        gsap.set(track, { x: startX });
 
-  const pauseAutoScroll = (): void => {
-    if (autoplayRef.current) {
-      autoplayRef.current.kill();
-      autoplayRef.current = null;
+        timelineRef.current = gsap.timeline({
+            repeat: -1,
+        })
+            .fromTo(carouselRef.current, {
+                x: startX
+            }, {
+                x: startX - sectionWidth,
+                duration: 20,
+                ease: "none"
+            })
+
+        // Create draggable
+        draggableRef.current = Draggable.create(track, {
+            type: "x",
+            bounds: {
+                minX: -(cloneWidth * 2 + sectionWidth),
+                maxX: 0
+            },
+            inertia: true,
+            onDragStart: function() {
+                timelineRef.current?.kill()
+            },
+            onDragEnd: function() {
+                // checkBoundary(this.x);
+            },
+            onThrowUpdate: function() {
+
+            },
+            onThrowComplete: function() {
+                checkBoundary(this.x);
+            }
+        })[0];
+
+        return () => {
+            if (draggableRef.current) {
+                draggableRef.current.kill();
+            }
+        };
+    }, [carouselRef.current]);
+
+    function checkBoundary(currentX: number) {
+        if (!carouselRef.current) return;
+        const track = carouselRef.current;
+        const totalImages = templates.length
+        const totalWidth = track.offsetWidth
+        const imageWidth = totalWidth / (totalImages * 5)
+        const numClones = 2;
+
+        console.log("currentx: ", currentX)
+
+        const rangeSize = templates.length * imageWidth;
+        const leftBoundary = -numClones * rangeSize;
+        const rightBoundary = (-numClones * rangeSize) - rangeSize;
+        const min = rightBoundary - 1
+        console.log("left: ", leftBoundary)
+        console.log("right: ", rightBoundary)
+        console.log("min: ", min)
+
+        const isScrollingRight = currentX < rightBoundary;
+
+        // if (currentX < rightBoundary) {
+        const newX = ((currentX - min) % rangeSize + rangeSize) % rangeSize + min
+        console.log(newX)
+        gsap.set(carouselRef.current, { x: newX });
+        const sectionWidth = totalWidth / 5;
+
+        gsap.delayedCall(0.1, () => {
+            timelineRef.current = gsap.timeline({
+                repeat: -1,
+            })
+                .fromTo(carouselRef.current, {
+                    x: newX
+                }, {
+                    x: newX - (isScrollingRight ? sectionWidth : -sectionWidth),
+                    duration: 20,
+                    ease: "none"
+                })
+        })
+        // }
+        // else {
+        //     gsap.set(trackRef.current, { x: currentX - (currentX - rightBoundary) });
+        // }
     }
-    setIsPlaying(false);
-  };
-
-  const toggleAutoScroll = (): void => {
-    if (isPlaying) {
-      pauseAutoScroll();
-    } else {
-      startAutoScroll();
-    }
-  };
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      startAutoScroll();
-    }, 100);
-
-    return () => {
-      clearTimeout(timer);
-      pauseAutoScroll();
-    };
-  }, [startAutoScroll]);
-
-  useGSAP(
-    () => {
-      if (!carouselRef.current) return;
-
-      const carousel = carouselRef.current;
-
-      let isDown = false;
-      let startX: number;
-      let scrollLeft: number;
-
-      const handleMouseDown = (e: MouseEvent): void => {
-        isDown = true;
-        carousel.classList.add("active");
-        startX = e.pageX - carousel.offsetLeft;
-        scrollLeft = carousel.scrollLeft;
-
-        pauseAutoScroll();
-      };
-
-      const handleMouseLeave = (): void => {
-        isDown = false;
-        carousel.classList.remove("active");
-      };
-
-      const handleMouseUp = (): void => {
-        isDown = false;
-        carousel.classList.remove("active");
-      };
-
-      const handleMouseMove = (e: MouseEvent): void => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - carousel.offsetLeft;
-        const walk = (x - startX) * 2;
-        carousel.scrollLeft = scrollLeft - walk;
-      };
-
-      const handleTouchStart = (e: TouchEvent): void => {
-        isDown = true;
-        carousel.classList.add("active");
-        startX = e.touches[0].pageX - carousel.offsetLeft;
-        scrollLeft = carousel.scrollLeft;
-
-        pauseAutoScroll();
-      };
-
-      const handleTouchEnd = (): void => {
-        isDown = false;
-        carousel.classList.remove("active");
-      };
-
-      const handleTouchMove = (e: TouchEvent): void => {
-        if (!isDown) return;
-        const x = e.touches[0].pageX - carousel.offsetLeft;
-        const walk = (x - startX) * 2;
-        carousel.scrollLeft = scrollLeft - walk;
-      };
-
-      carousel.addEventListener("mousedown", handleMouseDown as EventListener);
-      carousel.addEventListener("mouseleave", handleMouseLeave);
-      carousel.addEventListener("mouseup", handleMouseUp);
-      carousel.addEventListener("mousemove", handleMouseMove as EventListener);
-      carousel.addEventListener(
-        "touchstart",
-        handleTouchStart as EventListener,
-      );
-      carousel.addEventListener("touchend", handleTouchEnd);
-      carousel.addEventListener("touchmove", handleTouchMove as EventListener);
-
-      return () => {
-        if (carousel) {
-          carousel.removeEventListener(
-            "mousedown",
-            handleMouseDown as EventListener,
-          );
-          carousel.removeEventListener("mouseleave", handleMouseLeave);
-          carousel.removeEventListener("mouseup", handleMouseUp);
-          carousel.removeEventListener(
-            "mousemove",
-            handleMouseMove as EventListener,
-          );
-          carousel.removeEventListener(
-            "touchstart",
-            handleTouchStart as EventListener,
-          );
-          carousel.removeEventListener("touchend", handleTouchEnd);
-          carousel.removeEventListener(
-            "touchmove",
-            handleTouchMove as EventListener,
-          );
-        }
-        pauseAutoScroll();
-      };
-    },
-    { scope: carouselRef },
-  );
 
   return {
     refs: {
       carouselRef,
-      autoplayRef,
     },
     state: {
-      isPlaying,
+
     },
     actions: {
-      toggleAutoScroll,
-      startAutoScroll,
-      pauseAutoScroll,
+
     },
   };
 }

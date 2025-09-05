@@ -41,16 +41,19 @@ export default function Templates() {
       <div className="templates-cards overflow-hidden mt-20">
         <div
           ref={refs.carouselRef}
-          className="flex gap-5 overflow-x-auto cursor-grab active:cursor-grabbing px-5 lg:px-0"
-          style={{
-            scrollbarWidth: "none",
-            msOverflowStyle: "none",
-            WebkitOverflowScrolling: "touch",
-          }}
+          className="flex overflow-hidden cursor-grab active:cursor-grabbing lg:px-0 w-max"
+          // style={{
+          //   scrollbarWidth: "none",
+          //   msOverflowStyle: "none",
+          //   WebkitOverflowScrolling: "touch",
+          // }}
         >
-          {templates.map((item, index) => (
-            <Card key={item.title} index={index} {...item} />
-          ))}
+            {Array(5)
+                .fill(0)
+                .flatMap(() => templates)
+                .map((item, index) => (
+                    <Card key={`${item.title}-${index}`} index={index} {...item} />
+                ))}
         </div>
       </div>
 
@@ -66,14 +69,14 @@ export default function Templates() {
       >
         <button
           className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center"
-          onClick={actions.toggleAutoScroll}
-          aria-label={state.isPlaying ? "Pause carousel" : "Play carousel"}
+          // onClick={actions.toggleAutoScroll}
+          // aria-label={state.isPlaying ? "Pause carousel" : "Play carousel"}
         >
-          {state.isPlaying ? (
-            <FaPause className="text-black" />
-          ) : (
-            <FaPlay className="text-black" />
-          )}
+          {/*{state.isPlaying ? (*/}
+          {/*  <FaPause className="text-black" />*/}
+          {/*) : (*/}
+          {/*  <FaPlay className="text-black" />*/}
+          {/*)}*/}
         </button>
       </div>
     </div>

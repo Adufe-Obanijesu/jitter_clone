@@ -18,17 +18,17 @@ export default function Card({
   logoAlt,
 }: CardProps) {
 
-  const [hasRendered, setHasRendered] = useState(false);
-
-  useEffect(() => {
-    setHasRendered(true);
-  }, []);
-
-  if (!hasRendered) return null;
+  // const [hasRendered, setHasRendered] = useState(false);
+  //
+  // useEffect(() => {
+  //   setHasRendered(true);
+  // }, []);
+  //
+  // if (!hasRendered) return null;
 
   return (
     <div
-      className="rounded-[40px] py-[40px] lg:py-[60px] lg:px-10 px-[30px] lg:max-w-[460px] max-w-[400px] w-full lg:h-[546px] h-[370px] shrink-0 bg-light-grey relative flex flex-col gap-4 justify-between"
+      className="rounded-[40px] py-[40px] lg:py-[60px] lg:px-10 px-[30px] lg:max-w-[460px] max-w-[400px] w-[460px] lg:h-[546px] h-[370px] shrink-0 bg-light-grey relative flex flex-col gap-4 justify-between"
     >
       <div className="flex-1 w-full h-full flex justify-center items-center">
         <div className="aspect-video w-full flex justify-center items-center">
