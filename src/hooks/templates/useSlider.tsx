@@ -56,7 +56,7 @@ export default function useSlider() {
                     x: newX
                 }, {
                     x: newX - (isScrollingRight ? sectionWidth : -sectionWidth),
-                    duration: 20,
+                    duration: 60,
                     ease: "none"
                 })
 
@@ -110,6 +110,7 @@ export default function useSlider() {
                     maxX: 0
                 },
                 inertia: true,
+                dragClickables: true,
                 onDragStart: function() {
                     if (isDesktop) {
                         timelineRef.current?.kill();
