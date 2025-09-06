@@ -13,7 +13,7 @@ export default function UseCases() {
 
   return (
     <section className="lg:max-w-[860px] max-w-[400px] mx-auto mobile_padding">
-      <div id="use-cases" className="invisible bg-light-grey lg:rounded-[80px] rounded-[20px] lg:p-[60px] p-[20px] lg:-mx-[60px] mt-[180px]">
+      <div id="use-cases" className="invisible bg-light-grey lg:rounded-[80px] rounded-[20px] py-5 lg:p-[60px] lg:-mx-[60px] mt-[180px]">
         <div className="">
           <div className="flex flex-col gap-[30px]">
             <Tag className="bg-[#f468ff]">Use cases</Tag>
@@ -78,17 +78,15 @@ export default function UseCases() {
         </div>
 
         {/*  Mobile Screen */}
-        {
-          state.hasRendered && (
               <div className="overflow-x-hidden">
-                <div ref={refs.draggableRef} className="mobile-use-cases flex gap-4">
+                <div ref={refs.draggableRef} className="mobile-use-cases flex">
                   {tabs.map((tab) => {
                       return (
                           <div
                               key={tab.id}
-                              className="mt-[60px] lg:hidden flex flex-col gap-2.5" style={{width: `${state.cardWidth}px`}}>
+                              className="mt-[60px] lg:hidden flex flex-col gap-2.5 max-w-[360px] px-5 w-[calc(100vw-40px)]">
                               <div className="w-full flex-1 flex items-center justify-center bg-white">
-                                  <div className="w-full relative aspect-square" style={{height: `${state.cardWidth}px`}}>
+                                  <div className="w-full relative aspect-square max-h-[400px] h-[calc(100vw-80px)]">
                                       <Image
                                           src={tab.media.imageSrc}
                                           width={1200}
@@ -98,15 +96,23 @@ export default function UseCases() {
                                       />
                                       <div
                                           className="absolute left-0 top-0 w-full h-full flex items-center z-0">
-                                          <video
-                                              ref={refs.videoRef}
-                                              src={tab.media.videoSrc}
-                                              muted
-                                              playsInline
-                                              autoPlay
-                                              aria-hidden="true"
-                                              className="w-full h-full z-1"
-                                          />
+                                        <video
+                                            ref={tab.id === state.activeTab ? refs.videoRef : undefined}
+                                            src={tab.media.videoSrc}
+                                            muted
+                                            playsInline
+                                            autoPlay={tab.id === state.activeTab} // Only autoplay if active
+                                            preload="none"
+                                            aria-hidden="true"
+                                            className="w-full h-full z-1"
+                                            onLoadedData={(e) => {
+                                              if (tab.id !== state.activeTab) {
+                                                const video = e.currentTarget;
+                                                video.pause();
+                                                video.currentTime = 0;
+                                              }
+                                            }}
+                                        />
                                       </div>
                                   </div>
                               </div>
@@ -133,8 +139,6 @@ export default function UseCases() {
                   }
                 </div>
               </div>
-            )
-        }
       </div>
     </section>
   );

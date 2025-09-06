@@ -1,11 +1,12 @@
 "use client";
 
 import { tabs } from "@/data/use_cases/tabs";
-import {useEffect, useMemo, useRef, useState} from "react";
+import {useMemo, useRef, useState} from "react";
 import {useWindowWidth} from "@react-hook/window-size/throttled";
 import {useGSAP} from "@gsap/react";
 import gsap from "gsap"
 import { Draggable } from "gsap/Draggable";
+import ScrollTrigger from "gsap/ScrollTrigger";
 
 export default function useVideoSlider() {
   const [activeTab, setActiveTab] = useState(0);
@@ -13,69 +14,94 @@ export default function useVideoSlider() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const draggableRef = useRef<HTMLDivElement>(null);
   const tabCount = tabs.length;
-  const [hasRendered, setHasRendered] = useState(false);
   const width = useWindowWidth()
   const isMobile = useMemo(() => width < 1024, [width]);
 
-  const cardWidth = useMemo(() => Math.min(width, 400) - 80, [width])
-  const cardGap = 20;
+  const cardWidth = useMemo(() => {
+    if (isMobile) {
+      return Math.min(width, 400) - 40
+    }
 
-  useEffect(() => {
-    setHasRendered(true)
-  }, []);
+     return Math.min(width, 400) - 80
+  }, [width, isMobile])
 
   const {contextSafe} = useGSAP(() => {
     const mm = gsap.matchMedia()
 
     const video = videoRef.current;
     if (!video) return;
+    video.pause()
 
     const handleTimeUpdate = () => {
       if (video.duration) {
         setProgress(video.currentTime / video.duration);
       }
     };
+
     const handleVideoEnded = () => {
-      const newActiveTab = (activeTab + 1) % tabCount;
+      setActiveTab(prevActiveTab => {
+        const newActiveTab = (prevActiveTab + 1) % tabCount;
 
-      setActiveTab(newActiveTab);
-      setProgress(0);
-
-      mm.add("(max-width: 1023px)", () => {
-        gsap.to(".mobile-use-cases", {
-          x: newActiveTab * -(cardWidth + 20)
+        // Move GSAP animation inside the state update
+        mm.add("(max-width: 1023px)", () => {
+          gsap.to(".mobile-use-cases", {
+            x: newActiveTab * -(cardWidth)
+          })
         })
-      })
-    };
 
+        return newActiveTab;
+      });
+      setProgress(0);
+    };
 
     video.addEventListener("timeupdate", handleTimeUpdate);
     video.addEventListener("ended", handleVideoEnded);
 
     setProgress(0);
+      video.currentTime = 0;
 
-    if (video.paused) {
-      video.play();
-    }
+    // Only play when in view
+    const st = ScrollTrigger.create({
+      trigger: video,
+      start: "top bottom",
+      end: "bottom top",
+      onEnter: () => {
+        video.play().catch(() => {});
+      },
+      onLeaveBack: () => {
+        video.pause()
+      },
+      onLeave: () => {
+        video.pause()
+      },
+      onEnterBack: () => {
+        video.play().catch(() => {});
+      },
+    })
+
+    gsap.delayedCall(.5, () => {
+      ScrollTrigger.refresh();
+    })
 
     return () => {
       video.removeEventListener("timeupdate", handleTimeUpdate);
       video.removeEventListener("ended", handleVideoEnded);
       mm.revert()
+      st.kill()
     };
-  }, [activeTab, tabCount, videoRef.current]);
+  }, [tabCount, activeTab, isMobile]);
 
   const moveTo = contextSafe((index: number) => {
     setProgress(0);
     setActiveTab(index)
 
     gsap.to(".mobile-use-cases", {
-      x: index * -(cardWidth + cardGap)
+      x: index * -cardWidth
     })
   })
 
   const updateActiveTab = (x: number) => {
-    const newActiveTab = Math.abs(Math.round(x / (cardWidth + cardGap)));
+    const newActiveTab = Math.abs(Math.round(x / cardWidth));
     if (newActiveTab !== activeTab) {
       setActiveTab(newActiveTab);
       setProgress(0);
@@ -84,7 +110,7 @@ export default function useVideoSlider() {
       if (video) {
         video.currentTime = 0;
         if (video.paused) {
-          video.play();
+          video.play().catch(() => {});
         }
       }
     }
@@ -97,7 +123,7 @@ export default function useVideoSlider() {
       const video = videoRef.current;
       if (!video || !draggableRef.current) return;
 
-      const minX = (tabCount - 1) * -(cardWidth + cardGap);
+      const minX = (tabCount - 1) * - cardWidth;
       const maxX = 0;
 
       Draggable.create(".mobile-use-cases", {
@@ -105,7 +131,7 @@ export default function useVideoSlider() {
         bounds: { minX, maxX },
         inertia: true,
         snap: {
-          x: (endValue) => Math.round(endValue / (cardWidth + cardGap)) * (cardWidth + cardGap)
+          x: (endValue) => Math.round(endValue / cardWidth * cardWidth)
         },
         onThrowComplete: function() {
           updateActiveTab(this.endX);
@@ -113,10 +139,29 @@ export default function useVideoSlider() {
       });
     })
 
+
     return () => {
       mm.revert()
     }
   }, [isMobile, cardWidth, tabCount, activeTab])
+
+  // Add this new useGSAP hook for managing non-active videos on mobile
+  useGSAP(() => {
+    if (!isMobile) return;
+
+    // Find all video elements and manage their state
+    const allVideos = document.querySelectorAll('.mobile-use-cases video');
+
+    allVideos.forEach((video, index) => {
+      const videoElement = video as HTMLVideoElement;
+
+      if (index !== activeTab) {
+        // Pause and reset non-active videos
+        videoElement.pause();
+        videoElement.currentTime = 0;
+      }
+    });
+  }, [activeTab, isMobile]);
 
   return {
     refs: {
@@ -126,7 +171,6 @@ export default function useVideoSlider() {
     state: {
       progress,
       activeTab,
-      hasRendered,
       width,
       cardWidth
     },

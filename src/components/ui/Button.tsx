@@ -14,20 +14,18 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ children, rightIcon, animateOnHover=true, ariaId, className = "", ...rest }, ref) => {
 
     const scope = useRef<HTMLDivElement>(null)
-    const timeline = useRef<gsap.core.Timeline>(null)
+      const duration = .3
 
-    const {contextSafe} = useGSAP(() => {
-      if (!animateOnHover) return;
-      timeline.current = gsap.timeline({paused: true, defaults: {ease: "back.out(2.5)"}})
-    .add(gsap.effects.scaleEffect("button", {direction: "up"}))
-    }, {scope})
+    const {contextSafe} = useGSAP(() => {}, {scope})
 
     const onHover = contextSafe(() => {
-      timeline.current?.play()
+        if (!animateOnHover) return
+        gsap.fromTo("button", {scale: 1}, { scale: 1.05, ease: "back.out(2.5)", duration });
     })
-  
+
     const onLeave = contextSafe(() => {
-      timeline.current?.reverse()
+        if (!animateOnHover) return
+        gsap.to("button", {scale: 1, duration});
     })
 
     return (
