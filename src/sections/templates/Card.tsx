@@ -1,4 +1,4 @@
-import {ReactNode, useRef} from "react";
+import {ReactNode, useEffect, useRef} from "react";
 import Image from "next/image";
 import {cn} from "@/utils/tailwind";
 import Button from "@/components/ui/Button";
@@ -23,9 +23,38 @@ export default function Card({
 }: CardProps) {
 
   const buttonRef = useRef<HTMLButtonElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!containerRef.current) return
+    const video = containerRef.current.querySelector("video")
+    if (!video) return
+    video.pause()
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              video.play().catch(() => {})
+            } else {
+              video.pause()
+            }
+          });
+        },
+        {
+          root: document.querySelector('.templates-cards'),
+          threshold: 0.5,
+          rootMargin: '0px'
+        }
+    );
+
+    observer.observe(containerRef.current);
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
-      <div className={cn("px-2.5", {"pl-5": index === 0})}>
+      <div id={title} ref={containerRef} className={cn("px-2.5", {"pl-5": index === 0})}>
         <div
           className="rounded-[40px] py-[40px] lg:py-[60px] lg:px-10 px-[30px] max-w-[calc(100vw-60px)] lg:w-[460px] lg:h-[546px] h-[370px] shrink-0 bg-light-grey relative flex flex-col gap-4 justify-between"
         >

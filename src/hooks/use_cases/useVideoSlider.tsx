@@ -42,7 +42,6 @@ export default function useVideoSlider() {
       setActiveTab(prevActiveTab => {
         const newActiveTab = (prevActiveTab + 1) % tabCount;
 
-        // Move GSAP animation inside the state update
         mm.add("(max-width: 1023px)", () => {
           gsap.to(".mobile-use-cases", {
             x: newActiveTab * -(cardWidth)

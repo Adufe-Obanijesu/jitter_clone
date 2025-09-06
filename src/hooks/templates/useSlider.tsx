@@ -51,6 +51,12 @@ export default function useSlider() {
         gsap.delayedCall(0.1, () => {
             timelineRef.current = gsap.timeline({
                 repeat: -1,
+                scrollTrigger: {
+                    trigger: ".templates-cards",
+                    start: "top bottom",
+                    end: "bottom top",
+                    toggleActions: "play pause play pause",
+                },
             })
                 .fromTo(carouselRef.current, {
                     x: newX
@@ -90,6 +96,12 @@ export default function useSlider() {
 
                     timelineRef.current = gsap.timeline({
                         repeat: -1,
+                        scrollTrigger: {
+                            trigger: ".templates-cards",
+                            start: "top bottom",
+                            end: "bottom top",
+                            toggleActions: "play pause play pause",
+                        },
                     }).fromTo(track, {
                         x: startX
                     }, {

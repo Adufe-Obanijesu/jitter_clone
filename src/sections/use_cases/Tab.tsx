@@ -65,8 +65,8 @@ export default function Tab({
       {isActive && (
         <div className="absolute bottom-0 left-0 w-full h-1 bg-white">
           <div
-            className="h-full bg-dark transition-all duration-300"
-            style={{ width: `${progress * 100}%` }}
+            className="h-full w-full scale-0 bg-dark transition-all duration-300"
+            style={{ transform: `scaleX(${progress * 100})` }}
           />
         </div>
       )}

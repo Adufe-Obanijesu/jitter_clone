@@ -16,7 +16,7 @@ export default function usePinButton() {
           trigger: ".templates-cards",
           start: "top 90%",
           endTrigger: containerRef.current,
-          end: "bottom bottom-=300",
+          end: "bottom bottom-=200",
           pin: buttonWrapperRef.current,
           pinSpacing: false,
         });

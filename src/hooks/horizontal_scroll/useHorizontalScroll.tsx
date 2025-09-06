@@ -1,4 +1,4 @@
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import gsap from "gsap";
 import {useWindowWidth} from "@react-hook/window-size/throttled";
 import {useGSAP} from "@gsap/react";
@@ -107,6 +107,37 @@ export default function useHorizontalScroll() {
             mm.revert();
         };
     }, [windowWidth]);
+
+    useEffect(() => {
+        if (!containerRef.current) return
+        const videos = containerRef.current.querySelectorAll("video")
+        if (videos.length === 0) return
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    const video = entry.target as HTMLVideoElement;
+                    if (entry.isIntersecting) {
+                        video.play().catch(() => {})
+                    } else {
+                        video.pause()
+                    }
+                });
+            },
+            {
+                root: document.querySelector(".horizontal-wrapper"),
+                threshold: 0.5,
+                rootMargin: '0px'
+            }
+        );
+
+        videos.forEach(video => {
+            video.pause()
+            observer.observe(video);
+        })
+
+        return () => observer.disconnect();
+    }, []);
 
     return {
         refs: {
