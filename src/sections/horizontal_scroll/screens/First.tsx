@@ -5,8 +5,8 @@ import { videos } from "@/data/horizontal_scroll/first";
 
 export default function First() {
   return (
-    <div className="lg:h-screen flex items-center justify-center w-screen shrink-0 bg-white overflow-hidden px-5 lg:px-0">
-      <div className="zoom-el w-full aspect-[1.777/1] relative flex justify-center py-[67px] lg:max-w-[860px] max-w-[400px]">
+    <div className="lg:h-screen flex items-center justify-center w-screen shrink-0 bg-white overflow-hidden px-5 lg:px-0 pb-8 lg:pb-0">
+      <div className="zoom-el w-full aspect-[1.777/1] relative flex justify-center lg:py-[67px] lg:max-w-[860px] max-w-[400px]">
         <Image
           src="/images/horizontal_scroll/dashboard.webp"
           width={1280}
@@ -14,12 +14,12 @@ export default function First() {
           className="lg:max-w-[860px] max-w-[400px] absolute top-0 left-0 w-full shadow-lg"
           alt="base"
         />
-        <div className="relative z-10 grid grid-cols-3 gap-4 grid-rows-3 h-[243px]">
+        <div className="relative z-10 hidden lg:grid grid-cols-3 gap-4 grid-rows-3 h-[243px]">
           {videos.map((video, index) => (
             <div
               key={index}
               className={cn(
-                "w-[110px] h-[70px] px- flex justify-center items-center",
+                "w-[110px] h-[70px] flex justify-center items-center",
                 { "left-item": index % 3 === 0 },
                 { "right-item": index % 3 === 2 },
                 { "top-item": index < 3 },
@@ -36,6 +36,14 @@ export default function First() {
             </div>
           ))}
         </div>
+          <div className="lg:hidden max-w-30 h-full -my-4">
+              <ImageVideoOverlay
+                  imageSrc={`/videos/horizontal scroll/mobile-cover.webp`}
+                  imageWidth={640}
+                  imageHeight={408}
+                  videoSrc={`/videos/horizontal scroll/mobile-cover.mp4`}
+              />
+          </div>
       </div>
     </div>
   );
