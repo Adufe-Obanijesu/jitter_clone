@@ -14,6 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="icon" type="image/png" href="/logo.png"/>
         <link rel="preload" href="/fonts/lausanne/TWKLausanne-800.woff2" as="font" type="font/woff2" crossOrigin="" />
         <link rel="preload" href="/fonts/lausanne/TWKLausanne-600.woff2" as="font" type="font/woff2" crossOrigin="" />
       </head>
