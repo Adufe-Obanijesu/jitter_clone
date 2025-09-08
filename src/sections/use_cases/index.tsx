@@ -14,7 +14,7 @@ export default function UseCases() {
   return (
     <section className="lg:max-w-[860px] max-w-[400px] mx-auto mobile_padding">
       <div id="use-cases" className="invisible bg-light-grey lg:rounded-[80px] rounded-[20px] py-5 lg:p-[60px] lg:-mx-[60px] mt-[180px]">
-        <div className="">
+        <div className="px-5 lg:px-0">
           <div className="flex flex-col gap-[30px]">
             <Tag className="bg-[#f468ff]">Use cases</Tag>
             <h2 className="text-[36px] lg:text-5xl font-bold mb-5 max-w-[649px]">
@@ -97,7 +97,7 @@ export default function UseCases() {
                                       <div
                                           className="absolute left-0 top-0 w-full h-full flex items-center z-0">
                                         <video
-                                            ref={tab.id === state.activeTab ? refs.videoRef : undefined}
+                                            ref={(tab.id === state.activeTab && state.isMobile) ? refs.videoRef : undefined}
                                             src={tab.media.videoSrc}
                                             muted
                                             playsInline

@@ -1,7 +1,7 @@
 "use client";
 
 import { tabs } from "@/data/use_cases/tabs";
-import {useMemo, useRef, useState} from "react";
+import {useCallback, useMemo, useRef, useState} from "react";
 import {useWindowWidth} from "@react-hook/window-size/throttled";
 import {useGSAP} from "@gsap/react";
 import gsap from "gsap"
@@ -30,7 +30,6 @@ export default function useVideoSlider() {
 
     const video = videoRef.current;
     if (!video) return;
-    video.pause()
 
     const handleTimeUpdate = () => {
       if (video.duration) {
@@ -39,8 +38,9 @@ export default function useVideoSlider() {
     };
 
     const handleVideoEnded = () => {
-      setActiveTab(prevActiveTab => {
-        const newActiveTab = (prevActiveTab + 1) % tabCount;
+      video.currentTime = 0
+      setActiveTab(() => {
+        const newActiveTab = (activeTab + 1) % tabCount;
 
         mm.add("(max-width: 1023px)", () => {
           gsap.to(".mobile-use-cases", {
@@ -88,7 +88,7 @@ export default function useVideoSlider() {
       mm.revert()
       st.kill()
     };
-  }, [tabCount, activeTab, isMobile]);
+  }, [tabCount, activeTab, videoRef.current, isMobile]);
 
   const moveTo = contextSafe((index: number) => {
     setProgress(0);
@@ -99,7 +99,7 @@ export default function useVideoSlider() {
     })
   })
 
-  const updateActiveTab = (x: number) => {
+  const updateActiveTab = useCallback((x: number) => {
     const newActiveTab = Math.abs(Math.round(x / cardWidth));
     if (newActiveTab !== activeTab) {
       setActiveTab(newActiveTab);
@@ -113,7 +113,7 @@ export default function useVideoSlider() {
         }
       }
     }
-  };
+  }, [activeTab, cardWidth]);
 
   // Mobile animation
   useGSAP(() => {
@@ -171,7 +171,8 @@ export default function useVideoSlider() {
       progress,
       activeTab,
       width,
-      cardWidth
+      cardWidth,
+      isMobile
     },
     actions: {
       setActiveTab,
