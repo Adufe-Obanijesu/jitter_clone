@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes, ReactNode, forwardRef, useRef } from "react";
-import {cn} from "@/utils/tailwind";
+import { cn } from "@/utils/tailwind";
 import { useGSAP } from "@gsap/react";
-import gsap from "gsap"
+import gsap from "gsap";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
@@ -11,41 +11,56 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ children, rightIcon, animateOnHover=true, ariaId, className = "", ...rest }, ref) => {
+  (
+    {
+      children,
+      rightIcon,
+      animateOnHover = true,
+      ariaId,
+      className = "",
+      ...rest
+    },
+    ref,
+  ) => {
+    const scope = useRef<HTMLDivElement>(null);
+    const duration = 0.3;
 
-    const scope = useRef<HTMLDivElement>(null)
-      const duration = .3
-
-    const {contextSafe} = useGSAP(() => {}, {scope})
+    const { contextSafe } = useGSAP(() => {}, { scope });
 
     const onHover = contextSafe(() => {
-        if (!animateOnHover) return
-        gsap.fromTo("button", {scale: 1}, { scale: 1.05, ease: "back.out(2.5)", duration });
-    })
+      if (!animateOnHover) return;
+      gsap.fromTo(
+        "button",
+        { scale: 1 },
+        { scale: 1.05, ease: "back.out(2.5)", duration },
+      );
+    });
 
     const onLeave = contextSafe(() => {
-        if (!animateOnHover) return
-        gsap.to("button", {scale: 1, duration});
-    })
+      if (!animateOnHover) return;
+      gsap.to("button", { scale: 1, duration });
+    });
 
     return (
       <div ref={scope}>
-      <button
-        ref={ref}
-        {...(!rest["aria-label"] && !rest["aria-labelledby"]
-          ? { "aria-labelledby": ariaId }
-          : {})}
-        {...rest}
-        className={cn(
-          "py-4 px-8 font-semibold bg-primary text-white rounded-full flex items-center justify-center gap-2",
-          className,
-        )}
-        onMouseEnter={onHover}
-        onMouseLeave={onLeave}
-      >
-        <span id={ariaId} className="shrink-0">{children}</span>
-        {rightIcon && <span>{rightIcon}</span>}
-      </button>
+        <button
+          ref={ref}
+          {...(!rest["aria-label"] && !rest["aria-labelledby"]
+            ? { "aria-labelledby": ariaId }
+            : {})}
+          {...rest}
+          className={cn(
+            "py-4 px-8 font-semibold bg-primary text-white rounded-full flex items-center justify-center gap-2",
+            className,
+          )}
+          onMouseEnter={onHover}
+          onMouseLeave={onLeave}
+        >
+          <span id={ariaId} className="shrink-0">
+            {children}
+          </span>
+          {rightIcon && <span>{rightIcon}</span>}
+        </button>
       </div>
     );
   },

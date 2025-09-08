@@ -16,8 +16,8 @@ export const tabs: ITab[] = [
       "Turn your posts. stories, and reels into engaging content that grabs attention and stops people mid-scroll.",
     media: {
       videoSrc: "/videos/use cases/social_media.mp4",
-      imageSrc: "/videos/use cases/social_media.webp"
-    }
+      imageSrc: "/videos/use cases/social_media.webp",
+    },
   },
   {
     id: 1,
@@ -26,8 +26,8 @@ export const tabs: ITab[] = [
       "Scale production for high-volume campaigns across channels, formats, and languages, delivering dynamic ads that convert.",
     media: {
       videoSrc: "/videos/use cases/advertising.mp4",
-      imageSrc: "/videos/use cases/advertising.webp"
-    }
+      imageSrc: "/videos/use cases/advertising.webp",
+    },
   },
   {
     id: 2,
@@ -36,7 +36,7 @@ export const tabs: ITab[] = [
       "Test ideas, interactions, and transitions quickly. Bring your apps and websites to life and hand off your animations to developers.",
     media: {
       videoSrc: "/videos/use cases/prototyping.mp4",
-      imageSrc: "/videos/use cases/prototyping.webp"
-    }
+      imageSrc: "/videos/use cases/prototyping.webp",
+    },
   },
 ];

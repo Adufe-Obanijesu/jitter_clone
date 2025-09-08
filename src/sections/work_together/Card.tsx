@@ -1,6 +1,6 @@
 "use client";
 
-import {ReactNode} from "react";
+import { ReactNode } from "react";
 
 interface CardProps {
   backgroundColor?: string;
@@ -17,9 +17,8 @@ export default function Card({
   body,
   media,
   tagColor,
-  textColor
+  textColor,
 }: CardProps) {
-
   return (
     <div
       className="rounded-[40px] lg:p-[50px] py-[40px] px-[30px] lg:w-[460px] shrink-0 max-w-[360px] lg:max-w-[460px] w-[calc(100vw-40px)]"
@@ -46,7 +45,14 @@ export default function Card({
           </h2>
         </div>
 
-        <p style={{ color: textColor ?? "black", opacity: !textColor ? .7 : undefined }}>{body}</p>
+        <p
+          style={{
+            color: textColor ?? "black",
+            opacity: !textColor ? 0.7 : undefined,
+          }}
+        >
+          {body}
+        </p>
       </div>
     </div>
   );

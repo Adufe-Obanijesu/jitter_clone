@@ -24,7 +24,7 @@ export default function First() {
                 { "right-item": index % 3 === 2 },
                 { "top-item": index < 3 },
                 { "bottom-item": index > 5 },
-                { "bg-gray-400 py-2": index === 0 || index === 5 }
+                { "bg-gray-400 py-2": index === 0 || index === 5 },
               )}
             >
               <ImageVideoOverlay
@@ -32,18 +32,19 @@ export default function First() {
                 imageWidth={110}
                 imageHeight={70}
                 videoSrc={`/videos/horizontal scroll/${video}.mp4`}
+                lazyLoad={index !== 4}
               />
             </div>
           ))}
         </div>
-          <div className="lg:hidden max-w-30 h-full -my-4">
-              <ImageVideoOverlay
-                  imageSrc={`/videos/horizontal scroll/mobile-cover.webp`}
-                  imageWidth={640}
-                  imageHeight={408}
-                  videoSrc={`/videos/horizontal scroll/mobile-cover.mp4`}
-              />
-          </div>
+        <div className="lg:hidden max-w-30 h-full -my-4">
+          <ImageVideoOverlay
+            imageSrc={`/videos/horizontal scroll/mobile-cover.webp`}
+            imageWidth={640}
+            imageHeight={408}
+            videoSrc={`/videos/horizontal scroll/mobile-cover.mp4`}
+          />
+        </div>
       </div>
     </div>
   );

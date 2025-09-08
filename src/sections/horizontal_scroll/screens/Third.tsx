@@ -10,7 +10,7 @@ export default function Third() {
 
   useGSAP(
     () => showText(heading, progress, 0.594, timelineRef),
-    [progress, heading]
+    [progress, heading],
   );
 
   return (

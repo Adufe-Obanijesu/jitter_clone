@@ -12,8 +12,8 @@ export default function useAnimateText() {
       if (!containerRef.current) return;
 
       gsap.set(".hero-container", {
-        autoAlpha: 1
-      })
+        autoAlpha: 1,
+      });
 
       const tl = gsap.timeline({ defaults: { ease: "elastic.out(1, 0.3)" } });
 
@@ -25,26 +25,26 @@ export default function useAnimateText() {
           rotate: 5,
           y: -50,
           duration: (index) => {
-            return 1 + (0.2 * (index + 1))
+            return 1 + 0.2 * (index + 1);
           },
-          stagger: .2,
+          stagger: 0.2,
         },
         0,
       )
-      .to(
-        ".hero-text, .hero-button, .hero-badge",
-        {
-          scale: 1.05,
+        .to(
+          ".hero-text, .hero-button, .hero-badge",
+          {
+            scale: 1.05,
+            duration: 0.3,
+            ease: "power1.out",
+          },
+          "-=0.2",
+        )
+        .to(".hero-text, .hero-button, .hero-badge", {
+          scale: 1,
           duration: 0.3,
-          ease: "power1.out",
-        },
-        "-=0.2",
-      )
-      .to(".hero-text, .hero-button, .hero-badge", {
-        scale: 1,
-        duration: 0.3,
-        ease: "power2.out",
-      });
+          ease: "power2.out",
+        });
     },
     { scope: containerRef },
   );

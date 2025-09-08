@@ -10,7 +10,7 @@ export default function Second() {
 
   useGSAP(
     () => showText(heading, progress, 0.5, timelineRef),
-    [progress, heading]
+    [progress, heading],
   );
 
   return (

@@ -6,7 +6,7 @@ export function showText(
   heading: RefObject<HTMLHeadingElement | null>,
   progress: number,
   start: number,
-  timelineRef: RefObject<gsap.core.Timeline | null> | null
+  timelineRef: RefObject<gsap.core.Timeline | null> | null,
 ) {
   if (!heading.current) return;
   const mm = gsap.matchMedia();
@@ -46,6 +46,6 @@ export function showText(
       return () => {
         if (st) st.kill();
       };
-    }
+    },
   );
 }

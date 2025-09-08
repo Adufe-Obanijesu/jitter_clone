@@ -17,8 +17,7 @@ export const HContext = createContext<{
 });
 
 export default function HorizontalScroll() {
-
-  const {state, refs} = useHorizontalScroll()
+  const { state, refs } = useHorizontalScroll();
 
   return (
     <HContext.Provider

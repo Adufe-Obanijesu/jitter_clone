@@ -11,7 +11,7 @@ export default function Fifth() {
 
   useGSAP(
     () => showText(heading, progress, 0.93, timelineRef),
-    [progress, heading]
+    [progress, heading],
   );
 
   return (

@@ -9,7 +9,7 @@ import { FaPlay, FaPause } from "react-icons/fa6";
 import useSlider from "@/hooks/templates/useSlider";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import usePinButton from "@/hooks/templates/usePinButton";
-import {memo} from "react";
+import { memo } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -44,7 +44,7 @@ export default function Templates() {
           ref={refs.carouselRef}
           className="flex overflow-hidden lg:px-0 w-max"
         >
-            <Cards occurrences={state.occurrences} />
+          <Cards occurrences={state.occurrences} />
         </div>
       </div>
 
@@ -75,22 +75,22 @@ export default function Templates() {
 }
 
 const Cards = memo(function Cards({ occurrences }: { occurrences: number }) {
-    return (
-        <>
-            <div className="hidden lg:flex w-max">
-                {Array(occurrences)
-                    .fill(0)
-                    .flatMap(() => templates)
-                    .map((item, index) => (
-                        <Card key={`${item.title}-${index}`} index={index} {...item} />
-                ))}
-            </div>
+  return (
+    <>
+      <div className="hidden lg:flex w-max">
+        {Array(occurrences)
+          .fill(0)
+          .flatMap(() => templates)
+          .map((item, index) => (
+            <Card key={`${item.title}-${index}`} index={index} {...item} />
+          ))}
+      </div>
 
-            <div className="flex lg:hidden w-max">
-                {templates.map((item, index) => (
-                    <Card key={`${item.title}-${index}`} index={index} {...item} />
-                ))}
-            </div>
-        </>
-    );
+      <div className="flex lg:hidden w-max">
+        {templates.map((item, index) => (
+          <Card key={`${item.title}-${index}`} index={index} {...item} />
+        ))}
+      </div>
+    </>
+  );
 });

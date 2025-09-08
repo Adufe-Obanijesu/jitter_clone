@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import {cn} from "@/utils/tailwind";
+import { cn } from "@/utils/tailwind";
 
 interface TagProps {
   children: ReactNode;

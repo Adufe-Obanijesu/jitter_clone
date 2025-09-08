@@ -9,21 +9,21 @@ export default function usePinButton() {
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useGSAP(
-      () => {
-        if (!buttonWrapperRef.current || !containerRef.current) return;
+    () => {
+      if (!buttonWrapperRef.current || !containerRef.current) return;
 
-        const scrollTrigger = ScrollTrigger.create({
-          trigger: ".templates-cards",
-          start: "top 90%",
-          endTrigger: containerRef.current,
-          end: "bottom bottom-=200",
-          pin: buttonWrapperRef.current,
-          pinSpacing: false,
-        });
+      const scrollTrigger = ScrollTrigger.create({
+        trigger: ".templates-cards",
+        start: "top 90%",
+        endTrigger: containerRef.current,
+        end: "bottom bottom-=200",
+        pin: buttonWrapperRef.current,
+        pinSpacing: false,
+      });
 
-        return () => scrollTrigger.kill();
-      },
-      { scope: containerRef, dependencies: [] },
+      return () => scrollTrigger.kill();
+    },
+    { scope: containerRef, dependencies: [] },
   );
 
   return {

@@ -1,15 +1,15 @@
-"use client"
+"use client";
 
 // Tools
-import gsap from "gsap"
-import {useGSAP} from "@gsap/react";
-import {GSDevTools} from "gsap/GSDevTools";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { GSDevTools } from "gsap/GSDevTools";
 import Draggable from "gsap/Draggable";
 import SplitText from "gsap/SplitText";
 import InertiaPlugin from "gsap/InertiaPlugin";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import useLenis from "@/hooks/useLenis";
-import "@/effects"
+import "@/effects";
 
 // Sections
 import Navbar from "@/sections/navigation/Navbar";
@@ -28,7 +28,6 @@ import Templates from "@/sections/templates";
 import Info from "@/sections/info";
 import Footer from "@/sections/footer";
 
-
 // Components
 import FadeOnScroll from "@/components/animations/FadeOnScroll";
 // import Chat from "@/components/Chat";
@@ -36,19 +35,25 @@ import FadeOnScroll from "@/components/animations/FadeOnScroll";
 // Data
 import { testimonials } from "@/data/testimonials";
 
-gsap.registerPlugin(ScrollTrigger, useGSAP, SplitText, Draggable, InertiaPlugin, GSDevTools);
+gsap.registerPlugin(
+  ScrollTrigger,
+  useGSAP,
+  SplitText,
+  Draggable,
+  InertiaPlugin,
+  GSDevTools,
+);
 
 export default function Home() {
-
-  useLenis()
+  useLenis();
 
   return (
     <div className="bg-white relative z-10 ">
       <h1 className="sr-only">Jitter</h1>
-        <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
-          <Navbar />
-        </div>
-        <main id="main">
+      <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
+        <Navbar />
+      </div>
+      <main id="main">
         <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
           <Hero />
           <Customers />
@@ -57,7 +62,7 @@ export default function Home() {
           </FadeOnScroll>
           <WhatWeDo />
         </div>
-          <HorizontalScroll />
+        <HorizontalScroll />
         <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
           <WhatWeOffer />
           <FadeOnScroll translate>
@@ -68,23 +73,23 @@ export default function Home() {
             <Testimonial {...testimonials[1]} />
           </FadeOnScroll>
         </div>
-          <WorkTogether />
+        <WorkTogether />
 
         <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
           <CreativePower />
           <UseCases />
         </div>
 
-          <Templates />
+        <Templates />
 
         <div className="lg:max-w-[860px] max-w-[400px] mx-auto">
           <Info />
         </div>
 
-          <Footer />
-    </main>
+        <Footer />
+      </main>
 
-        {/*<Chat />*/}
-      </div>
+      {/*<Chat />*/}
+    </div>
   );
 }

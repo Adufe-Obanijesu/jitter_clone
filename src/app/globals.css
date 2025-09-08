@@ -30,7 +30,8 @@
     0 2.2rem 1.3rem 0 rgba(0, 0, 0, 0.02), 0 1rem 1rem 0 rgba(0, 0, 0, 0.04),
     0 0.2rem 0.5rem 0 rgba(0, 0, 0, 0.04);
   --shadow-nav-mobile:
-          0 500px 250px rgba(0,0,0,.02),0 400px 200px rgba(0,0,0,.1),0 160px 160px rgba(0,0,0,.08),0 40px 80px rgba(0,0,0,.1)
+    0 500px 250px rgba(0, 0, 0, 0.02), 0 400px 200px rgba(0, 0, 0, 0.1),
+    0 160px 160px rgba(0, 0, 0, 0.08), 0 40px 80px rgba(0, 0, 0, 0.1);
 }
 
 body {
@@ -106,7 +107,7 @@ button {
 }
 
 .margin-t {
-  @apply mt-36
+  @apply mt-36;
 }
 
 .fade-edges {
@@ -115,7 +116,7 @@ button {
 
 .fade-edges::before,
 .fade-edges::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   bottom: 0;

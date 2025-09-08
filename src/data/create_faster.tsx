@@ -4,7 +4,12 @@ import ImageVideoOverlay from "@/components/ImageVideoOverlay";
 export const create_faster = [
   {
     media: (
-        <ImageVideoOverlay imageSrc="/videos/create faster/1.webp" imageWidth={680} imageHeight={850} videoSrc="/videos/create faster/1.mp4" />
+      <ImageVideoOverlay
+        imageSrc="/videos/create faster/1.webp"
+        imageWidth={680}
+        imageHeight={850}
+        videoSrc="/videos/create faster/1.mp4"
+      />
     ),
     heading: "Infinite canvas",
     icon: (
@@ -19,7 +24,12 @@ export const create_faster = [
   },
   {
     media: (
-        <ImageVideoOverlay imageSrc="/videos/create faster/2.webp" imageWidth={680} imageHeight={850} videoSrc="/videos/create faster/2.mp4" />
+      <ImageVideoOverlay
+        imageSrc="/videos/create faster/2.webp"
+        imageWidth={680}
+        imageHeight={850}
+        videoSrc="/videos/create faster/2.mp4"
+      />
     ),
     heading: "Reusable animations",
     icon: (

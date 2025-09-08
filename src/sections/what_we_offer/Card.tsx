@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
 import { ReactNode } from "react";
-import {cn} from "@/utils/tailwind";
+import { cn } from "@/utils/tailwind";
 
 interface CardProps {
   title: string;
@@ -20,7 +20,6 @@ export default function Card({
   titleClassName = "",
   descriptionClassName = "",
 }: CardProps) {
-
   return (
     <div
       className={cn(

@@ -2,8 +2,8 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { Draggable } from "gsap/Draggable";
-import {useRef, useState, useMemo, useCallback} from "react";
-import {useWindowWidth} from "@react-hook/window-size/throttled";
+import { useRef, useState, useMemo, useCallback } from "react";
+import { useWindowWidth } from "@react-hook/window-size/throttled";
 
 const dist = 400;
 
@@ -11,8 +11,11 @@ export default function useSlider() {
   const scope = useRef<HTMLDivElement>(null);
   const draggableEl = useRef<HTMLDivElement>(null);
 
-  const width = useWindowWidth()
-  const mobileDist = useMemo(() => width - 20 - Math.max((width - 400), 0), [width])
+  const width = useWindowWidth();
+  const mobileDist = useMemo(
+    () => width - 20 - Math.max(width - 400, 0),
+    [width],
+  );
   const bounds = useRef({ minX: 0, maxX: 0 });
 
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -24,67 +27,69 @@ export default function useSlider() {
     const x = gsap.getProperty(draggableEl.current, "x") as number;
     setCanScrollLeft(x < bounds.current.maxX);
     setCanScrollRight(x > bounds.current.minX);
-  }, [])
+  }, []);
 
   const updateDots = useCallback(() => {
     const currentX = Number(gsap.getProperty(draggableEl.current, "x"));
-    const index = Math.round(currentX / mobileDist)
-    setIndex(Math.abs(index))
-  }, [mobileDist])
+    const index = Math.round(currentX / mobileDist);
+    setIndex(Math.abs(index));
+  }, [mobileDist]);
 
-  useGSAP(() => {
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
 
-    const mm = gsap.matchMedia()
+      mm.add("(min-width: 1024px)", () => {
+        if (!draggableEl.current) return;
 
-    mm.add("(min-width: 1024px)", () => {
-      if (!draggableEl.current) return;
+        const minX = draggableEl.current.offsetWidth * -1.22;
+        const maxX = 0;
+        bounds.current = { minX, maxX };
 
-      const minX = draggableEl.current.offsetWidth * -1.22;
-      const maxX = 0;
-      bounds.current = { minX, maxX };
+        Draggable.create("#wt-draggable", {
+          type: "x",
+          bounds: { minX, maxX },
+          inertia: true,
+          onThrowComplete: updateButtons,
+          onDragEnd: updateButtons,
+        });
 
-      Draggable.create("#wt-draggable", {
-        type: "x",
-        bounds: { minX, maxX },
-        inertia: true,
-        onThrowComplete: updateButtons,
-        onDragEnd: updateButtons,
+        updateButtons();
       });
 
-      updateButtons();
-    })
+      mm.add("(max-width: 1023px)", () => {
+        if (!draggableEl.current) return;
 
-    mm.add("(max-width: 1023px)", () => {
-      if (!draggableEl.current) return;
+        const minX = mobileDist * -3;
+        const maxX = 0;
+        bounds.current = { minX, maxX };
 
-      const minX = (mobileDist * -3);
-      const maxX = 0;
-      bounds.current = { minX, maxX };
+        Draggable.create("#wt-draggable", {
+          type: "x",
+          bounds: { minX, maxX },
+          inertia: true,
+          snap: {
+            x: (endValue) => Math.round(endValue / mobileDist) * mobileDist,
+          },
+          onDragEnd: updateDots,
+          onThrowComplete: updateDots,
+        });
 
-      Draggable.create("#wt-draggable", {
-        type: "x",
-        bounds: { minX, maxX },
-        inertia: true,
-        snap: {
-          x: (endValue) => Math.round(endValue / mobileDist) * mobileDist
-        },
-        onDragEnd: updateDots,
-        onThrowComplete: updateDots
+        updateDots();
       });
 
-      updateDots()
-    })
+      return () => {
+        mm.revert();
+      };
+    },
+    { scope, dependencies: [width] },
+  );
 
-    return () => {
-      mm.revert()
-    }
+  useGSAP(
+    () => {
+      let wheelTimeout: NodeJS.Timeout;
 
-  }, { scope, dependencies: [width] });
-
-  useGSAP(() => {
-    let wheelTimeout: NodeJS.Timeout;
-
-    draggableEl.current?.addEventListener(
+      draggableEl.current?.addEventListener(
         "wheel",
         (e) => {
           if (Math.abs(e.deltaX) < Math.abs(e.deltaY)) return;
@@ -94,7 +99,11 @@ export default function useSlider() {
           const speed = 1.5;
           const nextX = currentX - e.deltaX * speed;
 
-          const clamped = gsap.utils.clamp(bounds.current.minX, bounds.current.maxX, nextX);
+          const clamped = gsap.utils.clamp(
+            bounds.current.minX,
+            bounds.current.maxX,
+            nextX,
+          );
 
           gsap.to(draggableEl.current, {
             x: clamped,
@@ -109,10 +118,11 @@ export default function useSlider() {
             updateButtons();
           }, 100);
         },
-        { passive: false }
-    );
-
-  }, { scope, dependencies: [] });
+        { passive: false },
+      );
+    },
+    { scope, dependencies: [] },
+  );
 
   const { contextSafe } = useGSAP(() => {}, { scope, dependencies: [] });
 
@@ -139,28 +149,28 @@ export default function useSlider() {
   const moveTo = contextSafe((index: number) => {
     if (!draggableEl.current) return;
 
-    setIndex(index)
+    setIndex(index);
 
     gsap.to(draggableEl.current, {
       x: index * -mobileDist,
-      onComplete: updateDots
-    })
-  })
+      onComplete: updateDots,
+    });
+  });
 
   return {
     refs: {
       scope,
-      draggableEl
+      draggableEl,
     },
     state: {
       canScrollLeft,
       canScrollRight,
-      index
+      index,
     },
     actions: {
       moveLeft,
       moveRight,
-      moveTo
-    }
-  }
+      moveTo,
+    },
+  };
 }

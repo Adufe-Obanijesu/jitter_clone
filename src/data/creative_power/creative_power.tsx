@@ -4,14 +4,24 @@ import ImageVideoOverlay from "@/components/ImageVideoOverlay";
 export const creative_power = [
   {
     media: (
-        <ImageVideoOverlay imageSrc="/videos/creative power/text animations.webp" imageWidth={820} imageHeight={684} videoSrc="/videos/creative power/text animations.mp4" />
+      <ImageVideoOverlay
+        imageSrc="/videos/creative power/text animations.webp"
+        imageWidth={820}
+        imageHeight={684}
+        videoSrc="/videos/creative power/text animations.mp4"
+      />
     ),
     heading: "Text animations",
     body: "Create unique kinetic type effects with built-in presets that let you animate lines, words, and letters",
   },
   {
     media: (
-        <ImageVideoOverlay imageSrc="/videos/creative power/powerful effects.webp" imageWidth={820} imageHeight={684} videoSrc="/videos/creative power/powerful effects.mp4" />
+      <ImageVideoOverlay
+        imageSrc="/videos/creative power/powerful effects.webp"
+        imageWidth={820}
+        imageHeight={684}
+        videoSrc="/videos/creative power/powerful effects.mp4"
+      />
     ),
     heading: "Powerful effects",
     preheading: "new",
@@ -31,7 +41,12 @@ export const creative_power = [
   },
   {
     media: (
-        <ImageVideoOverlay imageSrc="/videos/creative power/video audio.webp" imageWidth={820} imageHeight={684} videoSrc="/videos/creative power/video audio.mp4" />
+      <ImageVideoOverlay
+        imageSrc="/videos/creative power/video audio.webp"
+        imageWidth={820}
+        imageHeight={684}
+        videoSrc="/videos/creative power/video audio.mp4"
+      />
     ),
     heading: "Video & Audio",
     body: "Import videos, soundtracks, voiceovers, and sound effects to create richer, more dynamic content.",

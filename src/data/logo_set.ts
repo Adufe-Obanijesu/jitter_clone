@@ -17,15 +17,15 @@ export const logoItems: LogoItem[] = [
         src: "/icons/customers/google.svg",
         width: 68.25,
         height: 35,
-        alt: "Google logo"
+        alt: "Google logo",
       },
       {
         src: "/icons/customers/huge.svg",
         width: 53.656,
         height: 35,
-        alt: "Huge logo"
-      }
-    ]
+        alt: "Huge logo",
+      },
+    ],
   },
   {
     images: [
@@ -33,15 +33,15 @@ export const logoItems: LogoItem[] = [
         src: "/icons/customers/ramp.svg",
         width: 81.656,
         height: 35,
-        alt: "Ramp logo"
+        alt: "Ramp logo",
       },
       {
         src: "/icons/customers/spotify.svg",
         width: 92.156,
         height: 35,
-        alt: "Spotify logo"
-      }
-    ]
+        alt: "Spotify logo",
+      },
+    ],
   },
   {
     images: [
@@ -49,15 +49,15 @@ export const logoItems: LogoItem[] = [
         src: "/icons/customers/perplexity brand.svg",
         width: 119,
         height: 35,
-        alt: "Perplexity logo"
+        alt: "Perplexity logo",
       },
       {
         src: "/icons/customers/akqa.svg",
         width: 59.5,
         height: 35,
-        alt: "AKQA logo"
-      }
-    ]
+        alt: "AKQA logo",
+      },
+    ],
   },
   {
     images: [
@@ -65,15 +65,15 @@ export const logoItems: LogoItem[] = [
         src: "/icons/customers/dept.svg",
         width: 68.25,
         height: 35,
-        alt: "Dept logo"
+        alt: "Dept logo",
       },
       {
         src: "/icons/customers/linktree.svg",
         width: 86.906,
         height: 35,
-        alt: "Linktree logo"
-      }
-    ]
+        alt: "Linktree logo",
+      },
+    ],
   },
   {
     images: [
@@ -81,15 +81,15 @@ export const logoItems: LogoItem[] = [
         src: "/icons/customers/deliveroo brand.svg",
         width: 109.656,
         height: 35,
-        alt: "Deliveroo logo"
+        alt: "Deliveroo logo",
       },
       {
         src: "/icons/customers/27b.svg",
         width: 49.378,
         height: 35,
-        alt: "27b logo"
-      }
-    ]
+        alt: "27b logo",
+      },
+    ],
   },
   {
     images: [
@@ -97,14 +97,14 @@ export const logoItems: LogoItem[] = [
         src: "/icons/customers/ogilvy.svg",
         width: 63,
         height: 35,
-        alt: "Ogilvy logo"
+        alt: "Ogilvy logo",
       },
       {
         src: "/icons/customers/tiktok.svg",
         width: 94.5,
         height: 35,
-        alt: "TikTok logo"
-      }
-    ]
-  }
+        alt: "TikTok logo",
+      },
+    ],
+  },
 ];

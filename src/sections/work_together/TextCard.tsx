@@ -3,7 +3,6 @@
 import Button from "@/components/ui/Button";
 
 export default function TextCard() {
-
   return (
     <div
       className="rounded-[40px] lg:p-[50px] py-[40px] px-[30px] lg:w-[460px] shrink-0 max-w-[360px] lg:max-w-[460px] w-[calc(100vw-40px)]"
