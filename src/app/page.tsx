@@ -1,6 +1,5 @@
 "use client"
 
-
 // Tools
 import gsap from "gsap"
 import {useGSAP} from "@gsap/react";
@@ -18,18 +17,16 @@ import Hero from "@/sections/hero";
 import Customers from "@/sections/customers";
 import FeatureVideo from "@/sections/feature_video";
 import WhatWeDo from "@/sections/what_we_do";
-
-// Lazy loaded components
-const HorizontalScroll = dynamic(() => import("@/sections/horizontal_scroll"));
-const WhatWeOffer = dynamic(() => import("@/sections/what_we_offer"));
-const Testimonial = dynamic(() => import("@/components/Testimonial"));
-const CreateFaster = dynamic(() => import("@/sections/create_faster"));
-const WorkTogether = dynamic(() => import("@/sections/work_together"));
-const CreativePower = dynamic(() => import("@/sections/creative_power"));
-const UseCases = dynamic(() => import("@/sections/use_cases"));
-const Templates = dynamic(() => import("@/sections/templates"));
-const Info = dynamic(() => import("@/sections/info"));
-const Footer = dynamic(() => import("@/sections/footer"));
+import HorizontalScroll from "@/sections/horizontal_scroll";
+import WhatWeOffer from "@/sections/what_we_offer";
+import Testimonial from "@/components/Testimonial";
+import CreateFaster from "@/sections/create_faster";
+import WorkTogether from "@/sections/work_together";
+import CreativePower from "@/sections/creative_power";
+import UseCases from "@/sections/use_cases";
+import Templates from "@/sections/templates";
+import Info from "@/sections/info";
+import Footer from "@/sections/footer";
 
 
 // Components
@@ -38,7 +35,6 @@ import FadeOnScroll from "@/components/animations/FadeOnScroll";
 
 // Data
 import { testimonials } from "@/data/testimonials";
-import dynamic from "next/dynamic";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP, SplitText, Draggable, InertiaPlugin, GSDevTools);
 
