@@ -59,7 +59,7 @@ export default function Card({
           className="rounded-[40px] py-[40px] lg:py-[60px] lg:px-10 px-[30px] max-w-[calc(100vw-60px)] lg:w-[460px] lg:h-[546px] h-[370px] shrink-0 bg-light-grey relative flex flex-col gap-4 justify-between"
         >
           <div className="flex-1 w-full h-full flex justify-center items-center">
-            <div className="aspect-video w-full flex justify-center items-center relative group">
+            <div className="w-full flex justify-center items-center relative group">
               {media}
               <a href="#" aria-label={`${title} template`}>
                 <div className="absolute top-0 left-0 w-full h-full hidden lg:flex hv-center">

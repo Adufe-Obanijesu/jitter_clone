@@ -29,7 +29,7 @@ export default function Card({
     >
       <div className="mb-6">
         <div className="p-4 rounded-2xl w-full max-w-md mx-auto">
-          <div className="relative aspect-video w-full">{media}</div>
+          <div className="relative w-full">{media}</div>
         </div>
       </div>
 

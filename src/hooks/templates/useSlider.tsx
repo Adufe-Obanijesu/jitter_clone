@@ -13,6 +13,8 @@ export default function useSlider() {
     const currentPos = useRef(0)
     const [isPlaying, setIsPlaying] = useState(false)
 
+    const duration = useMemo(() => 60, [])
+
 
     const numClones = 1
     const occurrences = useMemo(() => numClones * 2 + 1, [])
@@ -62,13 +64,13 @@ export default function useSlider() {
                     x: newX
                 }, {
                     x: newX - (isScrollingRight ? sectionWidth : -sectionWidth),
-                    duration: 60,
+                    duration,
                     ease: "none"
                 })
 
                 setIsPlaying(true)
         })
-    }, [getTrackDimensions])
+    }, [getTrackDimensions, duration])
 
     useGSAP(() => {
         const dimensions = getTrackDimensions();
@@ -106,7 +108,7 @@ export default function useSlider() {
                         x: startX
                     }, {
                         x: startX - sectionWidth,
-                        duration: 20,
+                        duration,
                         ease: "none"
                     });
 
