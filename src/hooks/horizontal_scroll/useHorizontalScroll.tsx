@@ -65,29 +65,33 @@ export default function useHorizontalScroll() {
               {
                 x: -100,
               },
-              "<",
+              "<"
             )
             .to(
               ".right-item",
               {
                 x: 100,
               },
-              "<",
+              "<"
             )
             .to(
               ".top-item",
               {
                 y: -100,
               },
-              "<",
+              "<"
             )
             .to(
               ".bottom-item",
               {
                 y: 100,
               },
-              "<",
-            );
+              "<"
+            )
+            .to(".top-item, .bottom-item, .right-item, .left-item", {
+              opacity: 0,
+              duration: 0.05,
+            });
         }
 
         tl.to(isDesktop ? sectionsRef.current : mobileSectionsRef.current, {
@@ -100,7 +104,7 @@ export default function useHorizontalScroll() {
         return () => {
           tl.kill();
         };
-      },
+      }
     );
 
     return () => {
@@ -128,7 +132,7 @@ export default function useHorizontalScroll() {
         root: document.querySelector(".horizontal-wrapper"),
         threshold: 0.5,
         rootMargin: "0px",
-      },
+      }
     );
 
     videos.forEach((video) => {
