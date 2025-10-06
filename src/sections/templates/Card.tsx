@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef } from "react";
+import {ReactNode, useEffect, useRef, useState} from "react";
 import Image from "next/image";
 import { cn } from "@/utils/tailwind";
 import Button from "@/components/ui/Button";
@@ -24,32 +24,29 @@ export default function Card({
   const buttonRef = useRef<HTMLButtonElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const [shouldMount, setShouldMount] = useState(false);
+
   useEffect(() => {
-    if (!containerRef.current) return;
-    const video = containerRef.current.querySelector("video");
-    if (!video) return;
-    video.pause();
+    const container = containerRef.current;
+    if (!container) return;
 
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            video.play().catch(() => {});
-          } else {
-            video.pause();
-          }
-        });
-      },
-      {
-        root: document.querySelector(".templates-cards"),
-        threshold: 0.5,
-        rootMargin: "0px",
-      },
+        (entries) => {
+          entries.forEach((entry) => {
+            setShouldMount(entry.isIntersecting);
+          });
+        },
+        {
+          rootMargin: "200px 0px 200px 0px",
+          threshold: 0,
+        }
     );
 
-    observer.observe(containerRef.current);
+    observer.observe(container);
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
   return (
@@ -61,7 +58,8 @@ export default function Card({
       <div className="rounded-[40px] py-[40px] lg:py-[60px] lg:px-10 px-[30px] max-w-[calc(100vw-60px)] lg:w-[460px] lg:h-[546px] h-[370px] shrink-0 bg-light-grey relative flex flex-col gap-4 justify-between">
         <div className="flex-1 w-full h-full flex justify-center items-center">
           <div className="w-full flex justify-center items-center relative group">
-            {media}
+            {/*{media}*/}
+            {shouldMount && media}
             <a href="#" aria-label={`${title} template`}>
               <div className="absolute top-0 left-0 w-full h-full hidden lg:flex hv-center">
                 <Button

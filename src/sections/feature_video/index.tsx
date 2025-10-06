@@ -1,4 +1,5 @@
 import Image from "next/image";
+import ImageVideoOverlay from "@/components/ImageVideoOverlay";
 
 export default function FeatureVideo() {
   return (
@@ -15,15 +16,7 @@ export default function FeatureVideo() {
           alt="what we do"
         />
         <div className="absolute left-0 top-0 w-full h-full px-10 lg:px-0 flex items-center z-0">
-          <video
-            src="/videos/what_we_do.mp4"
-            loop
-            muted
-            playsInline
-            autoPlay
-            aria-hidden="true"
-            className="w-full z-1"
-          />
+            <ImageVideoOverlay imageSrc="/videos/what_we_do.webp" imageWidth={1472} imageHeight={972} videoSrc="/videos/what_we_do.mp4" />
         </div>
       </div>
     </div>

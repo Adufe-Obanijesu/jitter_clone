@@ -1,6 +1,7 @@
 "use client";
 
 import Button from "@/components/ui/Button";
+import ImageVideoOverlay from "@/components/ImageVideoOverlay";
 
 export default function Newsletter() {
   return (
@@ -9,15 +10,7 @@ export default function Newsletter() {
       className="sticky bottom-0 left-0  bg-black flex items-center justify-center w-full h-screen max-h-[650px]"
     >
       <div className="px-4 flex flex-col lg:flex-row items-center gap-12 lg:gap-16 lg:max-w-[860px] max-w-[400px] mx-auto">
-        <video
-          src="/videos/newsletter/animation.mp4"
-          muted
-          loop
-          playsInline
-          autoPlay
-          aria-hidden="true"
-          className="lg:w-[344px] w-[300px]"
-        />
+        <ImageVideoOverlay imageSrc="/videos/newsletter/animation.webp" imageWidth={1054} imageHeight={504} videoSrc="/videos/newsletter/animation.mp4" />
 
         <div className="flex-1">
           <div className="space-y-10 flex flex-col items-center">
