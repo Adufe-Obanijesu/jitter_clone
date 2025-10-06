@@ -33,6 +33,7 @@ export default function First() {
                 imageHeight={70}
                 videoSrc={`/videos/horizontal scroll/${video}.mp4`}
                 lazyLoad={index !== 4}
+                imageOnly={index !== 4}
               />
             </div>
           ))}

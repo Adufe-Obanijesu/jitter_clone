@@ -1,7 +1,5 @@
 import Image from "next/image";
-import { useRef } from "react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
+import { useRef, useState, useEffect } from "react";
 
 interface Props {
   imageSrc: string;
@@ -10,81 +8,78 @@ interface Props {
   videoSrc: string;
   adjustWidth?: number;
   lazyLoad?: boolean;
+  imageOnly?: boolean;
 }
 
 export default function ImageVideoOverlay({
-  imageSrc,
-  imageWidth,
-  imageHeight,
-  videoSrc,
-  adjustWidth,
-  lazyLoad = true,
-}: Props) {
+                                            imageSrc,
+                                            imageWidth,
+                                            imageHeight,
+                                            videoSrc,
+                                            adjustWidth,
+                                            lazyLoad = true,
+                                            imageOnly = false,
+                                          }: Props) {
   const aspectRatio = `${imageWidth}/${imageHeight}`;
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [shouldMount, setShouldMount] = useState(false);
 
-  useGSAP(() => {
-    if (!lazyLoad || !containerRef.current || !videoRef.current) return;
-
-    const video = videoRef.current;
+  useEffect(() => {
+      if (imageOnly) return;
     const container = containerRef.current;
+    if (!container) return;
 
-    const scrollTrigger = ScrollTrigger.create({
-      trigger: container,
-      start: "top bottom",
-      end: "bottom top",
-      onEnter: () => {
-        if (!video.src) {
-          video.src = videoSrc;
+    const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            setShouldMount(entry.isIntersecting);
+          });
+        },
+        {
+          rootMargin: "200px 0px 200px 0px",
+          threshold: 0,
         }
-        video.play().catch(() => {});
-      },
-      onLeave: () => {
-        video.pause();
-      },
-      onEnterBack: () => {
-        video.play().catch(() => {});
-      },
-      onLeaveBack: () => {
-        video.pause();
-      },
-    });
+    );
+
+    observer.observe(container);
 
     return () => {
-      scrollTrigger.kill();
+      observer.disconnect();
     };
-  }, [lazyLoad, videoSrc]);
+  }, [imageOnly]);
 
   return (
-    <div
-      ref={containerRef}
-      className="w-full h-full relative hv-center"
-      style={{ aspectRatio }}
-    >
-      <Image
-        src={imageSrc}
-        width={imageWidth}
-        height={imageHeight}
-        className="w-full h-full object-contain"
-        alt="video preview"
-        style={{ width: `${adjustWidth}%` }}
-      />
-      <div className="absolute left-0 top-0 w-full h-full flex items-center z-0">
-        <video
-          ref={videoRef}
-          src={lazyLoad ? undefined : videoSrc}
-          data-src={videoSrc}
-          loop
-          muted
-          playsInline
-          autoPlay={!lazyLoad}
-          preload={lazyLoad ? "none" : "metadata"}
-          aria-hidden="true"
-          className="w-full h-full z-1"
-          style={{ width: `${adjustWidth}%` }}
+      <div
+          ref={containerRef}
+          className="w-full h-full relative hv-center"
+          style={{ aspectRatio }}
+      >
+        <Image
+            src={imageSrc}
+            width={imageWidth}
+            height={imageHeight}
+            className="w-full h-full object-contain"
+            alt="video preview"
+            style={{ width: `${adjustWidth}%` }}
         />
+        <div className="absolute left-0 top-0 w-full h-full flex items-center z-0">
+          {shouldMount && (
+              <video
+                  ref={videoRef}
+                  src={lazyLoad ? undefined : videoSrc}
+                  data-src={videoSrc}
+                  loop
+                  muted
+                  playsInline
+                  autoPlay={!lazyLoad}
+                  preload={lazyLoad ? "none" : "metadata"}
+                  aria-hidden="true"
+                  className="w-full h-full z-1"
+                  style={{ width: `${adjustWidth}%` }}
+              />
+          )}
+        </div>
       </div>
-    </div>
   );
 }
