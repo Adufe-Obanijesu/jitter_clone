@@ -17,7 +17,6 @@ export default function ImageVideoOverlay({
                                             imageHeight,
                                             videoSrc,
                                             adjustWidth,
-                                            lazyLoad = true,
                                             imageOnly = false,
                                           }: Props) {
   const aspectRatio = `${imageWidth}/${imageHeight}`;
@@ -67,13 +66,11 @@ export default function ImageVideoOverlay({
           {shouldMount && (
               <video
                   ref={videoRef}
-                  src={lazyLoad ? undefined : videoSrc}
-                  data-src={videoSrc}
+                  src={videoSrc}
                   loop
                   muted
                   playsInline
-                  autoPlay={!lazyLoad}
-                  preload={lazyLoad ? "none" : "metadata"}
+                  autoPlay
                   aria-hidden="true"
                   className="w-full h-full z-1"
                   style={{ width: `${adjustWidth}%` }}
